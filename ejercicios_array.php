@@ -133,15 +133,85 @@ $madrid = array(
     "Setiembre" => [31.6,10.7],
     "Octubre" => [30.1,7.5],
     "Nobiembre" => [18.6,3],
-    "Diciembre" =>[13.1.-0.2],
+    "Diciembre" =>[13.1,-0.2],
 );
 echo"<table border =1 > ";
-
+echo"<th>meses</th><th>max</th><th>min</th>";
 foreach ($madrid as $meses => $temperatura) {
     echo "<tr>";
     echo "<th>$meses</th>";
-    echo "<td>$temperatura</td>";
+
+    echo "<td>  $temperatura[0]</td>";
+    echo "<td>  $temperatura[1]</td>";
     echo "</tr>";
 }
 echo"</table>";
+echo "<h2>ejercicio 9</h2>";
+
+$barja=[
+      "Oros" => array(
+        "As" => 11,
+        "2" => 0,
+        "3" => 10,
+        "4" => 0,
+        "5" => 0,
+        "6" => 0,
+        "7" => 0,
+        "Sota" => 2,
+        "Caballo" => 3,
+        "Rey" => 4,
+    ),
+    "Copas" => array(
+        "As" => 11,
+        "2" => 0,
+        "3" => 10,
+        "4" => 0,
+        "5" => 0,
+        "6" => 0,
+        "7" => 0,
+        "Sota" => 2,
+        "Caballo" => 3,
+        "Rey" => 4,
+    ),
+    "Espadas" => array(
+        "As" => 11,
+        "2" => 0,
+        "3" => 10,
+        "4" => 0,
+        "5" => 0,
+        "6" => 0,
+        "7" => 0,
+        "Sota" => 2,
+        "Caballo" => 3,
+        "Rey" => 4,
+    ),
+    "Bastos" => array(
+        "As" => 11,
+        "2" => 0,
+        "3" => 10,
+        "4" => 0,
+        "5" => 0,
+        "6" => 0,
+        "7" => 0,
+        "Sota" => 2,
+        "Caballo" => 3,
+        "Rey" => 4,
+    ),
+];
+ $mazo =[];
+foreach ($mazo as $palo => $cartas) {
+    foreach ($cartas as $nombre => $valor) {
+         $mazo[] = [
+            "palo" => $palo,
+            "nombre" => $nombre,
+            "valor" => $valor
+        ];
+
+    }
+}
+
+
+
+¡
+
     ?>
