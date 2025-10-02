@@ -75,7 +75,7 @@ for ($i = 0; $i < 4; $i++) {
 }
 echo "</ul>";
 
-echo "<h2>ejercicio 5</h2>";
+echo "<h2>ejercicio 6</h2>";
 
 $madrid = array(
     "Enero" => "14.8",
@@ -91,6 +91,7 @@ $madrid = array(
     "Diciembre" => "13.1",
 );
 
+echo"<table border = 1>";
 echo "<tr>";
 foreach ($madrid as $meses => $temperatura) {
     echo "<th>$meses</th>";
@@ -104,4 +105,43 @@ foreach ($madrid as $meses => $temperatura) {
 echo "</tr>";
 
 echo "</table>";
+
+echo "<h2>ejercicio 7</h2>";
+
+
+echo"<table border =1 > ";
+
+foreach ($madrid as $meses => $temperatura) {
+     $num_guiones = round(floatval($temperatura));
+     $barra = str_repeat("-", $num_guiones);
+    echo "<tr>";
+    echo "<th>$meses</th>";
+    echo "<td>$barra</td>";
+    echo "</tr>";
+}
+echo"</table>";
+
+echo "<h2>ejercicio 8</h2>";
+$madrid = array(
+    "Enero" => [14.8,-1.8],
+    "Febrero" => [19,-1.8],
+    "Marzo" => [25.2,-1.6],
+    "Abril" => [30.9,5.1],
+    "Mayo" => [29.1,8.3],
+    "Junio" => [37,13.4],
+    "Agosto" => [40,15.1],
+    "Setiembre" => [31.6,10.7],
+    "Octubre" => [30.1,7.5],
+    "Nobiembre" => [18.6,3],
+    "Diciembre" =>[13.1.-0.2],
+);
+echo"<table border =1 > ";
+
+foreach ($madrid as $meses => $temperatura) {
+    echo "<tr>";
+    echo "<th>$meses</th>";
+    echo "<td>$temperatura</td>";
+    echo "</tr>";
+}
+echo"</table>";
     ?>
