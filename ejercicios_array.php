@@ -206,12 +206,12 @@ foreach ($mazo as $palo => $cartas) {
             "nombre" => $nombre,
             "valor" => $valor
         ];
-
+      
     }
 }
+echo "<p>" . implode(" , ", $mazo) . "</p>";
 
+ 
 
-
-¡
 
     ?>
