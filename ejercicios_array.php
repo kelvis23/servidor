@@ -148,70 +148,51 @@ foreach ($madrid as $meses => $temperatura) {
 echo"</table>";
 echo "<h2>ejercicio 9</h2>";
 
-$barja=[
-      "Oros" => array(
-        "As" => 11,
-        "2" => 0,
-        "3" => 10,
-        "4" => 0,
-        "5" => 0,
-        "6" => 0,
-        "7" => 0,
-        "Sota" => 2,
-        "Caballo" => 3,
-        "Rey" => 4,
-    ),
-    "Copas" => array(
-        "As" => 11,
-        "2" => 0,
-        "3" => 10,
-        "4" => 0,
-        "5" => 0,
-        "6" => 0,
-        "7" => 0,
-        "Sota" => 2,
-        "Caballo" => 3,
-        "Rey" => 4,
-    ),
-    "Espadas" => array(
-        "As" => 11,
-        "2" => 0,
-        "3" => 10,
-        "4" => 0,
-        "5" => 0,
-        "6" => 0,
-        "7" => 0,
-        "Sota" => 2,
-        "Caballo" => 3,
-        "Rey" => 4,
-    ),
-    "Bastos" => array(
-        "As" => 11,
-        "2" => 0,
-        "3" => 10,
-        "4" => 0,
-        "5" => 0,
-        "6" => 0,
-        "7" => 0,
-        "Sota" => 2,
-        "Caballo" => 3,
-        "Rey" => 4,
-    ),
+$cartas=[
+    "oro",
+    "bastos",
+    "espadas",
+    "bastos",
+
 ];
- $mazo =[];
-foreach ($mazo as $palo => $cartas) {
-    foreach ($cartas as $nombre => $valor) {
-         $mazo[] = [
-            "palo" => $palo,
-            "nombre" => $nombre,
-            "valor" => $valor
+$balor=[
+        "As" => 11,
+        "2" => 0,
+        "3" => 10,
+        "4" => 0,
+        "5" => 0,
+        "6" => 0,
+        "7" => 0,
+        "Sota" => 2,
+        "Caballo" => 3,
+        "Rey" => 4,
+];
+
+$baraja = [];
+foreach ($palos as $palo) {
+    foreach ($figuras as $nombre => $valor) {
+        $baraja[] = [
+            'nombre' => $nombre,
+            'palo' => $palo,
+            'valor' => $valor
         ];
-      
     }
 }
-echo "<p>" . implode(" , ", $mazo) . "</p>";
 
+// Barajar
+shuffle($baraja);
+
+// Elegir 10 cartas al azar
+$mano = array_slice($baraja, 0, 10);
+
+// Mostrar las cartas y sumar puntos
+$puntosTotales = 0;
+echo "<p>Cartas seleccionadas:</p><ul>";
+foreach ($mano as $carta) {
+    echo "<li>{$carta['nombre']} de {$carta['palo']} - {$carta['valor']} puntos</li>";
+    $puntosTotales += $carta['valor'];
+}
+echo "</ul>";
+echo "<p><strong>Puntos totales: $puntosTotales</strong></p>";
+?>
  
-
-
-    ?>
