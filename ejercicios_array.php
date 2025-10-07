@@ -173,8 +173,9 @@ $cartasv2 = [];
 $keys = array_keys($numeros);
 
 for ($i = 0; $i < 10; $i++) {
+    //vale cualqueirade los dos rand y randont_int()
     $n = rand(0, count($numeros) - 1);//randon etre el 0 y 9
-    $p = rand(0, count($palos) - 1);//randon etre el 0 y 3 ( el -1 espor los idices que empisan en 0)
+    $p = random_int(0, count($palos) - 1);//randon etre el 0 y 3 ( el -1 espor los idices que empisan en 0)
     $nombreCarta = $keys[$n];              // Ej: "As"
     $valor = $numeros[$nombreCarta];       // Ej: 11
     $palo = $palos[$p];                    // Ej: "oro    
@@ -182,6 +183,12 @@ for ($i = 0; $i < 10; $i++) {
     $cartas[] = "$nombreCarta de $palo";
     $cartasv2[] = [$nombreCarta, $valor, $palo];
     $puntos += $valor;
+    // tambie en puedes 
+    /*
+    echo"<ul><li>"
+    echo $nombreCarta."que tiene".puntos."puntos, es del palo ".$palo
+    echo"</ul></li>"
+    */
 }
 
 echo "<p>Aquí hay 10 cartas aleatorias:</p><ul>";
