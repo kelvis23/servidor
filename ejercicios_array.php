@@ -203,4 +203,53 @@ foreach ($cartasv2 as $c) {
 echo "</ul>";
 echo "<p>El total de puntos es $puntos.</p>";
 
+
+
+echo "<h2>ejercicio 10</h2>";
+
+$palos = [
+    "oro",
+    "bastos",
+    "espadas",
+    "copas",
+
+];
+$numeros = [
+    "As" => 11,
+    "2" => 0,
+    "3" => 10,
+    "4" => 0,
+    "5" => 0,
+    "6" => 0,
+    "7" => 0,
+    "Sota" => 2,
+    "Caballo" => 3,
+    "Rey" => 4,
+];
+$puntos = 0;
+$cartas = [];
+$cartasv2 = [];
+$cartasv3 = [];
+$keys = array_keys($numeros);
+
+for ($i = 0; $i < 10; $i++) {
+    //vale cualqueirade los dos rand y randont_int()
+    $n = rand(0, count($numeros) - 1);//randon etre el 0 y 9
+    $p = random_int(0, count($palos) - 1);//randon etre el 0 y 3 ( el -1 espor los idices que empisan en 0)
+    $nombreCarta = $keys[$n];              // Ej: "As"
+    $valor = $numeros[$nombreCarta];       // Ej: 11
+    $palo = $palos[$p];                    // Ej: "oro    
+
+    $cartas[] = "$nombreCarta de $palo";
+    $cartasv2[] = [$nombreCarta, $valor, $palo];
+    $puntos += $valor;
+
+    //para que solamente me saque el valor de una carta
+ 
+}
+echo "<p>Aquí hay 10 cartas aleatorias:</p><ul>";
+foreach ($cartas as $c) {
+    echo "<li>$c</li>";
+}
+
 ?>
