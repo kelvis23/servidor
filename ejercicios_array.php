@@ -91,7 +91,7 @@ $madrid = array(
     "Diciembre" => "13.1",
 );
 
-echo"<table border = 1>";
+echo "<table border = 1>";
 echo "<tr>";
 foreach ($madrid as $meses => $temperatura) {
     echo "<th>$meses</th>";
@@ -109,34 +109,34 @@ echo "</table>";
 echo "<h2>ejercicio 7</h2>";
 
 
-echo"<table border =1 > ";
+echo "<table border =1 > ";
 
 foreach ($madrid as $meses => $temperatura) {
-     $num_guiones = round(floatval($temperatura));
-     $barra = str_repeat("-", $num_guiones);
+    $num_guiones = round(floatval($temperatura));
+    $barra = str_repeat("-", $num_guiones);
     echo "<tr>";
     echo "<th>$meses</th>";
     echo "<td>$barra</td>";
     echo "</tr>";
 }
-echo"</table>";
+echo "</table>";
 
 echo "<h2>ejercicio 8</h2>";
 $madrid = array(
-    "Enero" => [14.8,-1.8],
-    "Febrero" => [19,-1.8],
-    "Marzo" => [25.2,-1.6],
-    "Abril" => [30.9,5.1],
-    "Mayo" => [29.1,8.3],
-    "Junio" => [37,13.4],
-    "Agosto" => [40,15.1],
-    "Setiembre" => [31.6,10.7],
-    "Octubre" => [30.1,7.5],
-    "Nobiembre" => [18.6,3],
-    "Diciembre" =>[13.1,-0.2],
+    "Enero" => [14.8, -1.8],
+    "Febrero" => [19, -1.8],
+    "Marzo" => [25.2, -1.6],
+    "Abril" => [30.9, 5.1],
+    "Mayo" => [29.1, 8.3],
+    "Junio" => [37, 13.4],
+    "Agosto" => [40, 15.1],
+    "Setiembre" => [31.6, 10.7],
+    "Octubre" => [30.1, 7.5],
+    "Nobiembre" => [18.6, 3],
+    "Diciembre" => [13.1, -0.2],
 );
-echo"<table border =1 > ";
-echo"<th>meses</th><th>max</th><th>min</th>";
+echo "<table border =1 > ";
+echo "<th>meses</th><th>max</th><th>min</th>";
 foreach ($madrid as $meses => $temperatura) {
     echo "<tr>";
     echo "<th>$meses</th>";
@@ -145,54 +145,55 @@ foreach ($madrid as $meses => $temperatura) {
     echo "<td>  $temperatura[1]</td>";
     echo "</tr>";
 }
-echo"</table>";
+echo "</table>";
 echo "<h2>ejercicio 9</h2>";
 
-$cartas=[
+$palos = [
     "oro",
     "bastos",
     "espadas",
-    "bastos",
+    "copas",
 
 ];
-$balor=[
-        "As" => 11,
-        "2" => 0,
-        "3" => 10,
-        "4" => 0,
-        "5" => 0,
-        "6" => 0,
-        "7" => 0,
-        "Sota" => 2,
-        "Caballo" => 3,
-        "Rey" => 4,
+$numeros = [
+    "As" => 11,
+    "2" => 0,
+    "3" => 10,
+    "4" => 0,
+    "5" => 0,
+    "6" => 0,
+    "7" => 0,
+    "Sota" => 2,
+    "Caballo" => 3,
+    "Rey" => 4,
 ];
+$puntos = 0;
+$cartas = [];
+$cartasv2 = [];
+$keys = array_keys($numeros);
 
-$baraja = [];
-foreach ($palos as $palo) {
-    foreach ($figuras as $nombre => $valor) {
-        $baraja[] = [
-            'nombre' => $nombre,
-            'palo' => $palo,
-            'valor' => $valor
-        ];
-    }
+for ($i = 0; $i < 10; $i++) {
+    $n = rand(0, count($numeros) - 1);//randon etre el 0 y 9
+    $p = rand(0, count($palos) - 1);//randon etre el 0 y 3 ( el -1 espor los idices que empisan en 0)
+    $nombreCarta = $keys[$n];              // Ej: "As"
+    $valor = $numeros[$nombreCarta];       // Ej: 11
+    $palo = $palos[$p];                    // Ej: "oro    
+
+    $cartas[] = "$nombreCarta de $palo";
+    $cartasv2[] = [$nombreCarta, $valor, $palo];
+    $puntos += $valor;
 }
 
-// Barajar
-shuffle($baraja);
-
-// Elegir 10 cartas al azar
-$mano = array_slice($baraja, 0, 10);
-
-// Mostrar las cartas y sumar puntos
-$puntosTotales = 0;
-echo "<p>Cartas seleccionadas:</p><ul>";
-foreach ($mano as $carta) {
-    echo "<li>{$carta['nombre']} de {$carta['palo']} - {$carta['valor']} puntos</li>";
-    $puntosTotales += $carta['valor'];
+echo "<p>Aquí hay 10 cartas aleatorias:</p><ul>";
+foreach ($cartas as $c) {
+    echo "<li>$c</li>";
 }
 echo "</ul>";
-echo "<p><strong>Puntos totales: $puntosTotales</strong></p>";
+echo "<p>Aquí hay 10 cartas aleatorias con la versión 2:</p><ul>";
+foreach ($cartasv2 as $c) {
+    echo "<li> $c[0] de $c[2]. Son $c[1] puntos</li>";
+}
+echo "</ul>";
+echo "<p>El total de puntos es $puntos.</p>";
+
 ?>
- 
