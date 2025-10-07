@@ -47,4 +47,34 @@ return "<$tag> $element</$tag>";
 function matricula($stude,$school,$course= "DaW" ,$year="2025"){
     return"<p>$stude matriculado en $course, en $year, en el ies $school</p>";
 }
+function incrementOne($num){
+    $num++ ;
+    return $num;
+}
+
+
+function substract( ...$number ){
+$result =0;
+foreach($number as $n){
+$result += $n;
+}
+return $result;
+}
+/**
+ * conextar las cadenas de textos resividas como parametros
+ * tiene que haber al menos 2, y si no devolver false $text
+ * @param array $text cadenas de texto de concatenar
+ * @return string cadena
+ */
+function concat( ...$text ){
+    if(count($text) < 0){
+        return false;
+    }
+$result = "";
+foreach($text as $t){
+    $result .= $t;
+}
+return $result;
+}
+func
 ?>

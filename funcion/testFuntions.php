@@ -71,9 +71,28 @@ include("./funsiones.php");
     imcrementReference($number);
     echo"<p>$number</p>"; 
 
+function teste(&$a,$b,&$c,$d=8){
+$a++;
+$b++;
+$c++;
+$d++;
+}
+$a = 1;
+$b = 2;
+$c = 3;
+$d = 4;
+teste($a,$b,$c,$d);
+var_dump($a);
+var_dump($b);
+var_dump($c);
+var_dump($d);
 
+    $eda =17;
+$eda = incrementOne($eda);
+var_dump($eda);
 
-    
+echo"<br>";
+substract(9,4,1,2,3,)
     ?>
 </body>
 
