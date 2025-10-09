@@ -47,18 +47,18 @@ echo "</table>";
 echo "<h2>ejercicio 4</h2>";
 
 for ($i = 1; $i <= 10; $i++) {
-    $numero[] = random_int(0, 100);
+    $numero1[] = random_int(0, 100);
 }
-echo "<p>" . implode(" , ", $numero) . "</p>";
+echo "<p>" . implode(" , ", $numero1) . "</p>";
 
-for ($i = 0; $i < count($numero); $i++) {
-    $a = $numero[$i] ** 2;
+for ($i = 0; $i < count($numero1); $i++) {
+    $a = $numero1[$i] ** 2;
     $cuadrdo[] = $a;
 }
 echo "<p>" . implode(" , ", $cuadrdo) . "</p>";
 
-for ($i = 0; $i < count($numero); $i++) {
-    $a = $numero[$i] ** 3;
+for ($i = 0; $i < count($numero1); $i++) {
+    $a = $numero1[$i] ** 3;
     $cubo[] = $a;
 }
 echo "<p>" . implode(" , ", $cubo) . "</p>";
