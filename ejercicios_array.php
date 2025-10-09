@@ -229,7 +229,7 @@ $numeros = [
 $puntos = 0;
 $cartas = [];
 $cartasv2 = [];
-$cartasv3 = [];
+$carta = [];
 $keys = array_keys($numeros);
 
 for ($i = 0; $i < 10; $i++) {
@@ -241,15 +241,81 @@ for ($i = 0; $i < 10; $i++) {
     $palo = $palos[$p];                    // Ej: "oro    
 
     $cartas[] = "$nombreCarta de $palo";
-    $cartasv2[] = [$nombreCarta, $valor, $palo];
-    $puntos += $valor;
+    $carta[] = "$nombreCarta de $palo";
 
-    //para que solamente me saque el valor de una carta
- 
+
+    if (in_array($carta, $cartas)) {
+        $i--;
+    } else {
+        $cartasv2[] = "$nombreCarta de $palo  que tiene un valor de $valor";
+        $puntos += $valor;
+    }
 }
-echo "<p>Aquí hay 10 cartas aleatorias:</p><ul>";
-foreach ($cartas as $c) {
+
+echo "<p>Aquí hay 10 cartas aleatorias:</p>";
+foreach ($carta as $c) {
     echo "<li>$c</li>";
 }
+
+echo "<p>Aquí hay 10 cartas aleatorias con su valor:</p>";
+
+foreach ($cartasv2 as $x) {
+    echo "<li>$x</li>";
+}
+echo "<h2>ejercicio 11</h2>";
+$discionarrio = [
+    "Casa" => "House",
+    "Perro" => "Dog",
+    "Libro" => " Book",
+    "Agua" => "Water",
+    "Amigo" => "Friend",
+    "Comida" => "Food",
+    "Escuela" => "School",
+    "Cielo" => "Sky",
+    "Feliz" => "Happy",
+    "Trabajo" => "Work",
+];
+
+$keys = array_keys($discionarrio);
+$d = rand(0, count($discionarrio) - 1);
+$palabra = $keys[$d];
+$traducion = $discionarrio[$palabra];
+
+echo "$palabra es $traducion en ingles";
+
+echo "<h2>ejercicio 12</h2>";
+
+/*hay varias formas otraq formas que puede ser mas facil de entender es pidiendo  random (0,500);
+despues que me lo desordene   y que de los 500 solamente me des 100 el resto es igual 
+
+*/
+
+$count = 0;
+$arr1 = [];
+ 
+for ($i = 0; $i < 10; $i++) {
+    $arr1[$i] = [];
+    for ($j = 0; $j < 10; ) {
+        $n = rand(0, 500);
+        //fucionar dos arrays 
+        $flatArray = array_merge(...$arr1);
+        if (!in_array($n, $flatArray)) {
+            $arr1[$i][$j] = $n;
+            $j++;
+        } else {
+            $count++;
+        }
+    }
+
+}
+echo "<table border =1>";
+for ($i = 0; $i < 10; $i++) {
+    echo "<tr>";
+    for ($j = 0; $j < 10; $j++) {
+        echo "<td>{$arr1[$i][$j]}</td>";
+    }
+    echo "</tr>";
+}
+echo "</table>";
 
 ?>

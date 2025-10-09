@@ -76,5 +76,5 @@ foreach($text as $t){
 }
 return $result;
 }
-func
+
 ?>
