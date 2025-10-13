@@ -292,7 +292,7 @@ despues que me lo desordene   y que de los 500 solamente me des 100 el resto es 
 
 $count = 0;
 $arr1 = [];
- 
+
 for ($i = 0; $i < 10; $i++) {
     $arr1[$i] = [];
     for ($j = 0; $j < 10; ) {
@@ -317,5 +317,28 @@ for ($i = 0; $i < 10; $i++) {
     echo "</tr>";
 }
 echo "</table>";
+
+echo "<h2>ejercicio 13</h2>";
+
+$estudiantes = [
+    ["nombre" => "Ana García", "matematicas" => 8.5, "historia" => 7.0, "programacion" => 9.0],
+    ["nombre" => "Luis Martínez", "matematicas" => 6.0, "historia" => 8.5, "programacion" => 7.5],
+    ["nombre" => "Marta Rodríguez", "matematicas" => 9.0, "historia" => 6.5, "programacion" => 8.0],
+    ["nombre" => "Carlos López", "matematicas" => 7.5, "historia" => 9.0, "programacion" => 6.5],
+    ["nombre" => "Elena Torres", "matematicas" => 8.0, "historia" => 7.5, "programacion" => 9.5]
+];
+
+
+$promedio = 0;
+for ($i = 0; $i < count($estudiantes); $i++) {
+    $promedio = ($estudiantes["matematicas"] + $estudiantes["historia"] + $estudiantes["programacion"]);
+    $estudiantes[$i]["promedio"] = round($promedio, 2);
+
+}
+foreach ($estudiantes as $key => $value) {
+    echo "$key  es $value";
+}
+echo "<h2>ejercicio 14</h2>";
+
 
 ?>
