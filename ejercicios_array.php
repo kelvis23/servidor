@@ -292,7 +292,7 @@ despues que me lo desordene   y que de los 500 solamente me des 100 el resto es 
 
 $count = 0;
 $arr1 = [];
- 
+
 for ($i = 0; $i < 10; $i++) {
     $arr1[$i] = [];
     for ($j = 0; $j < 10; ) {
@@ -318,4 +318,92 @@ for ($i = 0; $i < 10; $i++) {
 }
 echo "</table>";
 
+
+echo "<h2>ejercicio 13</h2>";
+
+$estudiantes = [
+    ["nombre" => "Ana García", "matematicas" => 8.5, "historia" => 7.0, "programacion" => 9.0],
+    ["nombre" => "Luis Martínez", "matematicas" => 6.0, "historia" => 8.5, "programacion" => 7.5],
+    ["nombre" => "Marta Rodríguez", "matematicas" => 9.0, "historia" => 6.5, "programacion" => 8.0],
+    ["nombre" => "Carlos López", "matematicas" => 7.5, "historia" => 9.0, "programacion" => 6.5],
+    ["nombre" => "Elena Torres", "matematicas" => 8.0, "historia" => 7.5, "programacion" => 9.5]
+];
+
+$promedio = 0;
+
+for ($i = 0; $i < count($estudiantes); $i++) {
+    //$estudiantes[$i] es el array del estudiante en la posición $i
+    //Con las claves "matematicas", "historia" y "programacion" accedemos a sus respectivas notas.
+    $promedio = (
+        $estudiantes[$i]["matematicas"] +
+        $estudiantes[$i]["historia"] +
+        $estudiantes[$i]["programacion"]
+    ) / 3;
+    // Agregamos el promedio al array del estudiante
+    $estudiantes[$i]["promedio"] = round($promedio, 2);
+    //Concatenamos el texto con el nombre del estudiante ($estudiantes[$i]["nombre"]).round($promedio, 2) redondea el promedio a 2 decimales para que se vea más limpio.
+    echo "El promedio de " . $estudiantes[$i]["nombre"] . " es " . round($promedio, 2) . "<br>";
+}
+$maxPromedio = 0;
+$mejorEstudiante = "";
+for ($i = 0; $i < count($estudiantes); $i++) {
+    if ($estudiantes[$i]["promedio"] > $maxPromedio) {
+        $maxPromedio = $estudiantes[$i]["promedio"];
+        $mejorEstudiante = $estudiantes[$i]["nombre"];
+    }
+}
+echo "<br>El estudiante con el promedio más alto es $mejorEstudiante con un promedio de $maxPromedio.";
+
+$count = 0;
+for ($i = 0; $i < count($estudiantes); $i++) {
+    if ($estudiantes[$i]["matematicas"] >= 7) {
+        if ($estudiantes[$i]["historia"] >= 7) {
+            if ($estudiantes[$i]["programacion"] >= 7) {
+                $count++;
+            }
+        }
+    }
+}
+echo "<br> hay $count estudiante que tiene  mas de 7 en todas las materias";
+
+
+$maximo =[];
+$maxm =0;
+$maxh =0;
+$maxp = 0;
+for ($i = 0; $i < count($estudiantes); $i++) {
+     if ($estudiantes[$i]["matematicas"] > $maxm) {
+     $maxm = $estudiantes[$i]["matematicas"];
+    }
+    if ($estudiantes[$i]["historia"] > $maxh) {
+     $maxh = $estudiantes[$i]["historia"];
+    }
+    if ($estudiantes[$i]["programacion"] > $maxp) {
+     $maxp = $estudiantes[$i]["programacion"];
+    }
+    $maximo["matematica"] =round($maxm);
+    $maximo["historia"] =round($maxh);
+    $maximo["programasion"] =round($maxp);
+   
+    
+}
+ echo"<br>la nota maxima de matematicas  es $maximo[matematica]  en hestoria  $maximo[historia] y en programasion $maximo[programasion]";
+
+echo "<h2>ejercicio 14</h2>";
+
+$hotel = [
+    "habitaciones" => [
+        101 => ["tipo" => "individual", "precio" => 50, "ocupada" => false, "dias_ocupada" => 0],
+        102 => ["tipo" => "doble", "precio" => 80, "ocupada" => true, "dias_ocupada" => 3],
+        103 => ["tipo" => "suite", "precio" => 150, "ocupada" => false, "dias_ocupada" => 0],
+        201 => ["tipo" => "individual", "precio" => 50, "ocupada" => true, "dias_ocupada" => 5],
+        202 => ["tipo" => "doble", "precio" => 80, "ocupada" => false, "dias_ocupada" => 0],
+        203 => ["tipo" => "suite", "precio" => 150, "ocupada" => true, "dias_ocupada" => 2]
+    ],
+    "reservas" => [
+        ["habitacion" => 102, "cliente" => "Juan Pérez", "dias" => 3],
+        ["habitacion" => 201, "cliente" => "María López", "dias" => 5],
+        ["habitacion" => 203, "cliente" => "Carlos Ruiz", "dias" => 2]
+    ]
+];
 ?>
