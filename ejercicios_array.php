@@ -367,27 +367,37 @@ for ($i = 0; $i < count($estudiantes); $i++) {
 echo "<br> hay $count estudiante que tiene  mas de 7 en todas las materias";
 
 
-$maximo =[];
-$maxm =0;
-$maxh =0;
+$maximo = [];
+$maxm = 0;
+$maxh = 0;
 $maxp = 0;
 for ($i = 0; $i < count($estudiantes); $i++) {
-     if ($estudiantes[$i]["matematicas"] > $maxm) {
-     $maxm = $estudiantes[$i]["matematicas"];
+    if ($estudiantes[$i]["matematicas"] > $maxm) {
+        $maxm = $estudiantes[$i]["matematicas"];
     }
     if ($estudiantes[$i]["historia"] > $maxh) {
-     $maxh = $estudiantes[$i]["historia"];
+        $maxh = $estudiantes[$i]["historia"];
     }
     if ($estudiantes[$i]["programacion"] > $maxp) {
-     $maxp = $estudiantes[$i]["programacion"];
+        $maxp = $estudiantes[$i]["programacion"];
     }
-    $maximo["matematica"] =round($maxm);
-    $maximo["historia"] =round($maxh);
-    $maximo["programasion"] =round($maxp);
-   
-    
+    $maximo["matematica"] = round($maxm);
+    $maximo["historia"] = round($maxh);
+    $maximo["programasion"] = round($maxp);
+
+
 }
- echo"<br>la nota maxima de matematicas  es $maximo[matematica]  en hestoria  $maximo[historia] y en programasion $maximo[programasion]";
+echo "<br>la nota maxima de matematicas  es $maximo[matematica]  en hestoria  $maximo[historia] y en programasion $maximo[programasion]";
+
+usort($estudiantes, function ($a, $b) {
+    return $b['promedio'] <=> $a['promedio']; // Orden descendente
+});
+
+// Finalmente, imprimimos la lista ordenada
+echo "<h3>Estudiantes ordenados por promedio descendente:</h3>";
+foreach ($estudiantes as $est) {
+    echo $est['nombre'] . " - Promedio: " . $est['promedio'] . "<br>";
+}
 
 echo "<h2>ejercicio 14</h2>";
 
@@ -406,4 +416,26 @@ $hotel = [
         ["habitacion" => 203, "cliente" => "Carlos Ruiz", "dias" => 2]
     ]
 ];
+
+// La variable $hotel es un array asociativo con claves "habitaciones" y "reservas", no es un array indexado con números.
+//Por eso, hacer for ($i = 0; $i < count($hotel); $i++) no funciona aquí, porque $hotel[0], $hotel[1], etc. no existen.
+foreach ($hotel["habitaciones"] as $numHabitacion => $habitaciones) {
+    if ($habitaciones["tipo"] == "individual") {
+        if ($habitaciones["ocupada"] == false) {
+            echo "disponible la habitasion $numHabitacion";
+        }
+    }
+}
+
+$ingresos =0;
+foreach ($hotel["habitaciones"] as $numHabitacion => $habitaciones) {
+$ingresos += $habitaciones["precio"];
+}
+echo "<br>el hotel a ganado $ingresos";
+
+foreach ($hotel["reservas"] as $reserva) {
+    
+  
+}
+
 ?>
