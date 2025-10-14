@@ -8,4 +8,10 @@ function promedio($a, $b)
         return $medio = $sum / 2;
     }
 }
+
+function potencia ($base , $exponete =2){
+    return$sum = $base**$exponete;
+}
+
+
 ?>
