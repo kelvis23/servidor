@@ -123,13 +123,11 @@
 
     echo"<br>";
     // El día con mayor variación térmica
-    $v =0;
     $var = 0;
-    $min = 0;
-    $max = 0;
     foreach ($temperaturas as $ciudadIndex => $dia) {
-        foreach ($dia as $diaIndex => $temperatura) {
-            if ($diaIndex) {
+    //    inicializan ambos con el primer valor del array, y luego  se recorre el resto para ver si hay algo menor o mayor.
+         $min = $max = $dia[0];
+        foreach ($dia as  $temperatura) {
                 if ($temperatura < $min) {
                     $min = $temperatura;
 
@@ -140,17 +138,25 @@
 
                 }
                 $v = $max -$min;
-            }
             if($v > $var){
                 $var = $v;
             }
         }
     }
 
-    echo"este es el  con mayor diferesia termica de  $var";
+    echo "La mayor variación de temperatura entre días en una ciudad es: $var";
 
+echo"<br>";
     //​ La temperatura media por ciudad
-
+  foreach ($temperaturas as $ciudadIndex => $dia) {
+      $sum = 0;
+        foreach ($dia as  $temperatura) {
+                $sum += $temperatura;
+        }
+         $media = $sum/count($dia);
+        echo"<br>";
+        echo" la ciudad  $ciudadIndex :tiene una media de temeperatura de $media";
+    }
 /*
     echo"<br>";
         $arr1 = [
