@@ -157,6 +157,37 @@ echo"<br>";
         echo"<br>";
         echo" la ciudad  $ciudadIndex :tiene una media de temeperatura de $media";
     }
+
+echo "<br>";
+$var = 0;
+    foreach ($temperaturas as $ciudadIndex => $dia) {
+    echo"<table border = 1";
+             $min = $max = $dia[0];
+        foreach ($dia as  $temperatura) {
+                if ($temperatura < $min) {
+                    $min = $temperatura;
+
+                }
+                //temperatura maxmima
+                if ($temperatura > $max) {
+                    $max = $temperatura;
+
+                }
+                 if ($temperatura < 0) {
+                     $temperatura;
+
+                }
+                //temperatura maxmima
+                if ($temperatura > 35) {
+                     $temperatura;
+
+                }
+                $v = $max -$min;
+            if($v > $var){
+                $var = $v;
+            }
+        }
+    }
 /*
     echo"<br>";
         $arr1 = [
@@ -221,8 +252,10 @@ echo"<br>";
         echo"este es el  con mayor diferesia termica de  $var";
 */
 
-    
+    echo"Ejercicio 3: Funciones "
     ?>
+
+    
 </body>
 
 </html>
