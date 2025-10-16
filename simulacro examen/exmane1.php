@@ -87,11 +87,15 @@ $alumnado = [
 ];
 
 //a
+
+echo"<p>".$alumnado["2345X"]["edad"]."</p>";
+
 foreach ($alumnado as $dn => $valor) {
     if ($dn == "2345X") {
         echo "<p> la edad es $valor[edad]</p>";
     }
 }
+
 //b
 echo"<ol> ";
 foreach ($alumnado as $dn => $valor) {
@@ -99,6 +103,7 @@ foreach ($alumnado as $dn => $valor) {
   
     echo" <li>$valor[name] $matricula tiene matricula</li>";
 }
+
 echo"</ol> ";
 echo"<ul> ";
 foreach ($alumnado as $dn => $valor) {
