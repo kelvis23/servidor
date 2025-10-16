@@ -5,60 +5,60 @@ include("./funcionesXY.php");
 
 
 //1
-$array = [];
-echo "<table border = 1>";
-echo "<tr>";
-for ($i = 1; $i <= 3; $i++) {
-    echo "<tr>";
-    for ($j = 1; $j <= 5; $j++) {
-        echo "<td>";
-        echo $num = $i * $j;
-        $array[] = $num;
-        echo "</td>";
-
-    }
-    echo "</tr>";
-}
-var_dump($array);
-echo "<br>";
-//2
-$arr1 = [];
-for ($i = 1; $i <= 4; $i++) {
-    for ($j = 1; $j <= 4; $j++) {
-        if ($i == $j) {
-            $arr1[] = "si";
-        } else {
-            $arr1[] = "no";
+  for ($i = 0; $i < 3; $i++) {
+        for ($j = 0; $j < 5; $j++) {
+            $bid[$i][$j] = ($i + 1) * ($j + 1);
         }
     }
-}
-var_dump($arr1);
+    for ($i = 0; $i < count($bid); $i++) {
+        for ($j = 0; $j < count($bid[$i]); $j++) {
+            echo $bid[$i][$j] . " ";
+        }
+        echo "<br>";
+    }
+    echo "<br>";
+//2
+  
+    for ($i = 0; $i < 4; $i++) {
+        for ($j = 0; $j < 4; $j++) {
+            if ($i == $j)
+                $bid2[$i][$j] = "sí";
+            else
+                $bid2[$i][$j] = "no";
+        }
+    }
+    for ($i = 0; $i < count($bid2); $i++) {
+        for ($j = 0; $j < count($bid2[$i]); $j++) {
+            echo $bid2[$i][$j] . " ";
+        }
+        echo "<br>";
+    }
 
 //3
 echo "<br>";
-echo promedio(7, 10);
+ var_dump(promedio(1, 2, 4, 3));
+ var_dump(promedio());
+ var_dump(promedio(-2, 3, -7));
 
 //4
 echo "<br>";
-echo potencia(4, 3);
-echo "<br>";
-echo potencia(4);
-echo "<br>";
-echo potencia(2, 8);
 
-
+  var_dump(potencia(4, 3));
+    var_dump(potencia(4));
+    var_dump(potencia(2, 8));
 //5
  $array =[
-        "balca"=>41,
+        14 => "blanca",
         21 =>"Amed",
          41 => "juan,"
     ];
-    echo"<ul>";
-foreach ($array as $name => $value) {    
-  asort($value);
-  echo"<li>$value tiene el id $key </li></li>" ;
-}
-echo"</ul>";
+
+  asort($array);
+    echo "<ul>";
+    foreach ($array as $id => $name) {
+        echo "<li>$name tiene el id $id</li>";
+    }
+    echo "</ul>";
 
 //6
 
@@ -110,6 +110,5 @@ echo"</ul> ";
 
 //test  1-d 2-d
 ?>
-
 
 

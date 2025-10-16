@@ -38,7 +38,7 @@
     }
 
 
-   
+
     echo "Tercera figura (marco): <br>";
     for ($i = 0; $i < $filas; $i++) {
         for ($j = 0; $j < $columnas; $j++) {
@@ -53,9 +53,9 @@
     }
 
     echo "Cuarta figura (tablero de ajedrez): <br>";
-  for ($i = 0; $i < $filas; $i++) {
+    for ($i = 0; $i < $filas; $i++) {
         for ($j = 0; $j < $columnas; $j++) {
-            if (($i + $j) % 2 == 0 ) { 
+            if (($i + $j) % 2 == 0) {
                 echo "x";
             } else {
                 echo "&nbsp;&nbsp;"; // Esto mantiene el interior vacío (espacios)
@@ -64,6 +64,32 @@
         }
         echo "<br>";
     }
+
+
+    ?>
+    <h2>Ejercicio 2: Arrays bidimensionales</h2>
+
+    <?php
+    $temperaturas = [
+    ];
+
+    for ($ciudad = 0; $ciudad < 6; $ciudad++) {
+        for ($dia = 0; $dia < 6; $dia++) {
+            // Generar temperatura aleatoria entre -10 y 45
+            $temperaturas[$ciudad][$dia] = rand(-10, 45);
+        }
+    }
+
+foreach ($temperaturas as $ciudadIndex => $ciudad) {
+    echo "Ciudad " . ($ciudadIndex + 1) . ": ";
+    echo implode("°C, ", $ciudad) . "°C\n";
+    echo"<br>";
+}
+//​ La temperatura más baja y más alta
+
+
+// El día con mayor variación térmica
+//​ La temperatura media por ciudad
 
     ?>
 </body>
