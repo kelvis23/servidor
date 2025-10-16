@@ -16,7 +16,7 @@
     $filas = $rows % 8 + 4;  //7
     $columnas = $columns % 6 + 5; //6
     
-    echo "Primera figura (rectángulo completo):";
+    echo "Primera figura (rectángulo completo): <br>";
     for ($i = 0; $i < $filas; $i++) {
         for ($j = 0; $j < $columnas; $j++) {
             echo "x";
@@ -36,6 +36,16 @@
         $x++;
         echo "<br>";
     }
+    /* otra forma
+        for ($i = 0; $i < $filas; $i++) {
+            for ($j = 0; $j < $i; $j++) {
+               //esto permite que se escalonado
+                    echo "x";
+
+            }
+
+            echo "<br>";
+        }*/
 
 
 
@@ -75,22 +85,137 @@
 
     for ($ciudad = 0; $ciudad < 6; $ciudad++) {
         for ($dia = 0; $dia < 6; $dia++) {
-            // Generar temperatura aleatoria entre -10 y 45
+            // Generar temperatura aleatoria en 6 ciudades distitas
             $temperaturas[$ciudad][$dia] = rand(-10, 45);
         }
     }
 
-foreach ($temperaturas as $ciudadIndex => $ciudad) {
-    echo "Ciudad " . ($ciudadIndex + 1) . ": ";
-    echo implode("°C, ", $ciudad) . "°C\n";
+    foreach ($temperaturas as $ciudadIndex => $dia) {
+        foreach ($dia as $diaIndex => $temperatura) {
+            echo "Ciudad $ciudadIndex, dia $diaIndex: $temperatura \n";
+
+        }
+    }
+    //​ La temperatura más baja y más alta
+    
+    echo "<br>";
+    $min = 0;
+    $max = 0;
+    foreach ($temperaturas as $ciudadIndex => $dia) {
+        foreach ($dia as $temperatura) {
+            //temperatura minima
+            if ($temperatura < $min) {
+                $min = $temperatura;
+
+            }
+            //temperatura maxmima
+            if ($temperatura > $max) {
+                $max = $temperatura;
+
+            }
+        }
+    }
+    //temperatura minima
+    echo "la minima temperatura es $min";
+    echo "<br>";
+    //temperatura maxmima
+    echo "la maxima temperatura es $max";
+
     echo"<br>";
-}
-//​ La temperatura más baja y más alta
+    // El día con mayor variación térmica
+    $v =0;
+    $var = 0;
+    $min = 0;
+    $max = 0;
+    foreach ($temperaturas as $ciudadIndex => $dia) {
+        foreach ($dia as $diaIndex => $temperatura) {
+            if ($diaIndex) {
+                if ($temperatura < $min) {
+                    $min = $temperatura;
 
+                }
+                //temperatura maxmima
+                if ($temperatura > $max) {
+                    $max = $temperatura;
 
-// El día con mayor variación térmica
-//​ La temperatura media por ciudad
+                }
+                $v = $max -$min;
+            }
+            if($v > $var){
+                $var = $v;
+            }
+        }
+    }
 
+    echo"este es el  con mayor diferesia termica de  $var";
+
+    //​ La temperatura media por ciudad
+
+/*
+    echo"<br>";
+        $arr1 = [
+            [2, -2, 24, 11, -8, 44],
+            [36, 3, 34, 16, 24, 14],
+            [41, 42, 18, 3, -4,  4],
+            [-1,  -8, 7,  20,  44, 1],
+            [29, 16, 35,  3, 7,  29],
+            [37, 31, 30, 40, 2, -5]
+        ];
+        foreach ($arr1 as $ciudadIndex => $temperatura) {
+                 echo implode(", ", $temperatura);
+        echo "<br>";
+                echo "<br>";
+        }
+     echo "<br>";
+     $min =0;
+     $max =0;
+        foreach ($arr1 as $e => $x ) {
+            foreach($x as $valor){
+                //temperatura minima
+            if($valor <$min){
+                $min = $valor;
+
+            }
+            //temperatura maxmima
+            if($valor >$max){
+                $max = $valor;
+
+            }
+           }
+        }
+        //temperatura minima
+         echo"$min";
+        echo "<br>";
+         //temperatura maxmima
+         echo"$max";
+         
+ $v =0;
+    $var = 0;
+    $min = 0;
+    $max = 0;
+    foreach ($arr1 as $e => $x) {
+        foreach ($x as $c => $t) {
+            if ($c) {
+                if ($t < $min) {
+                    $min = $t;
+
+                }
+                //temperatura maxmima
+                if ($t > $max) {
+                    $max = $t;
+
+                }
+                $v = $max -$min;
+            }
+            if($v > $var){
+                $var = $v;
+            }
+        }
+    }
+        echo"este es el  con mayor diferesia termica de  $var";
+*/
+
+    
     ?>
 </body>
 
