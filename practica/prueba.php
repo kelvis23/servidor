@@ -110,7 +110,7 @@ foreach ($temperaturas as $ciudadIndex => $dia) {
         //temperatura maxmima
         if ($temperatura > $max) {
             $max = $temperatura;
-             $maxDia = $diaIndex;
+            $maxDia = $diaIndex;
             $maxCiudad = $ciudadIndex;
 
         }
@@ -187,10 +187,10 @@ foreach ($temperaturas as $nombreCiudad => $dia) {
 
     echo "</tr>";
 }
-echo "</table>";
-echo"<div>";
-echo "<p>estadistica</p>";
-echo "<p>Temperatura mínima: $min °C (día". ($minDia+1).", ciudad $minCiudad)</p>";
-echo "<p>Temperatura máxima: $max °C (día". ($maxDia +1).", ciudad $maxCiudad)</p>";
-echo"</div>";
-    ?>
+ echo "</table>";
+ echo "<div>";
+ echo "<p>estadistica</p>";
+ echo "<p>Temperatura mínima: $min °C (día" . ($minDia + 1) . ", ciudad $minCiudad)</p>";
+ echo "<p>Temperatura máxima: $max °C (día" . ($maxDia + 1) . ", ciudad $maxCiudad)</p>";
+ echo "</div>";
+?>
