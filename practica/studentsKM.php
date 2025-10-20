@@ -51,28 +51,6 @@ $school = [
 ];
 
 
-function promedio_estudiante($school)
-{
-    $sum = 0;
-    $cantidad = 0;
-    foreach ($school as $id => $estudiante) {
-        foreach ($estudiante as $materia => $nota) {
-            if ($materia !== 'nombre' && $materia !== 'clase') {
-                $sum += $nota;
-                $cantidad++;
-            }
-
-        }
-           if ($cantidad > 0) {
-         $promedio = $sum / $cantidad; 
-           }
-          echo "El promedio de notas de " . $estudiante['nombre'] . " es: " . $promedio . "<br>";
-    }
-   
-}
-
-promedio_estudiante($school);
-
 function mejor_nota_por_materia($school)
 {
     $mejores_notas = [];
@@ -89,61 +67,50 @@ function mejor_nota_por_materia($school)
             }
         }
     }
-
-    // Mostrar los resultados
-    foreach ($mejores_notas as $materia => $info) {
-        echo "La mejor nota en " . $materia . " es: " . $info['nota'] . " obtenida por " . $info['nombre'] . "<br>";
-    }
+        return $mejores_notas;
 }
 
-// Llamamos la función
-mejor_nota_por_materia($school);
+
 
 function peor_media_por_clase($school)
 {
-    $peor_promedio_letras =INF;
-    $nombre_peor_estudiante_letras = '';
-    
-    $peor_promedio_ciencia = INF;
-    $nombre_peor_estudiante_ciencia = '';
+   $peores = [
+        'letras' => [
+            'nombre' => '',
+            'promedio' => INF
+        ],
+        'ciencia' => [
+            'nombre' => '',
+            'promedio' => INF
+        ]
+    ];
 
-    foreach ($school as $id => $estudiante) {
-        // Calcular el promedio del estudiante
-        $sum = 0;
-        $cantidad = 0;
-        foreach ($estudiante as $materia => $nota) {
-            if ($materia !== 'nombre' && $materia !== 'clase') {
-                $sum += $nota;
-                $cantidad++;
+    foreach ($school as $estudiante) {
+        $suma = 0;
+        $count = 0;
+
+        foreach ($estudiante as $materia => $valor) {
+            if (!in_array($materia, ['nombre', 'clase'])) {
+                $suma += $valor;
+                $count++;
             }
         }
 
-        $promedio = $sum / $cantidad;
+        if ($count > 0) {
+            $media = round($suma / $count, 2);
+            $clase = $estudiante['clase'];
 
-        // Verificar si es de la clase de letras
-        if ($estudiante['clase'] == 'letras') {
-            if ( $promedio < $peor_promedio_letras) {
-                $peor_promedio_letras = $promedio;
-                $nombre_peor_estudiante_letras = $estudiante['nombre'];
-            }
-        }
-
-        // Verificar si es de la clase de ciencia
-        if ($estudiante['clase'] == 'ciencia') {
-            if ( $promedio < $peor_promedio_ciencia) {
-                $peor_promedio_ciencia = $promedio;
-                $nombre_peor_estudiante_ciencia = $estudiante['nombre'];
+            if ($media < $peores[$clase]['promedio']) {
+                $peores[$clase]['promedio'] = $media;
+                $peores[$clase]['nombre'] = $estudiante['nombre'];
             }
         }
     }
 
-    // Imprimir los resultados
-    echo "El peor promedio de la clase de letras es de " . $nombre_peor_estudiante_letras . " con un promedio de " . $peor_promedio_letras . "<br>";
-    echo "El peor promedio de la clase de ciencia es de " . $nombre_peor_estudiante_ciencia . " con un promedio de " . $peor_promedio_ciencia . "<br>";
+    return $peores;
 }
 
-// Llamamos la función
-peor_media_por_clase($school);
+
 
 ?>
 

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
     <title>Document</title>
 </head>
 
@@ -77,7 +78,7 @@
 
 
     ?>
-    
+
     <h2>Ejercicio 2: Arrays bidimensionales</h2>
     <?php
     $temperaturas = [
@@ -99,18 +100,25 @@
     //​ La temperatura más baja y más alta
     
     echo "<br>";
-    $min = 0;
-    $max = 0;
+    $min = $temperaturas[0][0];
+    $max = $temperaturas[0][0];
+    $minDia = 0;
+    $maxDia = 0;
+    $minCiudad = 0;
+    $maxCiudad = 0;
     foreach ($temperaturas as $ciudadIndex => $dia) {
-        foreach ($dia as $temperatura) {
+        foreach ($dia as $diaIndex => $temperatura) {
             //temperatura minima
             if ($temperatura < $min) {
                 $min = $temperatura;
-
+                $minDia = $diaIndex;
+                $minCiudad = $ciudadIndex;
             }
             //temperatura maxmima
             if ($temperatura > $max) {
                 $max = $temperatura;
+                $maxDia = $diaIndex;
+                $maxCiudad = $ciudadIndex;
 
             }
         }
@@ -125,17 +133,17 @@
     $var = 0;
     $diaMax = 0;
     for ($dia = 0; $dia < 6; $dia++) {
-        $min = $temperaturas[0][$dia];
-        $max = $temperaturas[0][$dia];
+        $min1 = $temperaturas[0][$dia];
+        $max1 = $temperaturas[0][$dia];
         for ($ciudad = 1; $ciudad < 6; $ciudad++) {
-            if ($temperaturas[$ciudad][$dia] < $min) {
-                $min = $temperaturas[$ciudad][$dia];
+            if ($temperaturas[$ciudad][$dia] < $min1) {
+                $min1 = $temperaturas[$ciudad][$dia];
             }
-            if ($temperaturas[$ciudad][$dia] > $max) {
-                $max = $temperaturas[$ciudad][$dia];
+            if ($temperaturas[$ciudad][$dia] > $max1) {
+                $max1 = $temperaturas[$ciudad][$dia];
             }
         }
-        $v = $max - $min;
+        $v = $max1 - $min1;
         if ($v > $var) {
             $var = $v;
             $diaMax = $dia;
@@ -145,23 +153,84 @@
     echo "La mayor variación es en el día $diaMax con una variación de: $var";
 
     echo "<br>";
-    //comprovar creo que eror
-    //​ La temperatura media por ciudad
+    $mediaMax = 0;
+    $ciudadMaxMedia = 0;
+    $medias = [];
+
+
     foreach ($temperaturas as $ciudadIndex => $dia) {
         $sum = 0;
         foreach ($dia as $temperatura) {
             $sum += $temperatura;
         }
-        $media = round($sum / count($dia),2);
+        $media = round($sum / count($dia), 2);
+        $medias[$ciudadIndex] = $media;
+        if ($media > $mediaMax) {
+            $mediaMax = $media;
+            $ciudadMaxMedia = $ciudadIndex;
+        }
+
         echo "<br>";
         echo " la ciudad  $ciudadIndex :tiene una media de temeperatura de $media";
     }
 
     echo "<br>";
+    echo "<br>";
+    //tabla
+    echo "<p>Temperaturas de ciudades por dia (C)</p>";
+    echo "<table border 1>";
+    echo "<tr>";
+    echo "<th  style='background-color: #e0e0e0;'>ciudad/dia</th>";
+    $primerCiudad = reset($temperaturas);
+    foreach ($primerCiudad as $dia => $temp) {
+        $dias = $dia + 1;
+        if ($dia >= 0 && $dia <= 4) {
+            echo "<th style='background-color: #e0e0e0;'>dia $dias</th>";
+        } else {
+            echo "<th style='background-color: #c6f5c6;'> dia $dias </th>";
+        }
+    }
+    echo "<th  style='background-color: #e0e0e0;'>Media</th>";
+    echo "</tr>";
 
+    foreach ($temperaturas as $nombreCiudad => $dia) {
+
+        echo "<tr ></tr>";
+        echo "<td style='background-color: lightblue ;'> ciudad $nombreCiudad :</td>";
+        foreach ($dia as $diaIndex => $temperatura) {
+            // Determinar color del texto
+            $colorTexto = "";
+            if ($temperatura < 0) {
+                $colorTexto = "color: blue;";
+            } elseif ($temperatura > 35) {
+                $colorTexto = "color: red;";
+            }
+
+            // Determinar color de fondo
+            $fondo = "";
+            if ($nombreCiudad == $ciudadMaxMedia) {
+                $fondo = "background-color: #ffffcc;";
+            } elseif ($diaIndex == 5 || $diaIndex == 6) {
+                $fondo = "background-color: #c6f5c6;";
+            }
+
+            // Imprimir celda con estilo combinado
+            echo "<td style='$fondo $colorTexto'>$temperatura</td>";
+        }
+
+        echo "<td>{$medias[$nombreCiudad]}</td>";
+
+        echo "</tr>";
+    }
+    echo "</table>";
+    echo "<div>";
+    echo "<p>estadistica</p>";
+    echo "<p><strong>Temperatura mínima: </strong> $min °C (día" . ($minDia + 1) . ", ciudad $minCiudad)</p>";
+    echo "<p><em style='color:brown;'>Temperatura máxima:</em> <em style='color:brown;'>$max °C</em> (día " . ($maxDia + 1) . ", ciudad $maxCiudad)</p>";
+    echo "</div>";
     ?>
-    
-    
+
+
     <h2>Ejercicio 3: Funciones</h2>
     <?php
 
@@ -281,12 +350,79 @@
     }
     echo "</table>";
     ?>
-    
-    
+
+
     <h2>Ejercicio 5: Cumplir requisitos </h2>
     <?php
+    include("./studentsKM.php");
+
+    $materias = [];
+    foreach ($school as $estudiante) {
+        foreach ($estudiante as $clave => $valor) {
+            if (!in_array($clave, ['nombre', 'clase']) && !in_array($clave, $materias)) {
+                $materias[] = $clave;
+            }
+        }
+    }
+    $mejores_notas = mejor_nota_por_materia($school);
+    // 🧾 Paso 2: Generar tabla
+    echo "<table border='1' cellpadding='5' cellspacing='0'>";
+    echo "<thead><tr><th>Nombre</th>";
+
+    // Encabezados de materias
+    foreach ($materias as $materia) {
+        echo "<th>" . ucfirst($materia) . "</th>";
+    }
+    echo "<th> clase</th>";
+    echo "<th> media</th>";
+
+    echo "</tr></thead><tbody>";
+
+    // Cuerpo de la tabla con los datos
+    foreach ($school as $estudiante) {
+        echo "<tr>";
+        echo "<td>" . ucfirst($estudiante['nombre']) . "</td>";
+
+        $suma = 0;
+        $count = 0;
+
+        foreach ($materias as $materia) {
+            if (isset($estudiante[$materia])) {
+                $nota = $estudiante[$materia];
+                $class = '';
+
+                if ($nota <= 4) {
+                    $class = 'suspenso';
+                } elseif ($nota == $mejores_notas[$materia]['nota']) {
+                    $class = 'mejor-nota';
+                }
+
+                echo "<td class=\"$class\">$nota</td>";
+                $suma += $nota;
+                $count++;
+            } else {
+                echo "<td class=\"vacio\">-</td>";
+            }
+        }
+
+        // Clase
+        echo "<td>" . ucfirst($estudiante['clase']) . "</td>";
+        $peores = peor_media_por_clase($school);
+        // Media
+        $media = $count > 0 ? round($suma / $count, 2) : '-';
+        $clase = $estudiante['clase'];
+        $esPeorMedia = $media === $peores[$clase]['promedio'] && $estudiante['nombre'] === $peores[$clase]['nombre'];
+
+        $claseCssMedia = $esPeorMedia ? 'peor-media' : '';
+
+        echo "<td class='$claseCssMedia'>$media</td>";
 
 
+        echo "</tr>";
+    }
+
+
+    echo "</tbody></table>";
     ?>
 </body>
 

@@ -1,0 +1,41 @@
+/* estilos.css */
+
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    width: auto;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: center;
+}
+
+thead {
+    background-color: #f2f2f2;
+}
+
+.suspenso {
+    background-color: #ffcccc;
+    color: red;
+    font-weight: bold;
+}
+
+.vacio {
+    
+    background-color: black;
+}
+
+.mejor-nota {
+    background-color: #ccffcc;
+    font-weight: bold;
+}
+
+.peor-media {
+    background-color: orange;
+    font-weight: bold;
+    color: white;
+}
