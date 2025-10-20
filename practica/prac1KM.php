@@ -91,9 +91,10 @@
         }
     }
 
-    foreach ($temperaturas as $ciudadIndex => $dia) {
-        foreach ($dia as $diaIndex => $temperatura) {
-            echo "Ciudad $ciudadIndex, dia $diaIndex: $temperatura \n";
+    // Mostrar temperaturas por ciudad y día
+    foreach ($temperaturas as $ciudad => $dias) {
+        foreach ($dias as $dia => $temperatura) {
+            echo "Ciudad $ciudad, dia $dia: $temperatura \n";
 
         }
     }
@@ -106,19 +107,19 @@
     $maxDia = 0;
     $minCiudad = 0;
     $maxCiudad = 0;
-    foreach ($temperaturas as $ciudadIndex => $dia) {
+    foreach ($temperaturas as $ciudad => $dia) {
         foreach ($dia as $diaIndex => $temperatura) {
             //temperatura minima
             if ($temperatura < $min) {
                 $min = $temperatura;
                 $minDia = $diaIndex;
-                $minCiudad = $ciudadIndex;
+                $minCiudad = $ciudad;
             }
             //temperatura maxmima
             if ($temperatura > $max) {
                 $max = $temperatura;
                 $maxDia = $diaIndex;
-                $maxCiudad = $ciudadIndex;
+                $maxCiudad = $ciudad;
 
             }
         }
@@ -158,20 +159,20 @@
     $medias = [];
 
 
-    foreach ($temperaturas as $ciudadIndex => $dia) {
+    foreach ($temperaturas as $ciudad => $dia) {
         $sum = 0;
         foreach ($dia as $temperatura) {
             $sum += $temperatura;
         }
         $media = round($sum / count($dia), 2);
-        $medias[$ciudadIndex] = $media;
+        $medias[$ciudad] = $media;
         if ($media > $mediaMax) {
             $mediaMax = $media;
-            $ciudadMaxMedia = $ciudadIndex;
+            $ciudadMaxMedia = $ciudad;
         }
 
         echo "<br>";
-        echo " la ciudad  $ciudadIndex :tiene una media de temeperatura de $media";
+        echo " la ciudad  $ciudad :tiene una media de temeperatura de $media";
     }
 
     echo "<br>";
@@ -354,24 +355,28 @@
 
     <h2>Ejercicio 5: Cumplir requisitos </h2>
     <?php
+    //crea una tabla de estudiantes con  nombre  ,clase, matematica, hitoria ,ciencia, arte
     include("./studentsKM.php");
-
+    // esto es para  sacar la materias  del array
     $materias = [];
     foreach ($school as $estudiante) {
         foreach ($estudiante as $clave => $valor) {
+            // Si la clave NO es 'nombre' ni 'clase' y además no está ya en $materias,
+            // entonces es una materia nueva y la añadimos al array $materias
             if (!in_array($clave, ['nombre', 'clase']) && !in_array($clave, $materias)) {
                 $materias[] = $clave;
             }
         }
     }
     $mejores_notas = mejor_nota_por_materia($school);
-    // 🧾 Paso 2: Generar tabla
+    // Generar tabla
     echo "<table border='1' cellpadding='5' cellspacing='0'>";
     echo "<thead><tr><th>Nombre</th>";
 
     // Encabezados de materias
     foreach ($materias as $materia) {
         echo "<th>" . ucfirst($materia) . "</th>";
+        //ucfirst es una función que convierte la primera letra de una cadena de texto a mayúscula, dejando el resto igual.
     }
     echo "<th> clase</th>";
     echo "<th> media</th>";
@@ -381,38 +386,51 @@
     // Cuerpo de la tabla con los datos
     foreach ($school as $estudiante) {
         echo "<tr>";
+        // Mostramos el nombre del estudiante, con primera letra en mayúscula
         echo "<td>" . ucfirst($estudiante['nombre']) . "</td>";
 
         $suma = 0;
         $count = 0;
 
+         // Recorremos todas las materias para mostrar la nota 
         foreach ($materias as $materia) {
-            if (isset($estudiante[$materia])) {
+            if (isset($estudiante[$materia])) { // Si el estudiante tiene nota en esa materia
                 $nota = $estudiante[$materia];
                 $class = '';
 
+                 // Asignamos una el color rojo con css para destacar suspensos (nota <= 4)
                 if ($nota <= 4) {
                     $class = 'suspenso';
-                } elseif ($nota == $mejores_notas[$materia]['nota']) {
+                }
+                  // Si la nota es la mejor nota de esa materia, la destacamos con color verde en css
+                 elseif ($nota == $mejores_notas[$materia]['nota']) {
                     $class = 'mejor-nota';
                 }
 
+                 // Imprimimos la nota con la clase CSS correspondiente
                 echo "<td class=\"$class\">$nota</td>";
                 $suma += $nota;
                 $count++;
             } else {
+                 // Si no tiene nota en esa materia, mostramos un guion y clase vacía de color negro
                 echo "<td class=\"vacio\">-</td>";
             }
         }
 
-        // Clase
+           // Mostramos la clase a la que pertenece el estudiante
         echo "<td>" . ucfirst($estudiante['clase']) . "</td>";
+
+          // Obtenemos las peores medias por clase
         $peores = peor_media_por_clase($school);
-        // Media
+        
+        // Calculamos la media del estudiante redondeada a dos decimales, o '-' si no hay notas
         $media = $count > 0 ? round($suma / $count, 2) : '-';
         $clase = $estudiante['clase'];
+
+        // Comprobamos si este estudiante tiene la peor media en su clase
         $esPeorMedia = $media === $peores[$clase]['promedio'] && $estudiante['nombre'] === $peores[$clase]['nombre'];
 
+        // Si tiene la peor media,  mostrar en naranja
         $claseCssMedia = $esPeorMedia ? 'peor-media' : '';
 
         echo "<td class='$claseCssMedia'>$media</td>";

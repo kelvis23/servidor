@@ -1,4 +1,5 @@
 <?php
+// Array que contiene los datos de los estudiantes
 $school = [
     "xxx" => [
         "nombre" => "cesar",
@@ -50,14 +51,17 @@ $school = [
     ]
 ];
 
-
+// Función que calcula la mejor nota por cada materia y quién la obtuvo
 function mejor_nota_por_materia($school)
 {
     $mejores_notas = [];
 
     foreach ($school as $id => $estudiante) {
         foreach ($estudiante as $materia => $nota) {
+              // Ignoramos 'nombre' y 'clase', solo nos interesan las materias
             if ($materia !== 'nombre' && $materia !== 'clase') {
+                 // Si no existe todavía esta materia en $mejores_notas
+                // o la nota actual es mayor que la almacenada, actualizamo
                 if (!isset($mejores_notas[$materia]) || $nota > $mejores_notas[$materia]['nota']) {
                     $mejores_notas[$materia] = [
                         'nota' => $nota,
@@ -71,13 +75,14 @@ function mejor_nota_por_materia($school)
 }
 
 
-
+// Función que calcula qué estudiante tiene la peor media por cada clase
 function peor_media_por_clase($school)
 {
+     // Inicializamos array con las clases y asignamos un valor muy alto a la peor media para poder comparar
    $peores = [
         'letras' => [
             'nombre' => '',
-            'promedio' => INF
+            'promedio' => INF // INF representa infinito, para que cualquier nota sea menor
         ],
         'ciencia' => [
             'nombre' => '',
@@ -90,6 +95,7 @@ function peor_media_por_clase($school)
         $count = 0;
 
         foreach ($estudiante as $materia => $valor) {
+                 // Ignoramos 'nombre' y 'clase'
             if (!in_array($materia, ['nombre', 'clase'])) {
                 $suma += $valor;
                 $count++;
@@ -99,8 +105,9 @@ function peor_media_por_clase($school)
         if ($count > 0) {
             $media = round($suma / $count, 2);
             $clase = $estudiante['clase'];
-
+              // Si la media actual es menor que la peor media registrada en esa cla
             if ($media < $peores[$clase]['promedio']) {
+                 // Actualizamos el peor promedio y el nombre del estudiante
                 $peores[$clase]['promedio'] = $media;
                 $peores[$clase]['nombre'] = $estudiante['nombre'];
             }
