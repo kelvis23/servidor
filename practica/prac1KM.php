@@ -77,14 +77,14 @@
 
 
     ?>
+    
     <h2>Ejercicio 2: Arrays bidimensionales</h2>
-
     <?php
     $temperaturas = [
     ];
 
     for ($ciudad = 0; $ciudad < 6; $ciudad++) {
-        for ($dia = 0; $dia < 6; $dia++) {
+        for ($dia = 0; $dia < 7; $dia++) {
             // Generar temperatura aleatoria en 6 ciudades distitas
             $temperaturas[$ciudad][$dia] = rand(-10, 45);
         }
@@ -122,30 +122,27 @@
     echo "la maxima temperatura es $max";
 
     echo "<br>";
-    //comprovar creo que eror
-    // El día con mayor variación térmica 
     $var = 0;
-    foreach ($temperaturas as $ciudadIndex => $dia) {
-        //    inicializan ambos con el primer valor del array, y luego  se recorre el resto para ver si hay algo menor o mayor.
-        $min = $max = $dia[0];
-        foreach ($dia as $temperatura) {
-            if ($temperatura < $min) {
-                $min = $temperatura;
-
+    $diaMax = 0;
+    for ($dia = 0; $dia < 6; $dia++) {
+        $min = $temperaturas[0][$dia];
+        $max = $temperaturas[0][$dia];
+        for ($ciudad = 1; $ciudad < 6; $ciudad++) {
+            if ($temperaturas[$ciudad][$dia] < $min) {
+                $min = $temperaturas[$ciudad][$dia];
             }
-            //temperatura maxmima
-            if ($temperatura > $max) {
-                $max = $temperatura;
-
+            if ($temperaturas[$ciudad][$dia] > $max) {
+                $max = $temperaturas[$ciudad][$dia];
             }
-            $v = $max - $min;
-            if ($v > $var) {
-                $var = $v;
-            }
+        }
+        $v = $max - $min;
+        if ($v > $var) {
+            $var = $v;
+            $diaMax = $dia;
         }
     }
 
-    echo "La mayor variación de temperatura entre días en una ciudad es: $var";
+    echo "La mayor variación es en el día $diaMax con una variación de: $var";
 
     echo "<br>";
     //comprovar creo que eror
@@ -155,43 +152,16 @@
         foreach ($dia as $temperatura) {
             $sum += $temperatura;
         }
-        $media = $sum / count($dia);
+        $media = round($sum / count($dia),2);
         echo "<br>";
         echo " la ciudad  $ciudadIndex :tiene una media de temeperatura de $media";
     }
 
     echo "<br>";
-    $var = 0;
-    foreach ($temperaturas as $ciudadIndex => $dia) {
-        echo "<table border = 1";
-        $min = $max = $dia[0];
-        foreach ($dia as $temperatura) {
-            if ($temperatura < $min) {
-                $min = $temperatura;
-
-            }
-            //temperatura maxmima
-            if ($temperatura > $max) {
-                $max = $temperatura;
-
-            }
-            if ($temperatura < 0) {
-                $temperatura;
-
-            }
-            //temperatura maxmima
-            if ($temperatura > 35) {
-                $temperatura;
-
-            }
-            $v = $max - $min;
-            if ($v > $var) {
-                $var = $v;
-            }
-        }
-    }
 
     ?>
+    
+    
     <h2>Ejercicio 3: Funciones</h2>
     <?php
 
@@ -225,19 +195,18 @@
     echo convertTemperature(298.15, "kelvin", "celsius"); // 25
     
 
-    //preguntar a sete
-    $numero = 8;
+    echo "<br> ";
+    $numero = 9;
 
     $array = [
         "pablo" => 9,
         "mario" => 5,
         "ana" => 10,
-        "pablo" => 9,
         "cesar" => 6,
     ];
-    echo (union($numero, $arr1))
-        ?>
-
+    $resultado = union($numero, $array);
+    echo $resultado;
+    ?>
 
     <h2>Ejercicio 4: Arrays asociativos </h2>
     <?php
@@ -273,7 +242,7 @@
     echo "</table>";
 
 
-    echo "  <h2>Ejercicio 4.1s </h2>";
+    echo "  <h3>Ejercicio 4.1s </h3>";
 
     echo "<table border='1'>";
     foreach ($productosConDescuento as $key => $producto) {
@@ -312,10 +281,12 @@
     }
     echo "</table>";
     ?>
+    
+    
     <h2>Ejercicio 5: Cumplir requisitos </h2>
-    <?php 
-    
-    
+    <?php
+
+
     ?>
 </body>
 

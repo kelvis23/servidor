@@ -116,6 +116,14 @@ function analizarPalabras($text)
 
 }
 
+
+/**
+ * *
+ * @param mixed $temperatura
+ * @param mixed $origen
+ * @param mixed $destino
+ * @return bool|float|int
+ */
 function convertTemperature($temperatura, $origen = " celsius", $destino = "fahrenheit")
 {
     $tn = 0;
@@ -153,7 +161,12 @@ function convertTemperature($temperatura, $origen = " celsius", $destino = "fahr
 
 }
 
-//preguntar a sete  el 5
+/**
+ *  la funcion  vusca el numero que se le introduce  esta en el array asosiativo y de vuelve el nombre
+ * @param mixed $num  //el numero introducido
+ * @param mixed $arr1 //array asociativo que muestra un nombre y su numero
+ * @return string  // devuelve el nombre asociado con ese numero o  devuelve el siguinte mensaje No se encontró a nadie con ese número
+ */
 function  union ($num ,$arr1){
       foreach ($arr1 as $nombre => $valor) {
         if ($valor == $num) {
