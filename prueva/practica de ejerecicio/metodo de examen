@@ -1,0 +1,10 @@
+<?php
+sort($numeros); // Ordena de menor a mayor
+rsort($numeros);//mayor a menor
+asort($edades); // Ordena por valores (ascendente), manteniendo las claves
+ksort($edades); // Ordena por claves (ascendente)
+
+usort($numeros, function($a, $b) {
+    return $b <=> $a; // Orden descendente
+});
+?>
