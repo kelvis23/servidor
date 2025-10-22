@@ -7,4 +7,119 @@ ksort($edades); // Ordena por claves (ascendente)
 usort($numeros, function($a, $b) {
     return $b <=> $a; // Orden descendente
 });
+
+function resta($x, $y = 2){
+  $z = $x - $y;
+  return $z * 2;
+}
+echo resta(6, 3);
+echo " - ";
+echo resta(6);
+//O a. 6 - 8
+//O b. 12 - 6
+//O c. 6 - 8 si
+//O d. 8 - 12
+
+$numeros = array(4, 8, 15, 16, 23, 42);
+echo $numeros[2] . " + " . $numeros[5];
+//O a. 15 + 42 si 
+//O b. 8 + 16
+//O c. 4 + 8
+//O d. 23 + 42
+
+$a = 10;
+$b = &$a;
+$b = 5;
+echo $a;
+//O a. 10 no
+//O b. 5 si
+//O c. Error
+//O d. NULL
+
+/*
+Aquí no estás copiando el valor de $a, sino que estás creando una referencia a la misma dirección de memoria.
+En otras palabras:
+
+$a y $b apuntan al mismo valor.
+
+Cualquier cambio en uno afecta al otro.*/
+function calcula($a){
+  $a += 3;
+  return $a * 2;
+}
+$x = 4;
+echo calcula($x);
+echo " - " . $x;
+//O a. 14 - 4 si
+//O b. 14 - 7
+//O c. 8 - 4
+//O d. 8 - 7
+
+$lista = array(1, 2, 3, 4);
+array_push($lista, 5);
+echo count($lista);
+//O a. 4
+//O b. 5 si
+//O c. 6
+//O d. Error
+
+$datos = ["a" => 10, "b" => 20, "c" => 30];
+echo $datos["b"] + $datos["c"];
+//O a. 30
+//O b. 50 si
+//O c. 20
+//O d. Error
+
+for($i = 1; $i <= 3; $i++){
+  echo $i * 2 . " ";
+}
+//O a. 2 4 6  si
+//O b. 1 2 3
+//O c. 3 6 9
+//O d. 6 4 2
+
+
+$texto = "PHP";
+$texto .= " 8";
+echo $texto;
+//O a. PHP
+//O b. 8  
+//O c. PHP 8 si
+//O d. Error no
+
+/*El operador .= en PHP significa concatenar y asignar.
+Es lo mismo que escribir:*/
+
+
+$var = (3 > 2) ? "Sí" : "No";
+echo $var;
+//O a. 3
+//O b. 2
+//O c. Sí si
+//O d. No
+
+$colores = ["rojo", "verde", "azul"];
+echo $colores[1];
+//O a. rojo
+//O b. verde si
+//O c. azul
+//O d. Error
+
+function misterio(&$x, $y = 2){
+    static $z = 3;
+    $x = $x + $z;
+    $z++;
+    return $x * $y;
+}
+
+$a = 1;
+echo misterio($a) . " | ";
+echo misterio($a) . " | ";
+echo misterio($a, 3);
+
+
+//a) 6 | 9 | 18 no
+//b) 6 | 9 | 21
+//c) 9 | 12 | 18
+//d)  8 | 16 | 39 si
 ?>
