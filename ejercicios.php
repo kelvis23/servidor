@@ -136,13 +136,28 @@ echo "=$a";
 echo "<br>";
 echo "<p>ejercicio 13</p>";
 
-$base = 5;
+$base = 2;
 $exponente = 2;
-echo "$base y $exponente ";
-$a = pow($base, $exponente);
-echo "= $a";
+$a =1;
+
+for($i =0 ; $i< $exponente;$i++){
+   $a *=$base;
+}
+echo "$a";
+
+
 
 echo "<p>ejercicio 14</p>";
+$base = 2;
+$exponente = 3;
+$contador=0;
+$a =1;
+
+while($contador !=$exponente){
+    $a *=$base;
+    $contador++;
+}
+echo "$a";
 
 echo "<p>ejercicio 15</p>";
 echo "<table border =1>";
