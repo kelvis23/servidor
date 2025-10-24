@@ -14,8 +14,10 @@
     include "./Minotauro.php";
     $min1 = new Minotauro("abdelrraman");
     $min2 = new Minotauro("manolo" ,15);
-    echo"<p>la edad del".$min1->getName()."</p>";
-    
+    echo"<p>la edad del".$min1->getName()."es".$min1->getAge()."</p>";
+    echo"<p>la edad del".$min2->getName()."es".$min2->getAge()."</p>";
+
+
 
     
     ?>
