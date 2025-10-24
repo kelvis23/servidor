@@ -10,7 +10,14 @@
     <?php
     include "./Cat.php";
     $cat = new Cat("mario", "naranja",9);
-    echo $cat ->miaw()
+    echo $cat ->miaw();
+    include "./Minotauro.php";
+    $min1 = new Minotauro("abdelrraman");
+    $min2 = new Minotauro("manolo" ,15);
+    echo"<p>la edad del".$min1->getName()."</p>";
+    
+
+    
     ?>
 </body>
 </html>
