@@ -2,10 +2,12 @@
 class Minotauro{
     // los atrivutos estan
     private float $percentage;
+   
+
     public function __construct(
         private string $name,
-        private  int $age){
-
+        private  int $age,
+        private Cat $pet){
     }
     public function getName() {
         return $this->name;
@@ -25,7 +27,16 @@ class Minotauro{
 
 	
 	
- 
+
+	public function getPet() {
+        return $this->pet;}
+
+
+	public function setPet(Cat $pet){
+        $this->pet = $pet;
+    }
+
+	
 	
 }
 
