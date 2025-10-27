@@ -10,8 +10,8 @@
 <body>
     <h3>clases : Deportes </h3>
     <?php
-    include "./Deportes/Rugby.php";
-    include "./Deportes/Tenis.php";
+    include $_SERVER["DOCUMENT_ROOT"]."/php2/Deportes/Rugby.php";
+    include $_SERVER["DOCUMENT_ROOT"]."/php2/Deportes/Tenis.php";
     // $sl = new Sporrt("equipo",true,5); no se puede costruir un objeto de una clase abstracta
     
     //objeto rugby

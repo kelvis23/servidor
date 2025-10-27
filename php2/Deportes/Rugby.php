@@ -1,5 +1,6 @@
 <?php
-include $_SERVER["DOCUMENT_ROOT"]."/php2/Deportes/Sport.php";
+///php2/Deportes/Sport.php esta parte tines que coger la hoja   de ruta  original es de sir en este caso desde servidor 
+include_once $_SERVER["DOCUMENT_ROOT"]."/php2/Deportes/Sport.php";
 class Rugby extends Sport{
     private String $teamName;
     public function __construct(String $teamName , $type,$contact,$numPlayers){

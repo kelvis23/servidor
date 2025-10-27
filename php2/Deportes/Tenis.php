@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER["DOCUMENT_ROOT"]."/php2/Deportes/Sport.php";
 class Tenis extends Sport{
     public function __construct(
         private string $court,
