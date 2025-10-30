@@ -20,13 +20,14 @@
    
    $s2 = new Square(4,6);
     echo" <br>";
-    echo"Atr no estatico s1: $s1->noStaticArt<br>";
-    echo"Atr  estatico s1: ".Square::$staticArt."<br>";
+ $s1->noStaticArt=10;
+ echo $s1; //estatico 0 - no estatico 10
+ $s2->noStaticArt=12;
+ echo$s2;//estatico 0 - no estatico 12
 
-    $s1->noStaticArt++;
-    echo"Atr no estatico s1: $s1->noStaticArt<br>";
-    echo"Atr  estatico s2: $s2->noStaticArt<br>";
-
+ Square::$staticArt =25;
+ echo "$s1";//estatico 25 - no estatico 10
+ echo "$s2";//estatico 25 - no estatico 12
   ?>
 </body>
 

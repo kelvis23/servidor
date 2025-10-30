@@ -22,8 +22,8 @@ public static  $staticArt =0;
     }
 
 public function __tostring(){
-    return "<p>Estatico</p>".Square::$staticArt.
-    "-No estatico:".$this->noStaticArt."</p>";
+    return "<p>Estatico ".Square::$staticArt.
+    " - No estatico: ".$this->noStaticArt."</p>";
 }
 }
 
