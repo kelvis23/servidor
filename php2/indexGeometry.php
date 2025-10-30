@@ -28,6 +28,8 @@
  Square::$staticArt =25;
  echo "$s1";//estatico 25 - no estatico 10
  echo "$s2";//estatico 25 - no estatico 12
+
+ echo Square::calculateAreaSide(25);
   ?>
 </body>
 
