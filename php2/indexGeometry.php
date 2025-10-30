@@ -21,11 +21,11 @@
    $s2 = new Square(4,6);
     echo" <br>";
     echo"Atr no estatico s1: $s1->noStaticArt<br>";
-    echo"Atr  estatico s2: $s1->StaticArt<br>";
+    echo"Atr  estatico s1: ".Square::$staticArt."<br>";
 
     $s1->noStaticArt++;
-    echo"Atr no estatico s1: $s2->noStaticArt<br>";
-    echo"Atr  estatico s2: $s2->StaticArt<br>";
+    echo"Atr no estatico s1: $s1->noStaticArt<br>";
+    echo"Atr  estatico s2: $s2->noStaticArt<br>";
 
   ?>
 </body>
