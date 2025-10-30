@@ -4,7 +4,7 @@ echo "<h3>Ejercicio1</h3>";
 $parImpar = [];
 for ($i = 0; $i < 3; $i++) {
     for ($j = 0; $j < 4; $j++) {
-        if($i+$j %2==0){
+        if(($i+$j) %2==0){
             $parImpar[$i][$j]="par";
         }else{
             $parImpar[$i][$j]="impar";
