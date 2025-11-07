@@ -1,0 +1,16 @@
+actualizarNarrador(nuevoNarrador)
+
+Permite cambiar el narrador del documental.
+
+actualizarTema(nuevoTema)
+
+Cambia el tema principal del documental.
+
+getResumen() (implementación concreta)
+
+Devuelve un resumen del tipo:
+“Documental [título], sobre [tema], narrado por [narrador], producido en [anioProduccion], de género [géneros], duración [horas] h.”
+
+toString() (opcional sobreescribir)
+
+Muestra toda la información completa del documental d

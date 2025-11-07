@@ -1,0 +1,12 @@
+actualizarRecaudacion(nuevaRecaudacion)
+
+Permite cambiar o actualizar la recaudación de la película.
+
+getResumen() (implementación concreta)
+
+Devuelve un resumen del tipo:
+“Película [título], dirigida por [director], estrenada en [año], de [géneros], duración [horas] h y recaudación [monto].”
+
+toString() (opcional sobreescribir)
+
+Muestra toda la información del objeto de manera más completa que la versión heredada.

@@ -1,0 +1,35 @@
+añadirFavorito(contenido)
+
+Permite añadir un objeto de tipo Info (película, serie o documental) al array favoritos.
+
+Evita duplicados, es decir, un mismo contenido no se puede añadir dos veces.
+
+eliminarFavorito(contenido)
+
+Quita un objeto Info de la lista de favoritos si existe.
+
+listarFavoritos()
+
+Devuelve la lista completa de los contenidos favoritos del usuario.
+
+Útil para mostrar en la interfaz los favoritos guardados.
+
+buscarFavorito(titulo)
+
+Permite buscar un contenido dentro del array favoritos por su título.
+
+Devuelve el contenido si existe o indica que no se encontró.
+
+actualizarEmail(nuevoEmail)
+
+Cambia el email del usuario por uno nuevo.
+
+actualizarPassword(nuevaPassword)
+
+Permite cambiar la contraseña del usuario.
+
+toString()
+
+Devuelve toda la información del usuario en formato texto, excepto la contraseña.
+
+Útil para pruebas o mostrar datos por pantalla.

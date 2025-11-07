@@ -1,0 +1,23 @@
+añadirGenero(nuevoGenero)
+
+Permite agregar un nuevo género al array genero si no está repetido.
+
+eliminarGenero(genero)
+
+Permite eliminar un género del array genero, si existe.
+
+listarGeneros()
+
+Devuelve o muestra todos los géneros asociados al contenido.
+
+calcularDuracionHoras()
+
+Convierte la duración de minutos a horas, por ejemplo, 125 → 2.08 horas.
+
+getResumen() (abstracto)
+
+Método que debe ser definido por las clases hijas (Pelicula, Serie, Documental) para generar un resumen del contenido.
+
+toString()
+
+Devuelve la información principal del contenido (título, géneros y duración) en formato texto.

@@ -1,0 +1,18 @@
+añadirTemporada()
+
+Incrementa el número de temporadas de la serie.
+
+Puede actualizar automáticamente el total de capítulos si se conoce el número por temporada.
+
+marcarFinalizada()
+
+Cambia el atributo finalizada a verdadero cuando la serie termina.
+
+getResumen() (implementación concreta)
+
+Devuelve un resumen del tipo:
+“Serie [título], con [temporadas] temporadas y [capitulosTotales] capítulos, de género [géneros], duración promedio [horas] h por capítulo, [finalizada/en emisión].”
+
+toString() (opcional sobreescribir)
+
+Muestra toda la información de la serie de manera completa, incluyendo temporadas, capítulos y estado.
