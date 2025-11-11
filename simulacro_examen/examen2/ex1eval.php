@@ -8,11 +8,11 @@
 <body>
     <h2>Ejercicio2</h2>
     <?php
-       // include $_SERVER["DOCUMENT_ROOT"]."/simulacro_examen/examen2/clases/Arboles.php";
-        include $_SERVER["DOCUMENT_ROOT"]."/clases/Arboles.php";
+        include $_SERVER["DOCUMENT_ROOT"]."/simulacro_examen/examen2/clases/Arboles.php";
+       // include $_SERVER["DOCUMENT_ROOT"]."/clases/Arboles.php";
 
-       // include $_SERVER["DOCUMENT_ROOT"]."/simulacro_examen/examen2/clases/Flores.php";
-        include $_SERVER["DOCUMENT_ROOT"]."/clases/Flores.php";
+        include $_SERVER["DOCUMENT_ROOT"]."/simulacro_examen/examen2/clases/Flores.php";
+       // include $_SERVER["DOCUMENT_ROOT"]."/clases/Flores.php";
 
         $n1 = new Flores("rozas",22.8,"marzo");
         $n1->crecer(1.3);

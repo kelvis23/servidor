@@ -1,6 +1,6 @@
 <?php
-//include_once $_SERVER["DOCUMENT_ROOT"]."/simulacro_examen/examen2/clases/Planta.php";
-include_once $_SERVER["DOCUMENT_ROOT"]."/clases/Planta.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."/simulacro_examen/examen2/clases/Planta.php";
+//include_once $_SERVER["DOCUMENT_ROOT"]."/clases/Planta.php";
 class Flores extends Planta{
     private string $floracion;
 
