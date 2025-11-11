@@ -1,15 +1,18 @@
 <?php
+include_once $_SERVER["DOCUMENT_ROOT"]."/app/models/Info.php";
+
+
 class Documentales extends Info
 {
     private string $tema;
-    private int $año;
+    private int $year;
     private string $narrador;
 
-    public function __construct(string $tema, string $narrador, int $año, $titulo, $duracion, $genero){
+    public function __construct(string $tema, string $narrador, int $year, $titulo, $duracion, $genero){
         parent::__construct($titulo, $duracion, $genero);
         $this->tema = $tema;
         $this->narrador = $narrador;
-        $this->año = $año;
+        $this->year = $year;
     }
     public function getTema() {
         return $this->tema;
@@ -20,7 +23,7 @@ class Documentales extends Info
     }
 
     public function getAños(){
-        return $this->año;
+        return $this->year;
     }
 
     public function setTema(string $tema){
@@ -32,15 +35,30 @@ class Documentales extends Info
     }
 
 
-    public function setAño(int $año){
-        $this->año = $año;
+    public function setAño(int $year){
+        $this->year = $year;
     }
 
     //metodo
+        public function __toString(): string {
+        $infoBase = parent::__toString();
+        return $infoBase .
+               "Tema: $this->tema<br>" .
+               "Narrador: $this->narrador<br>" .
+               "Año: $this->year<br>";
+    }
+    
       public function cambiarNarrador(string $nuevoNarrador) {
         $this->narrador = $nuevoNarrador;
         echo "El narrador del documental '{$this->getTitulo()}' ahora es '{$this->narrador}'.\n";
     }
 
+    // Método para cambiar el tema
+    public function cambiarTema(string $nuevoTema) {
+        $this->tema = $nuevoTema;
+        echo "El tema del documental '{$this->getTitulo()}' ahora es '{$this->tema}'.\n";
+    }
 }
+
+
 ?>

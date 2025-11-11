@@ -34,8 +34,15 @@ public function __construct(string $titulo, int $duracion, array $genero){
         $this->genero = $genero;
     }
 
+
+    public function __toString(): string {
+    return "Título: $this->titulo<br>" .
+           "Duración: " . $this->duracionEnHoras() . "<br>" .
+           "Géneros: " . implode(", ", $this->genero) . "<br>";
+}
+
     //metodos
-      public function Genero(string $nuevoGenero) {
+      public function genero(string $nuevoGenero) {
         if (!in_array($nuevoGenero, $this->genero)) {
             $this->genero[] = $nuevoGenero;
         }
@@ -50,12 +57,13 @@ public function __construct(string $titulo, int $duracion, array $genero){
         }
     }
 
-    //quisas implementar
+
      public function duracionEnHoras(): string {
         $horas = intdiv($this->duracion, 60);
         $minutos = $this->duracion % 60;
         return $horas . "h " . $minutos . "m";
     }
+    
 	
 }
 ?>

@@ -43,6 +43,12 @@ class Usuario{
         $this->favoritos = $favoritos;
     }
 
+    public function __toString() {
+        //return " Usuario: $this->nombre \n  Email: $this->email \n  Contraseña : $this->password \n  Faboritos: " . implode(", ", $this->favoritos) . "\n" ;
+        return " Usuario: $this->nombre <br>  Email: $this->email <br>  Contraseña : $this->password <br>  Faboritos: " . implode(", ", $this->favoritos) . "\n" ;
+        
+    }
+
     //metodos
 	   public function favorito($faborito) {
         $this->favoritos[] = $faborito;
@@ -58,16 +64,18 @@ class Usuario{
         }
     }
 
-// puede que lo elimine
+
     public function eliminarFavorito($titulo) {
-        foreach ($this->favoritos as $key => $faborito) {
-            if ($faborito->getTitulo() === $titulo) {
-                unset($this->favoritos[$key]);
-                $this->favoritos = array_values($this->favoritos); // Reindexar array
-                return true;
-            }
-        }
-        return false;
+         $key = array_search($titulo, $this->favoritos);
+    if ($key !== false) {
+        unset($this->favoritos[$key]);
+        // Reindexar array para que los índices queden consecutivos
+        $this->favoritos = array_values($this->favoritos);
+        return true;
     }
+    return false; // No se encontró el favorito
+    }
+
+
 }
 ?>
