@@ -1,5 +1,5 @@
 <?php
-abstract class Info{
+ class Documentales extends Info {
     private string $tema;
     private int $año;
     private string $narrador;

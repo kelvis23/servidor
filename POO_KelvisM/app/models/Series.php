@@ -1,5 +1,5 @@
 <?php
-class Pelicula{
+class Pelicula extends Info{
    private int $temporadas;
     private int $capitulos;
     private bool $finalizado;

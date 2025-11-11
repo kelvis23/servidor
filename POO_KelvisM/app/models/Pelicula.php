@@ -1,5 +1,5 @@
 <?php
-class Pelicula{
+class Pelicula extends Info {
    private string $Director;
     private int $año;
     private int $recaudacion;

@@ -1,0 +1,7 @@
+public function setAño(int $año) {
+        $this->año = $año;
+    }
+	
+ 	public function getAños() {
+        return $this->año;
+    }
