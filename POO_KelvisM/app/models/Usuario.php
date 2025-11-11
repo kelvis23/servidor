@@ -2,14 +2,14 @@
 class Usuario{
     private string $nombre;
     private string $email;
-    private int $password;
-    private array $faborito;
+    private string $password;
+    private array $favoritos;
 
-    public function __construct(string $nombre, string $email, int $password, array $faborito){
+    public function __construct(string $nombre, string $email, string $password, array $favoritos){
         $this->nombre = $nombre;
         $this->email = $email;
         $this->password = $password;
-        $this->faborito = $faborito;
+        $this->favoritos = $favoritos;
     }
 	public function getNombre() {
         return $this->nombre;
@@ -24,7 +24,7 @@ class Usuario{
     }
 
 	public function getFaborito() {
-        return $this->faborito;
+        return $this->favoritos;
     }
 
 	public function setNombre(string $nombre) {
@@ -35,14 +35,15 @@ class Usuario{
         $this->email = $email;
     }
 
-	public function setPassword(int $password) {
+	public function setPassword(string $password) {
         $this->password = $password;
     }
 
-	public function setFaborito(array $faborito) {
-        $this->faborito = $faborito;
+	public function setFaborito(array $favoritos) {
+        $this->favoritos = $favoritos;
     }
 
+    //metodos
 	
 }
 ?>

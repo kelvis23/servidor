@@ -1,14 +1,14 @@
 <?php
 class Pelicula extends Info {
    private string $Director;
-    private int $año;
+    private int $year;
     private int $recaudacion;
   
 
-  public function __construct(string $Director, int $recaudacion,int $año){
+  public function __construct(string $Director, int $recaudacion,int $year){
     $this->Director = $Director;
     $this->recaudacion = $recaudacion;
-   $this->año=$año;
+   $this->year= $year;
 }
 	public function getDirector() {
         return $this->Director;
@@ -19,7 +19,7 @@ class Pelicula extends Info {
     }
 
 	 	public function getAños() {
-        return $this->año;
+        return $this->year;
     }
 
 
@@ -31,8 +31,8 @@ class Pelicula extends Info {
         $this->recaudacion = $recaudacion;
     }
 
-	public function setAño(int $año) {
-        $this->año = $año;
+	public function setAño(int $year) {
+        $this->year = $year;
     }
 	
 }
