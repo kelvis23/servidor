@@ -34,7 +34,28 @@ public function __construct(string $titulo, int $duracion, array $genero){
         $this->genero = $genero;
     }
 
-	
+    //metodos
+      public function Genero(string $nuevoGenero) {
+        if (!in_array($nuevoGenero, $this->genero)) {
+            $this->genero[] = $nuevoGenero;
+        }
+
+        
+    }
+	   public function eliminarGenero(string $genero) {
+        $index = array_search($genero, $this->genero);
+        if ($index !== false) {
+            unset($this->genero[$index]);
+            $this->genero = array_values($this->genero);
+        }
+    }
+
+    //quisas implementar
+     public function duracionEnHoras(): string {
+        $horas = intdiv($this->duracion, 60);
+        $minutos = $this->duracion % 60;
+        return $horas . "h " . $minutos . "m";
+    }
 	
 }
 ?>

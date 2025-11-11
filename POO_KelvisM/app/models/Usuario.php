@@ -44,6 +44,30 @@ class Usuario{
     }
 
     //metodos
-	
+	   public function favorito($faborito) {
+        $this->favoritos[] = $faborito;
+    }
+
+     public function mostrarFavoritos() {
+        if (empty($this->favoritos)) {
+            echo "No tienes películas favoritas.\n";
+        } else {
+            foreach ($this->favoritos as $faborito) {
+                echo $faborito . "\n";
+            }
+        }
+    }
+
+// puede que lo elimine
+    public function eliminarFavorito($titulo) {
+        foreach ($this->favoritos as $key => $faborito) {
+            if ($faborito->getTitulo() === $titulo) {
+                unset($this->favoritos[$key]);
+                $this->favoritos = array_values($this->favoritos); // Reindexar array
+                return true;
+            }
+        }
+        return false;
+    }
 }
 ?>
