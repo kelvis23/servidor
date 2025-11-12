@@ -43,6 +43,7 @@ public function __construct(string $titulo, int $duracion, array $genero){
 
     //metodos
       public function genero(string $nuevoGenero) {
+         //Comprueba si el valor $favoritos no está dentro del arreglo $this->favoritos. Si no está, lo agrega al arreglo
         if (!in_array($nuevoGenero, $this->genero)) {
             $this->genero[] = $nuevoGenero;
         }
@@ -59,6 +60,7 @@ public function __construct(string $titulo, int $duracion, array $genero){
 
 
      public function duracionEnHoras(): string {
+        //intdiv(a, b) hace una división entera, es decir, solo toma la parte entera del
         $horas = intdiv($this->duracion, 60);
         $minutos = $this->duracion % 60;
         return $horas . "h " . $minutos . "m";

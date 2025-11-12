@@ -23,7 +23,7 @@ class Usuario{
         return $this->password;
     }
 
-	public function getFaborito() {
+	public function getFavoritos() {
         return $this->favoritos;
     }
 
@@ -39,7 +39,7 @@ class Usuario{
         $this->password = $password;
     }
 
-	public function setFaborito(array $favoritos) {
+	public function setFavoritos(array $favoritos) {
         $this->favoritos = $favoritos;
     }
 
@@ -50,26 +50,34 @@ class Usuario{
     }
 
     //metodos
-	   public function favorito($faborito) {
-        $this->favoritos[] = $faborito;
+    //este metodo es para añadir faboritos 
+	   public function favorito($favoritos) {
+        //Comprueba si el valor $favoritos no está dentro del arreglo $this->favoritos. Si no está, lo agrega al arreglo
+         if (!in_array($favoritos, $this->favoritos)) {
+              $this->favoritos[] = $favoritos;
+         }
     }
 
+    //listar faboritos 
      public function mostrarFavoritos() {
         if (empty($this->favoritos)) {
             echo "No tienes películas favoritas.\n";
         } else {
-            foreach ($this->favoritos as $faborito) {
-                echo $faborito . "\n";
+            foreach ($this->favoritos as $favoritos) {
+                echo $favoritos . "\n";
             }
         }
     }
 
 
+    //eliminar faborito
     public function eliminarFavorito($titulo) {
+        //Busca el valor $titulo dentro del arreglo $this->favoritos y devuelve el indice
          $key = array_search($titulo, $this->favoritos);
     if ($key !== false) {
+
         unset($this->favoritos[$key]);
-        // Reindexar array para que los índices queden consecutivos
+        // ordena  array para que los índices queden consecutivos
         $this->favoritos = array_values($this->favoritos);
         return true;
     }

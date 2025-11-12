@@ -20,7 +20,7 @@ class Pelicula extends Info {
         return $this->recaudacion;
     }
 
-	 	public function getAños() {
+	 	public function getYear() {
         return $this->year;
     }
 
@@ -33,7 +33,7 @@ class Pelicula extends Info {
         $this->recaudacion = $recaudacion;
     }
 
-	public function setAño(int $year) {
+	public function setYear(int $year) {
         $this->year = $year;
     }
 	public function __toString(): string {
@@ -47,8 +47,8 @@ class Pelicula extends Info {
     // metodos
 
     public function actualizarRecaudacion(int $nuevaRecaudacion): void {
-    $this->recaudacion = $nuevaRecaudacion;
-    echo "La recaudación de la película '{$this->getTitulo()}' ha sido actualizada a {$this->recaudacion} millones.\n";
+    $this->recaudacion += $nuevaRecaudacion;
+    echo "La recaudación de la película '{$this->getTitulo()}' ha sido actualizada a {$this->recaudacion} millones.";
 }
 }
 
