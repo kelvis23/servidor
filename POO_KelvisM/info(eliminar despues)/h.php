@@ -7,6 +7,7 @@
 </head>
 <body>
 <!-- esto preguntar a sete  -->
-<!-- Método estático con justificación: .  -->
+<!-- Método estático con justificación:  -->
+<!-- preguntar por la primera parte del intex  lo de modificar   -->
 </body>
 </html>
