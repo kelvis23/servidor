@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    
+<!-- esto preguntar a sete  -->
+<!-- Método estático con justificación: .  -->
 </body>
 </html>
