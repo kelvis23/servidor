@@ -7,7 +7,7 @@ class Minotauro{
     public function __construct(
         private string $name,
         private  int $age,
-        private Cat $pet){
+    ){
     }
     public function getName() {
         return $this->name;

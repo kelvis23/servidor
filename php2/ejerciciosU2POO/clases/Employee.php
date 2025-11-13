@@ -23,15 +23,9 @@ abstract  class Employee    {
 
 	public function setTelephone(array $telephone): void {$this->telephone = $telephone;}
 
-	 public function calculateSalary(): float {
-        return $this->salary * (1 - $this->taxRate);
-    }
 
-    // Implementación de la interfaz Payslip
-    public function createPayslip(Employee $employee): string {
-        $gross = $employee->getSalary();
-        $net = $employee->calculateSalary();
-        return "Payslip of employee {$employee->getName()} {$employee->getSurname()}. Gross salary: {$gross}. Net salary: {$net}.";
-    }
+	
+ 
+	
 }
 ?>
