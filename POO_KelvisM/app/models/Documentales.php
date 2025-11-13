@@ -50,13 +50,13 @@ class Documentales extends Info
     
       public function cambiarNarrador(string $nuevoNarrador) {
         $this->narrador = $nuevoNarrador;
-        echo "El narrador del documental '{$this->getTitulo()}' ahora es '{$this->narrador}'.\n";
+        
     }
 
     // Método para cambiar el tema
     public function cambiarTema(string $nuevoTema) {
         $this->tema = $nuevoTema;
-        echo "El tema del documental '{$this->getTitulo()}' ahora es '{$this->tema}'.\n";
+        
     }
 }
 

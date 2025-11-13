@@ -10,6 +10,8 @@ class Usuario{
         $this->email = $email;
         $this->password = $password;
         $this->favoritos = $favoritos;
+       
+        self::$contadorUsuarios++;
     }
 	public function getNombre() {
         return $this->nombre;
@@ -82,6 +84,13 @@ class Usuario{
         return true;
     }
     return false; // No se encontró el favorito
+    }
+
+
+    private static int $contadorUsuarios = 0;
+      
+    public static function getContadorUsuarios(): int {
+        return self::$contadorUsuarios;
     }
 
 

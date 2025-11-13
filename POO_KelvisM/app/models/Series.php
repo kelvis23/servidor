@@ -49,11 +49,10 @@ class Series extends Info
     public function agregarTemporada(int $nuevosCapitulos): void{
         $this->temporadas++;
         $this->capitulos += $nuevosCapitulos;
-        echo "Se ha agregado una nueva temporada a '{$this->getTitulo()}'. Ahora tiene $this->temporadas temporadas y $this->capitulos capítulos.\n";
     }
     public function finalizarSerie(): void {
         $this->finalizado = true;
-        echo "La serie '{$this->getTitulo()}' ha sido marcada como finalizada.\n";
+        
     }
 }
 

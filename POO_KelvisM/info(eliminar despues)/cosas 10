@@ -1,0 +1,9 @@
+Perfecto! Vamos a revisar tu proyecto con base en la rúbrica que compartiste y ver qué puedes mejorar para asegurarte de que obtenga los 10 puntos completos. Lo haremos punto por punto, con sugerencias concretas para mejorar tu código.
+
+1️⃣ Estructura del proyecto (1 punto)
+
+Tu código: Incluyes varias clases (Usuario, Pelicula, Series, Documentales, Info) y cada clase está en su propio archivo.
+
+Recomendación:
+
+Asegúrate de que la estructura de carpetas siga algo así:

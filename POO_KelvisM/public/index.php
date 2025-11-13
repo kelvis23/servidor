@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 
     //usuario
     $n2->favorito("documental5");
-    //echo "<pre> esto para";
+    //echo "<pre> esto para utilisar /n";
     echo "$n2";
     //echo "</pre>";
     echo "<br>";
@@ -29,6 +30,8 @@
     echo "<br>";
     $n3->eliminarFavorito("serie3");
     echo "$n3";
+    //metodo  estatico
+
 
     //pelicula
     echo "<br>";

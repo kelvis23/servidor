@@ -48,8 +48,7 @@ class Pelicula extends Info {
 
     public function actualizarRecaudacion(int $nuevaRecaudacion): void {
     $this->recaudacion += $nuevaRecaudacion;
-    echo "La recaudación de la película '{$this->getTitulo()}' ha sido actualizada a {$this->recaudacion} millones.";
-}
+    }
 }
 
 ?>

@@ -6,8 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-<!-- esto preguntar a sete  -->
+<!-- esto preguntar a   -->
 <!-- Método estático con justificación:  -->
 <!-- preguntar por la primera parte del intex  lo de modificar   -->
+<!-- mirar lo del foonter el metod estatico se puede mejorar   -->
 </body>
 </html>

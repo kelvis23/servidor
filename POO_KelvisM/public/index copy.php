@@ -17,6 +17,8 @@
     include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Documentales.php";
 
     $n2 = new Usuario("kelvis", "yo@gmail.com", 12345, ["peli1", "serie3",]);
+    $n3 = new Usuario("pablo", "yo@gmail.com", 12345, ["peli1", "serie3",]);
+    $n5 = new Usuario("ana", "yo@gmail.com", 12345, ["peli1", "serie3",]);
     $pelicula1 = new Pelicula("Spielberg", 500, 1993, "Jurassic Park", 127, ["Aventura", "Ciencia Ficción"]);
     $pelicula2 = new Pelicula("Nolan", 300, 2010, "Inception", 148, ["Acción", "Ciencia Ficción"]);
 
@@ -52,7 +54,7 @@
     if (!empty($_POST['eliminarGenero']) && isset($_POST['peliculaIndex'])) {
         $peliculas[$_POST['peliculaIndex']]->eliminarGenero($_POST['eliminarGenero']);
     }
-
+    /*posible error  es que cuando se actualisa mustra el mensaje arriba de del todo  */
     if (!empty($_POST['nuevaRecaudacion']) && isset($_POST['peliculaIndex'])) {
         $peliculas[$_POST['peliculaIndex']]->actualizarRecaudacion((int) $_POST['nuevaRecaudacion']);
     }
@@ -73,15 +75,17 @@
         $series[$_POST['serieIndex']]->finalizarSerie();
     }
 
-    //documento if (!empty($_POST['nuevoTema']) && isset($_POST['documentalIndex'])) {
+    //documento 
+    // /*posible error  es que cuando se actualisa mustra el mensaje arriba de del todo  */ 
     if (!empty($_POST['nuevoTema']) && isset($_POST['documentalIndex'])) {
         $documentales[$_POST['documentalIndex']]->cambiarTema($_POST['nuevoTema']);
     }
 
-    // Cambiar narrador
+    //  /*posible error  es que cuando se actualisa mustra el mensaje arriba de del todo  */ 
     if (!empty($_POST['nuevoNarrador']) && isset($_POST['documentalIndex'])) {
         $documentales[$_POST['documentalIndex']]->cambiarNarrador($_POST['nuevoNarrador']);
     }
+    // el error es que esos metodos tiene mensajes 
     ?>
 
 
@@ -241,6 +245,16 @@
     }
     echo "</div>"
         ?>
+
+<?php
+   //footer
+echo"<hr>";
+echo "<footer style='background-color:black; color:white; border-top:1px solid white; padding:10px; text-align:center;'>";
+echo "Usuarios que han ingresado: " . Usuario::getContadorUsuarios();
+echo "</footer>";
+
+   
+?>
 
 </body>
 
