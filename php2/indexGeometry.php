@@ -18,7 +18,7 @@
     echo $s1->calcuteArea();
     $s1->dimeAlgo(); //cuadrado
    
-   $s2 = new Square(4,6);
+   $s2 = new Square(4.6);
     echo" <br>";
  $s1->noStaticArt=10;
  echo $s1; //estatico 0 - no estatico 10

@@ -24,19 +24,5 @@ class Minotauro{
 	public function setAge(int $age) {
         $this->age = $age;
     }
-
-	
-	
-
-	public function getPet() {
-        return $this->pet;}
-
-
-	public function setPet(Cat $pet){
-        $this->pet = $pet;
-    }
-
-	
-	
 }
 
