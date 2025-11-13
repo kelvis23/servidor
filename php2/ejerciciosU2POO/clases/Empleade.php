@@ -72,20 +72,19 @@ class Empleade
     }
 
     public  function anadirTelefono(string $telefono){
-       $res = $this->telefono[]=$telefono;
-       return $res;
+        $this->telefono[]=$telefono;
+      
     }
 
 
     public function  listarTelefonos(){
-        $fun[] = $this->telefono;
+      foreach ($this->telefono as $telefono) {
+                echo $telefono . "\n";
+            }
 
-        for ($i=0;$i < count($fun);$i++){
-           return implode(',',$fun[$i]);
-        }
-    }
+     }
     public function  vaciarTelefonos (){
-         return $this->telefono = []; 
+          $this->telefono = []; 
          
         }
     
