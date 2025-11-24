@@ -13,15 +13,27 @@
            <li>Se muestra el user creado(toString)</li> 
         </ol>
 
-        
-
+  
       <?php 
-      include $_SERVER["DOCUMENT_ROOT"] ."/signup";
+      include $_SERVER["DOCUMENT_ROOT"] ."/signup/User.php";
       if ($_SERVER['REQUEST_METHOD'] == "POST"){
         $name =$_POST['name'];
+        $email =$_POST['email'];
         $pass =$_POST['pass'];
         $pass2 =$_POST['pass2'];
         $age = $_POST['age'];
+
+        var_dump($_POST);
+
+        //si hago la tranformcion 
+        if(empty($age)){
+          $age =0;
+        }
+        $studies=[];
+        if(isset($_POST['studies'])){
+          $studies = $_POST['studies'];
+        }
+        //si es un array : el name tiene que incluir []
         $studies =  $_POST['studies'];
         $u = new User($name, $pass,$email,$age,$studies);
         echo "<p>$u</p>";

@@ -2,16 +2,16 @@
 class User{
     public function __construct(
         private string $name,
-        private string $password,
+        private string $pass,
         private string $email,
         private int $age,
-        private array $curso,  //DAW, DAM, ASIR (checkboxes)
+        private array $studies,  //DAW, DAM, ASIR (checkboxes)
     ){}
 
     public function __tostring(){
         return "{$this->name}
-        {$this->password}
-        {$this->email}
-        {$this->age}";
+         {$this->email}
+        {$this->pass}
+        {$this->age}".implode(",", $this->studies);
     }
 }

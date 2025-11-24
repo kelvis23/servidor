@@ -15,31 +15,31 @@
         <label for="name">Nombre:</label>
         <input type="text" placeholder='Nombre...' name="name" id="name">
         <br>
-        <label for="password">Contraseña</label>
-        <input type="password" name="pass" id="password" minlength="5">
+        <label for="pass">Contraseña</label>
+        <input type="password" name="pass" id="pass" minlength="5">
         <br>
-        <label for="passwordr">Repetir Contraseña</label>
-        <input type="passwordr" name="pass" id="passwordr" minlength="5">
+        <label for="pass2">Repetir Contraseña</label>
+        <input type="password" name="pass2" id="pass2" minlength="5">
         <br>
-        <label for="gmail">Gmail:</label>
-        <input type="text" name="gmail" id="gmail">
+        <label for="email">Gmail:</label>
+        <input type="text" name="email" id="email">
         <br>
-        <label for="year">Año</label>
-        <input type="int" name="year" id="year">
+        <label for="age">Año</label>
+        <input type="int" name="age" id="age">
         <br>
         <p>Curso</p>
-        <input type="radio" id="DAW" name="gender" value="DAW">
+        <input type="checkbox" id="daw" name="studies[]" value="daw">
         <label for="DAW">DAW</label>
-        <input type="radio" id="DAM" name="gender" value="DAM">
+        <input type="checkbox" id="dam" name="studies[]" value="dam">
         <label for="DAM">DAM</label>
-        <input type="radio" id="ASIR" name="gender" value="ASIR" >
+        <input type="checkbox" id="asir" name="studies[]" value="asir">
         <label for="ASIR">ASIR</label>
-  
+
         <br>
         <input type="submit" value="Enviar datos">
 
+     <script> alert("hola");  </script>
 
     </form>
 </body>
-
 </html>
