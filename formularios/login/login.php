@@ -56,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD']== "POST"){
 <body>
     <form action = "<?= $_SERVER["PHP_SELF"]?>" method="post">
         <label for = "name">Nombre:</label>
-        <input type="text" placeholder="Nombre..." name ="name"id="name" value = "<?=$name?>" >
+        <input type="text" placeholder="Nombre..." name ="name"id="name" value = "<?=$name?>">
+     <!--value = "<=$name>"(esta arriva como se deve poner para que los valores  se mantenga aunque se reinicie  )-->
         <br>
         <label for="pass" >Contraseña</label>
         <input type="password" name = "pass" id=" pass">
