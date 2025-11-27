@@ -1,7 +1,12 @@
 <?php
 session_start();
-//si no ha llegado indexv2  despues del formulario  signuv2 que le devuelva a signuv2.php
-if(!isset ($_SESSION["origin"]) or $_SESSION["origin"]!= "signup"){
+//si no ha llegado indexv2  
+if(isset($_COOKIE["logged"])){
+    $nameCookie = $_COOKIE["loogedd"];
+
+}
+// ifdespues del formulario  signuv2 que le devuelva a signuv2.php
+else if(!isset ($_SESSION["origin"]) or $_SESSION["origin"]!= "signup"){
     header("Location: ./signup/signupv2.php");
  
     exit();

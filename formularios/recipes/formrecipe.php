@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$email = $name = "";
+$email = $name =  "";
 $color = "#ff0000";
 $tim = 0;
 $gluError = "";
@@ -25,11 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     }
 
+    //Cokie:
+    if(isset($_POST["cookie"])){
+        //quiero que dure
+        setcookie("receta","valor de la cookie",time()+14*24*60*60 , "/");
+
+    }
+
     if (!$errores) {
         $_SESSION["email"] = $email;
         $_SESSION["name"] = $name;
         $_SESSION["tim"] = $tim;
-        $_SESSION["origin"] = "login";
+        $_SESSION["origin"] = "formulario";
 
         //redirijo:
         header("Location: indexrecipe.php");
@@ -49,22 +56,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styler.css">
 </head>
 
 <body>
+
+<!--
     email
     nombre(persona)
     tiempo(number)
     select: vegana, vegetariana, carnivora
     radio : con gluten / sin glunte
     color (imput color)
-
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+-->
+    
     <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
 
         <label for="email">Correo:</label>
@@ -82,7 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <label for="comida">Comida</label>
         <select name="comida" id="comida">
             <option value="vegana">vegana</option>
-            <option value="vegetariana">vegetariana</option>
+            <option value="vegetariana" >
+                vegetariana
+        </option>
             <option value="carnivora">carnivora</option>
         </select>
         <br>
@@ -99,18 +106,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         <label for="color">Elige un color:</label>
         <input type="color" id="color" name="color" value="#ff0000">
-
+        <input type="checkbox" name ="cookie"value =cookie>
+        <label for=""></label>
         <br>
         <input type="submit" value="Enviar">
+        <input type="root" value="borrar"
     </form>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
 
-
+<!--
     -----
     el action es a este mismo fichero
     verificamos que algun radio haya sido marcado
@@ -119,7 +123,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     si no ->
     -recuperar valores
     -cambiar la clases para que se vea el erro
-    -mostrar un mensajit
+    -mostrar un mensajito    
+-->
+
 </body>
 
 </html>

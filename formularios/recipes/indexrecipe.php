@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if(!isset($_SESSION["origin"]) ){
+    header("Location: formrecipe.php");
+ 
+    exit();
+}
+    
 ?>
 
 <!DOCTYPE html>
@@ -10,11 +17,16 @@ session_start();
     <title>Document</title>
 </head>
 <body>
+    <p>Si no ha llegado a traves del formulario  le redirigimos al formulario  le redirigimos al form recipe</p>
+    <p>aqui genero un objeto de la clase recipe  y lo imprimo con su to string </p>
      <?php
-         
+    /* include $_SERVER["DOCUMENT_ROOT"] ."/recipes/formrecipe.php";*/
+      /*   $r = new Recipe ($n, $e ,$t ,$c ); */
 
 var_dump($_SESSION);
+var_dump($_COOKIE)
 
 ?>
+<a href="closesession.php"> HAz clic aqui para cerra session</a>
 </body>
 </html>

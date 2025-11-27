@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD']== "POST"){
        $_SESSION["terms"] = $terms;
        $_SESSION["test"] = "hola";
        $_SESSION["test"] = "45,9"; // este no vale para nada 
-
+       //hago lo d e la cookie de oe
+       setcookie("looged", $name);
        //redirijo:
        header("Location: ../indexv2.php");
        //terminos de el script
