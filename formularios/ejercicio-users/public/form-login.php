@@ -11,6 +11,7 @@
 
 <body>
     <!-- Incluir cabecera -->
+     <?php include $_SERVER["DOCUMENT_ROOT"]."/resources/views/layouts/header.php" ?>
     <main>
 
         <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/components/login.php"; ?>
@@ -25,6 +26,7 @@
 
     </main>
     <!-- Incluir footer -->
+        <?php include $_SERVER["DOCUMENT_ROOT"]."/resources/views/layouts/footer.php" ?>
 </body>
 
 </html>

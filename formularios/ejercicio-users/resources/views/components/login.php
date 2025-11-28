@@ -15,7 +15,7 @@
 
         <div class="form-group" id="email-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" >
             <div class="error-message" id="email-error">Por favor, introduce un email válido</div>
         </div>
 
@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+            <input type="password" id="password" name="password" placeholder="Tu contraseña" >
             <div class="error-message" id="password-error">Por favor, introduce tu contraseña</div>
         </div>
 
