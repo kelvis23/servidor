@@ -1,3 +1,44 @@
+<?php
+session_start();
+
+$mail = $name= $pass = $type = "";
+$mailError = $passError =$typeError="";
+$errors = false;
+
+if($_SERVER["REQUEST_METHOD"]=="POST")
+    //Ha llegado despues de hacer clic en Submit
+   //1.Recojo datos securizado
+   include $_SERVER['DOCUMENT_ROOT']. "/utils/functions.php";
+   $mail = secure($_POST["email"]); //valor del atributo name del input
+   //todo lo del nombre del usuario / email
+   $pass =secure($_POST["password"]);
+   if(!isset( $_POST["password"])){
+    $errors = true;
+    $typeError = "tienes que selecionar un metodo";
+
+   }else{
+     $type = secure($_POST["login-type"]);
+   }
+
+   // 2. Verifico
+   if(strlen($name)< 3){
+    $nameError = "Error";
+   }
+   if(strlen($pass)< 3){
+    $passError = "Error";
+    $errors = true;
+   }
+
+   //3. Me voy o muestro errores
+if(!$errors){
+    $_SESSION["email"] = $email;
+    $_SESSION["origin"] = "login";
+    header("Location: index.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,16 +55,8 @@
      <?php include $_SERVER["DOCUMENT_ROOT"]."/resources/views/layouts/header.php" ?>
     <main>
 
-        <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/components/login.php"; ?>
-        <?php include $_SERVER["DOCUMENT_ROOT"] . "/app/models/User.php";
-
-        /* Ejemplo para construir un objeto utilizando el enum: */
-        $region = "madrid";
-        $u = new User("nombre", "a@a.com", "asdf", constant("Region::$region"));
-        echo "$u";
-        /* Comenta esta sección de código */
-        ?>
-
+      <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/components/login.php"; ?>
+           
     </main>
     <!-- Incluir footer -->
         <?php include $_SERVER["DOCUMENT_ROOT"]."/resources/views/layouts/footer.php" ?>

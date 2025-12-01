@@ -3,7 +3,7 @@ session_start();
 
 //veo si he llegado a traves del boton submit (es decir , peticion Post)
 $name = $email = $pass = $comunidad = $conect = "";
-$passError = $nameError=  $emailError = "";
+$passError = $nameError = $emailError = "";
 $errors = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,39 +14,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = secure(($_POST["signup-password"]));
     $pass2 = secure(($_POST["confirm-password"]));
     $comunidad = ($_POST["region"]);
-   
-    if(isset($_POST["stay-connected"]))
-         $conect = $_POST["stay-connected"]; 
 
-//2. Verificasiones 
-if(empty($name)){
-    $errors=true;
-    $nameError = "Este campo es obligatorio";
-}
-if(empty($email)){
-    $errors=true;
-    $emailError = "Este campo es obligatorio";
-}
-if(empty($pass)or $pass !=$pass2){
-     $errors=true;
-    $passError = "Rellena las contraseñas iguales ";
-}
+    if (isset($_POST["stay-connected"]))
+        $conect = $_POST["stay-connected"];
 
-//3. si todo bien me voy a index (sesion)
-if(!$errors){
-$_SESSION["fullname"] =$name;
-$_SESSION["signup-email"] =$email;
-//$_SESSION["signup-password"] =$pass;
+    //2. Verificasiones 
+    if (empty($name)) {
+        $errors = true;
+        $nameError = "Este campo es obligatorio";
+    }
+    if (empty($email)) {
+        $errors = true;
+        $emailError = "Este campo es obligatorio";
+    }
+    if (empty($pass) or $pass != $pass2) {
+        $errors = true;
+        $passError = "Rellena las contraseñas iguales ";
+    }
+
+    //3. si todo bien me voy a index (sesion)
+    if (!$errors) {
+        $_SESSION["fullname"] = $name;
+        $_SESSION["signup-email"] = $email;
+        //$_SESSION["signup-password"] =$pass;
 //la contraseñas no se envian
-$_SESSION["region"] =$comunidad;
-//todo  stay-connected  es movida de cokkies 
-$_SESSION["origin"]="signup";
-header("Location: index.php");
-}
-//4. si no , me quedo mostrando errores y
+        $_SESSION["region"] = $comunidad;
+        //todo  stay-connected  es movida de cokkies 
+        $_SESSION["origin"] = "signup";
+        header("Location: index.php");
+    }
+    //4. si no , me quedo mostrando errores y
 
 
-//todo mostrar errores , cabiar clases (si )
+    //todo mostrar errores , cabiar clases (si )
 }
 
 ?>
