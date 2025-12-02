@@ -21,7 +21,9 @@ session_start();
         if(isset($_SESSION["origin"])and $_SESSION["origin"]=="signup"){
             //creo un objeto User
             require_once $_SERVER['DOCUMENT_ROOT']."/app/models/User.php";
-         
+            //require_once $_SERVER["DOCUMENT_ROOT"] . "/app/models/Region.php";
+            /*$region = "madrid";
+            $u = new User("nombre", "a@a.com", "asdf", constant("Region::$region"));*/
             $region =$_SESSION["region"];
             $u = new User(
                 $_SESSION["fullname"],
@@ -29,11 +31,14 @@ session_start();
                 "",
                 constant("Region::$region")
         );
+        
             //lo imprimo
             echo"<p>$u</p>";
         }
 
-
+        if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "login") {
+            echo "<p>Te damos la bienvenida, {$_SESSION['email']}</p>";
+        }
         // Ver si tiene cookies de permanecer registrado. Coger su nombre
         // Si no tiene cookie pero tiene sesión, recuperar su nombre
         // Si no, a signup.
