@@ -1,5 +1,25 @@
 <?php
 session_start();
+
+//voy a verifica que ha llegado
+//1.tiene cookie
+//2.form-login
+//3.form-signup
+if(isset($_COOKIE["stay-connected"])){
+
+}else if((isset($_SESSION["origin"]))){
+    //mequedo
+}else{
+    $_SESSION["error"] = "te has intentadocolar en el index";
+    header("Location: form-login.php");
+    exit();
+}
+
+// if(!(isset($_COOKIE["stay-connected"]) or isset($_SESSION["origin"]))){
+//    $_SESSION["error"] = "te has intentadocolar en el index";
+//     header("Location: form-login.php");
+//     exit();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +28,6 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- Incluir css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 

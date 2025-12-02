@@ -34,9 +34,12 @@
 
         <div class="form-group">
             <label for="confirm-password">Confirmar contraseña</label>
-            <input type="password" id="confirm-password" name="confirm-password" placeholder="Repite tu contraseña" >
+            <input type="password"id="confirm-password" name="confirm-password" placeholder="Repite tu contraseña" >
             <div class="error-message" id="confirm-password-error">Las contraseñas no coinciden</div>
         </div>
+        
+<!-- mostrar error-->
+        <?= empty($passError) ? "" : "<p class error> $passError</p>" ?>
 
         <div class="form-group">
             <label for="region">Comunidad Autónoma</label>

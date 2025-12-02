@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (empty($pass) or $pass != $pass2) {
         $errors = true;
-        $passError = "Rellena las contraseñas iguales ";
+        $passError = "Rellena las contraseñas no coinsiden ";
     }
 
     //3. si todo bien me voy a index (sesion)

@@ -15,7 +15,7 @@
 
         <div class="form-group" id="email-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="tu@email.com" >
+            <input type="email" id="email" name="email" placeholder="tu@email.com"  value = <?= $mail?>>
             <div class="error-message" id="email-error">Por favor, introduce un email válido</div>
         </div>
 

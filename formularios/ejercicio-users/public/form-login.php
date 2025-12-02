@@ -5,6 +5,17 @@ $mail = $name = $pass = $type = "";
 $mailError = $passError = $typeError = "";
 $errors = false;
 
+//verificar si esta si esta la cookie de que ya ha iniciado sesion 
+//Si esta , le llevo  al index
+//si no , no hago nada 
+if(isset($_COOKIE["stay-connected"])){
+  $_SESSION["email"] =$_COOKIE["stay-connected"];
+  $_SESSION ["origin"] = "login";
+  header("Location: index.php");
+  exit ();
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //Ha llegado despues de hacer clic en Submit
   //1.Recojo datos securizado
@@ -20,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   // 2. Verifico
-  if (strlen($name) < 3) {
-    $nameError = "Error";
+  if (strlen($mail) < 3) {
+    $mailError = "Error";
     $errors = true;
   }
   if (strlen($pass) < 3) {
@@ -35,7 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //3. Me voy o muestro errores
   if (!$errors) {
-    $_SESSION["email"] = $email;
+    //hago lo de cookie de seguir conectado 
+    if(isset(($_POST["stay-connected"]))){
+      setcookie("stay-connected",$mail,time()+60*60,"/");
+    }
+    //voy a leiminar si existia ,ese $_SESSION["erro]
+    unset($_SESSION["error"]);
+    
+    $_SESSION["email"] = $mail;
     $_SESSION["origin"] = "login";
     header("Location: index.php");
   }
@@ -58,8 +76,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Incluir cabecera -->
   <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/header.php" ?>
   <main>
-
+    <?php 
+    if(isset($_SESSION["error"])){
+      $err = $_SESSION["error"];
+      echo "<p class='error'> $err </p>";
+    }
+    ?>
+    
     <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/components/login.php"; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/app/models/User.php"?>
 
   </main>
   <!-- Incluir footer -->
