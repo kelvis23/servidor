@@ -18,7 +18,9 @@
             <input type="text"
                 id="isbn"
                 name="isbn"
-                placeholder="123456789X">
+                placeholder="123456789X"
+                required
+                 value="<?= isset($isbn) ?$isbn :"";?>">
         </div>
 
         <div class="form-group">
@@ -26,7 +28,9 @@
             <input type="text"
                 id="title"
                 name="title"
-                placeholder="Título">
+                placeholder="Título"
+                required
+               >
         </div>
 
         <div class="form-group">
@@ -34,7 +38,8 @@
             <input type="text"
                 id="author"
                 name="author"
-                placeholder="Autoría">
+                placeholder="Autoría"
+                required>
         </div>
 
         <div class="form-group">
