@@ -79,7 +79,6 @@
     }
 
 //cre objeto arbol y lo inserto
-include $_SERVER('DOCUMENT_ROOT') ."/first-connection.php"
 
 
     ?>
