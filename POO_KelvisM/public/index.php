@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+//voy a verifica que ha llegado
+//1.tiene cookie
+//2.form-login
+//3.form-signup
+if (isset($_COOKIE["stay-connected"])) {
+
+} else if ((isset($_SESSION["origin"]))) {
+    //mequedo
+} else {
+    $_SESSION["error"] = "te has intentadocolar en el index";
+    header("Location: form-login.php");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

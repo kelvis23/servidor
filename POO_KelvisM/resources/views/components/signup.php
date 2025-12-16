@@ -12,7 +12,7 @@
             id="fullname" 
             name="fullname" 
             placeholder="Tu nombre completo" >
-            <div class="error-message" id="fullname-error">Por favor, introduce tu nombre completo</div>
+            <!-- <div class="error-message" id="fullname-error">Por favor, introduce tu nombre completo</div> -->
         </div>
 
         <div class="form-group">
@@ -22,19 +22,19 @@
              name="signup-email" 
              placeholder="tu@email.com" 
             >
-            <div class="error-message" id="signup-email-error">Por favor, introduce un email válido</div>
+            <!-- <div class="error-message" id="signup-email-error">Por favor, introduce un email válido</div> -->
         </div>
 
         <div class="form-group">
             <label for="signup-password">Contraseña</label>
             <input type="password" id="signup-password" name="signup-password" placeholder="Crea una contraseña" >
-            <div class="error-message" id="signup-password-error">La contraseña debe tener al menos 6 caracteres</div>
+            <!-- <div class="error-message" id="signup-password-error">La contraseña debe tener al menos 6 caracteres</div> -->
         </div>
 
         <div class="form-group">
             <label for="confirm-password">Confirmar contraseña</label>
             <input type="password"id="confirm-password" name="confirm-password" placeholder="Repite tu contraseña" >
-            <div class="error-message" id="confirm-password-error">Las contraseñas no coinciden</div>
+            <!-- <div class="error-message" id="confirm-password-error">Las contraseñas no coinciden</div> -->
         </div>
         
 <!-- mostrar error
