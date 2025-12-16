@@ -1,0 +1,124 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Layout general */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f4f6;
+}
+
+/* Header y footer */
+header,
+footer {
+    background-color: #0f172a;
+    color: #fff;
+    padding: 1rem 2rem;
+}
+
+/* Main centrado */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #1f2933;
+}
+
+/* Grupo de campos */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #374151;
+}
+
+/* Inputs */
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* Botón */
+button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* Mensajes de error */
+.error-message {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: #dc2626;
+    display: none; /* Mostrar con JS o PHP */
+}
+
+/* Footer del formulario */
+.form-footer {
+    margin-top: 1.2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+.form-footer a {
+    color: #3b82f6;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}

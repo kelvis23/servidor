@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <!-- Incluir cabecera -->
+    <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/header.php" ?>
+  <main>
     <?php
     include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Usuario.php";
     include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Pelicula.php";
@@ -81,6 +84,9 @@
      $d->cambiarNarrador("Morgan Freeman");
 
     ?>
+    </main>
+        <!-- Incluir footer -->
+    <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/footer.php" ?>
 </body>
 
 </html>

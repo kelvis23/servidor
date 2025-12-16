@@ -1,0 +1,102 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Layout general */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Header y footer (si usan <header> y <footer>) */
+header,
+footer {
+    background-color: #1e293b;
+    color: #fff;
+    padding: 1rem 2rem;
+}
+
+/* Contenido principal */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Contenedor del formulario */
+.signup-container,
+form {
+    background-color: #fff;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+form h1,
+form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+form input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+/* Botón */
+form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Enlaces */
+form a {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+}
