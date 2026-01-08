@@ -1,40 +1,33 @@
 <?php
 session_start();
-$mail = $pass = $type = "";
-$mailError = $passError = $typeError = "";
+$mail = $pass = "";
+$mailError = $passError =  "";
 
 $errors = false;
 
 // no funciona  
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  echo "hola";
   include $_SERVER['DOCUMENT_ROOT'] . "/utils/functions.php";
   $mail = secure($_POST["email"]);
   $pass = secure($_POST["password"]);
 
-  if (!isset($_POST["password"])) {
+  if (empty($mail)) {
     $errors = true;
-    $typeError = "tienes que selecionar un metodo";
-  } else {
-    $type = secure($_POST["login-type"]);
-  }
-
-  if (empty($email)) {
-    $errors = true;
-    $emailError = "Este campo es obligatorio";
+    $mailError = "Este campo es obligatorio";
   }
   if (empty($pass)) {
     $errors = true;
     $passError = "Rellena las contraseñas no coinsiden ";
   }
 
-  
   if (!$errors) {
     $_SESSION["email"] = $mail;
     $_SESSION["origin"] = "login";
     header("Location: index.php");
+    exit();
   }
 }
-
 ?>
 
 

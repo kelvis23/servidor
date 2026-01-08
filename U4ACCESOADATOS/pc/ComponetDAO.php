@@ -4,7 +4,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/Componet.php";
 class ComponetDAO
 {
     // atrivutos y esas cosas
-    public static function create(Componet $c): int
+    public static function create(Componet $c , $pc_id): int
     {
         $conn = CoreDB::getConnection();
         $sql = "INSERT into components(name , brand,model)values(
@@ -17,6 +17,8 @@ class ComponetDAO
         $c->setId($id);
         $conn->close();
         return $id;
+
+        $sql = "INSERT into components (name , brand,model,pc_id) value(?,?,?,?)
     }
 
 
@@ -29,6 +31,9 @@ class ComponetDAO
     {
         $conn = CoreDB::getConnection();
         $sql = "SELECT * from components where id = $id";
+       //$id = "0; delete * from componentes where or 1=1" ;
+       //select * from components where id =0 ; delete * from componentes where 
+       //
         $result = $conn->query($sql);
         $conn->close();
         if (($row = $result->fetch_assoc()) != null) {

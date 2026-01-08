@@ -1,7 +1,7 @@
 <!-- Formulario de Login -->
 <div class="form-container">
     <h2>Iniciar Sesión</h2>
-    <form id="loginForm" action="<?=$_SERVER["PHP_SELF"] ?>" method="POST"></form>
+    <form id="loginForm" action="<?=$_SERVER["PHP_SELF"] ?>" method="POST">
 
         <div class="form-group" id="email-group">
             <label for="email">Email</label>
