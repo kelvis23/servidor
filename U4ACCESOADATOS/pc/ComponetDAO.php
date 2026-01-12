@@ -7,7 +7,8 @@ class ComponetDAO
     public static function create(Componet $c , $pc_id): int
     {
         $conn = CoreDB::getConnection();
-        $sql = "INSERT into components(name , brand,model)values(
+     /*
+     $sql = "INSERT into components(name , brand,model)values(
         \"{$c->getName()}\",
         \"{$c->getBrand()}\",
         \"{$c->getModel()}\",)";
@@ -17,8 +18,23 @@ class ComponetDAO
         $c->setId($id);
         $conn->close();
         return $id;
+*/
+        $sql = "INSERT into components (name , brand,model,pc_id) value(?,?,?,?)";
+        $ps = $conn->prepare($sql);
+        $name = $c->getName();
+        $brand = $c->getBrand();
+        $model = $c->getModel();
+        $ps->bind_param("ssss",$name,$brand,$model,$pc_id);
 
-        $sql = "INSERT into components (name , brand,model,pc_id) value(?,?,?,?)
+
+        $ps->execute();
+
+        $id = $ps->insert_id;
+        $c->setId($id);
+
+        $conn->close();
+
+        return $id;
     }
 
 
@@ -101,5 +117,9 @@ class ComponetDAO
 
         $conn->close();
         return $arr;
+    }
+    public static function readByPCid($pc_id){
+        $conn = CoreDB::getConnection();
+        
     }
 }

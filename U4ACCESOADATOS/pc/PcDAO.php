@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/CoreDB.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/Componet.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/Pc.php";
 
 class PcDAO{
 /**
@@ -10,7 +11,7 @@ class PcDAO{
  * @return bool  true si lo ha insetado , false si no lo ha insertado
  * 
  */
-private static function create($pc):bool {
+public static function create($pc):bool {
     //todo
      $conn = CoreDB::getConnection();
     $sql = "INSERT  into pcs (id,owner,brand,price) 
@@ -24,11 +25,14 @@ private static function create($pc):bool {
     
     $ps->bind_param("sssd",$id,$owner,$brand,$price);
    
-   $ret = $ps-> execute(); /* aqui se guarda enla bd el ordenador  */
+     $ret = $ps-> execute(); /* aqui se guarda enla bd el ordenador  */
 
-   // Guardamos 
-   foreach($pc->getComponents)
-    return false;
+     foreach($pc->getComponents()as $component){
+        ComponetDAO::create($component,$id);
+     }
+   // Guardamos
+   $conn->close();
+    return $ret;
 }
     /**
      * read /select
@@ -36,20 +40,35 @@ private static function create($pc):bool {
     * @param mixed $sid
      * @return void
      */
-    private static function read($id):?PC{
+    public static function read($id):?PC{
         //todo
-    return null;
+             $conn = CoreDB::getConnection();
+             $sql = "SELECT * from pcs where id = ?";
+             $ps = $conn->prepare($sql);
+             $ps -> $conn->bind_param("s",$sql);
+             $ps -> execute();
+             $result= $ps->get_result();
+             
+             $conn->close();
+             if($result->num_rows>0) {
+                $row = $result->fetch_assoc();
+                
+                $pc = new Pc($id,$row["owner"],$row["brand"],$row["price"]);
+             }else{
+                $pc = null;
+             }
+    return $pc;
     }
-    private static function update  ($pc):bool{
+    public static function update  ($pc):bool{
         //todo
     return 0;
     }
-      private static function delete  ($id):bool{
+      public static function delete  ($id):bool{
         //todo
-        return null;
+       return false;
     }
 
-         private static function readAll  (){
+         public static function readAll  (){
         //todo
     }
 
