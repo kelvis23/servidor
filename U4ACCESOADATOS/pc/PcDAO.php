@@ -2,6 +2,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/CoreDB.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/Componet.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/Pc.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/ComponetDAO.php";
 
 class PcDAO{
 /**
@@ -24,12 +25,16 @@ public static function create($pc):bool {
     $price =$pc->getprice();
     
     $ps->bind_param("sssd",$id,$owner,$brand,$price);
-   
-     $ret = $ps-> execute(); /* aqui se guarda enla bd el ordenador  */
 
-     foreach($pc->getComponents()as $component){
-        ComponetDAO::create($component,$id);
-     }
+    try{
+     $ret = $ps->execute(); /* aqui se guarda enla bd el ordenador  */
+
+       foreach($pc->getComponents() as $component){
+            ComponetDAO::create($component, $id);
+        }
+    }catch(mysqli_sql_exception $e){ //altartiva catch(Exseption  $e
+     return false;
+    }
    // Guardamos
    $conn->close();
     return $ret;
@@ -41,7 +46,6 @@ public static function create($pc):bool {
      * @return void
      */
     public static function read($id):?PC{
-        //todo
              $conn = CoreDB::getConnection();
              $sql = "SELECT * from pcs where id = ?";
              $ps = $conn->prepare($sql);
@@ -54,6 +58,8 @@ public static function create($pc):bool {
                 $row = $result->fetch_assoc();
                 
                 $pc = new Pc($id,$row["owner"],$row["brand"],$row["price"]);
+
+                
              }else{
                 $pc = null;
              }
@@ -63,6 +69,11 @@ public static function create($pc):bool {
         //todo
     return 0;
     }
+      /**
+       * elimina un pc  de la base datos <strong>junto con todos sus componenetes asociados </strong>
+       * @param mixed $id id del pc que quiero elimminar
+       * @return pc | null objeto pc eliminado o null 
+       */
       public static function delete  ($id):bool{
         //todo
        return false;

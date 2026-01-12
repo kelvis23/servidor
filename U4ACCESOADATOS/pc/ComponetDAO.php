@@ -1,4 +1,6 @@
 <?php
+
+use LDAP\Result;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/CoreDB.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/pc/Componet.php";
 class ComponetDAO
@@ -25,8 +27,7 @@ class ComponetDAO
         $brand = $c->getBrand();
         $model = $c->getModel();
         $ps->bind_param("ssss",$name,$brand,$model,$pc_id);
-
-
+        
         $ps->execute();
 
         $id = $ps->insert_id;
@@ -119,7 +120,17 @@ class ComponetDAO
         return $arr;
     }
     public static function readByPCid($pc_id){
-        $conn = CoreDB::getConnection();
-        
+     $componensts =array();    
+     $conn = CoreDB::getConnection();
+        $sql ="SELECT*from components where pc_id = ?";
+        $ps = $conn->prepare($sql);
+        $ps->bind_param("s",$id);
+        $ps->execute();
+        $result=$ps->get_result();
+        while(($row=$result->fetch_assoc()) !=null){
+            $componensts[] = new Componet($row["name"],$row["brand"],$row["model"],$row["id"]);
+        }   
+          $conn->close();
+        return $componensts;
     }
 }
