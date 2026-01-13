@@ -7,12 +7,14 @@ class User
         private String $email,
         private String $pass,
         private Region $Region,
+        private int $id =-1,
     ) {}
 
     public function __toString(): string
     {
         return $this->name . " | " .
             $this->email . " | " .
-            $this->Region->value;
+            $this->Region->value . " | " .
+            $this->id;
     }
 }

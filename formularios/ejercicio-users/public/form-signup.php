@@ -42,6 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //todo  stay-connected  es movida de cokkies 
         $_SESSION["origin"] = "signup";
         header("Location: index.php");
+
+        ///lo guardo en la DB
+        require_once $_SERVER["DOCUMENT_ROOT"] . "app/repositories/UserDAO.php";
+
+
+
     }
     //4. si no , me quedo mostrando errores y
 
