@@ -27,11 +27,13 @@
    var_dump( UserDAO::verifyPassword("sete","asdf"));
    var_dump( UserDAO::verifyPassword("sete","admin123"));
 
-   if(PcDAO::create($pc)){
+  /* if(PcDAO::create($pc)){
     echo "se ha creado ";
    }else{
     echo "no se ha creado ";
    }
+    */
+   echo PcDAO::delete("asu100");
     ?>
 </body>
 </html>

@@ -99,10 +99,12 @@ class ComponetDAO
      */
     public static function delete(int $id): Componet
     {
+        
         $c = ComponetDAO::read($id);
         $conn = CoreDB::getConnection();
         $sql = "DELETE FROM components where id = $id";
         $conn->query($sql);
+        $conn->close();
 
         return $c;
     }
@@ -133,4 +135,5 @@ class ComponetDAO
           $conn->close();
         return $componensts;
     }
+    
 }
