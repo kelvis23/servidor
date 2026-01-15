@@ -5,6 +5,7 @@ session_start();
 $name = $email = $pass = $comunidad = $conect = "";
 $passError = $nameError = $emailError = "";
 $errors = false;
+$errorDB = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //1.recoger datos
@@ -34,20 +35,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //3. si todo bien me voy a index (sesion)
     if (!$errors) {
+
+
+           require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
+        $u = new User($name, $email, $pass, Region::fromCaseName($comunidad));
+       if( UserDAO::create($u)){
         $_SESSION["fullname"] = $name;
         $_SESSION["signup-email"] = $email;
-        //$_SESSION["signup-password"] =$pass;
-//la contraseñas no se envian
-        $_SESSION["region"] = $comunidad;
-        //todo  stay-connected  es movida de cokkies 
-        $_SESSION["origin"] = "signup";
-        header("Location: index.php");
-
-        ///lo guardo en la DB
-        require_once $_SERVER["DOCUMENT_ROOT"] . "app/repositories/UserDAO.php";
-
-
-
+         //$_SESSION["signup-password"] =$pass;
+         //la contraseñas no se envian
+         $_SESSION["region"] = $comunidad;
+         $_SESSION["origin"] = "signup";
+         $_SESSION["id"] =  $u->getId();
+         header("Location: index.php");
+        
+        exit();
+       }
+        $errorDB ="ya existe ese email";
+        //mostrar un mensajito de error y me que do en esta pagina 
+        
     }
     //4. si no , me quedo mostrando errores y
 
@@ -74,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/header.php" ?>
 
     <main>
+        <?php  $errorDB ?>
         <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/components/signup.php" ?>
 
 

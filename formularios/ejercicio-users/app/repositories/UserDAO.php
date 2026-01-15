@@ -1,6 +1,6 @@
 <?php 
 require_once $_SERVER["DOCUMENT_ROOT"] ."/app/models/User.php";
-require_once $_SERVER["DOCUMENT_ROOT"] ."/app/core/CoreDB.php ";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
 
 class UserDAO{
 
@@ -11,14 +11,27 @@ class UserDAO{
      * existe un usari con es email )
      */
     public static function create($user):bool{
-        $conn = CoreDB::getConnection();
-        $sql = "INSERT into user ";
+     $conn = CoreDB::getConnection();
+        //todo el jueves la región
+        $sql = "INSERT into users (email, name, pass, region) values (?, ?, ?, ?);";
         $ps = $conn->prepare($sql);
-        $email  = $user->getEmail();
-        $name  = $user->getNamel();
-        $pass = password_hash();
-        $email  = $user->getEmail();
-    return false;
+        $email = $user->getEmail();
+        $name = $user->getName();
+        $pass = password_hash($user->getPass(), PASSWORD_DEFAULT);
+        $region = $user->getRegionAsString();
+        $ps->bind_param("ssss", $email, $name, $pass, $region);
+
+        try {
+            $ps->execute();
+            //Tengo que recuperar el id con el que se ha insertado
+            $user->setId($ps->insert_id);
+        } catch (Exception $e) {
+            $conn->close();
+            return false;
+        }
+
+        $conn->close();
+        return true;
     }
     
 
@@ -30,5 +43,10 @@ class UserDAO{
      */
     public static  function checkPassword($email,$pass):int {
         return 0;
+    }
+
+    public static function read($id):?USer{
+        //todo
+        return null;
     }
 }

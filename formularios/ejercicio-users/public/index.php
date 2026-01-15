@@ -57,7 +57,7 @@ if (isset($_COOKIE["stay-connected"])) {
             //require_once $_SERVER["DOCUMENT_ROOT"] . "/app/models/Region.php";
             /*$region = "madrid";
             $u = new User("nombre", "a@a.com", "asdf", constant("Region::$region"));*/
-            $region = $_SESSION["region"];
+          /*  $region = $_SESSION["region"];
             $u = new User(
                 $_SESSION["fullname"],
                 $_SESSION["signup-email"],
@@ -66,7 +66,12 @@ if (isset($_COOKIE["stay-connected"])) {
             );
 
             //lo imprimo
-            echo "<p>$u</p>";
+            echo "<p>$u</p>";*/
+
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/app/repositories/UserDAO.php";
+            $id = $_SESSION["id"];
+            $u = UserDAO::read($id);
+            echo"<p>$u</p>";
         }
 
         if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "login") {

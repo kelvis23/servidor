@@ -6,7 +6,7 @@ class User
         private String $name,
         private String $email,
         private String $pass,
-        private Region $Region,
+        private Region $region,
         private int $id =-1,
     ) {}
 
@@ -14,7 +14,59 @@ class User
     {
         return $this->name . " | " .
             $this->email . " | " .
-            $this->Region->value . " | " .
+            $this->region->value . " | " .
             $this->id;
     }
+
+        /**
+         * Get the value of name
+         */ 
+        public function getName()
+        {
+                return $this->name;
+        }
+
+        /**
+         * Get the value of email
+         */ 
+        public function getEmail()
+        {
+                return $this->email;
+        }
+
+        /**
+         * Set the value of id
+         *
+         * @return  self
+         */ 
+        public function setId($id)
+        {
+                $this->id = $id;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of pass
+         */ 
+        public function getPass()
+        {
+                return $this->pass;
+        }
+
+        /**
+         * Get the value of Region
+         */ 
+        public function getRegionAsString ()
+        {
+                return $this->region->value;
+        }
+
+        /**
+         * Get the value of id
+         */ 
+        public function getId()
+        {
+                return $this->id;
+        }
 }
