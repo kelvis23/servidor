@@ -1,0 +1,27 @@
+use film;
+
+CREATE  TABLE  if not exists User(
+id int PRIMARY key auto_increment,
+name  varchar(255),
+email varchar(255),
+pass varchar(255)
+);
+
+/*  favoritos no se tiene que meter en la vase de datos  */
+
+
+
+
+
+
+CREATE  TABLE  if not exists film(
+id INT PRIMARY KEY AUTO_INCREMENT,
+title varchar(255),
+duration int ,
+gender varchar(255),
+director varchar(255),
+year int ,
+collection INT
+);
+
+
