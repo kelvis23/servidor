@@ -7,7 +7,7 @@ $errors = false;
 
 // no funciona  
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  echo "hola";
+
   include $_SERVER['DOCUMENT_ROOT'] . "/utils/functions.php";
   $mail = secure($_POST["email"]);
   $pass = secure($_POST["password"]);

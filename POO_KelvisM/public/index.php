@@ -23,88 +23,59 @@ if (isset($_COOKIE["stay-connected"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>prueva</title>
+
 </head>
 
 <body>
     <!-- Incluir cabecera -->
     <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/header.php" ?>
-  <main>
-    <?php
-    include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Usuario.php";
-    include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Pelicula.php";
-    include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Series.php";
-    include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Documentales.php";
+    <main>
+        <?php
+        include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Usuario.php";
+        include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Pelicula.php";
+        include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Series.php";
+        include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Documentales.php";
 
-    $n2 = new Usuario("kelvis", "yo@gmail.com", 12345, ["peli1", "serie3"]);
-    $n3 = new Usuario("ama", "ana@gmail.com", 12345, ["peli1", "serie3"]);
+        // entrar desde login 
+        if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "login") {
 
-    //usuario
-    $n2->favorito("documental5");
-    //echo "<pre> esto para utilisar /n";
-    echo "$n2";
-    //echo "</pre>";
-    echo "<br>";
-    echo "<br>";
-    $n2->mostrarFavoritos();
-    echo "<br>";
-    echo "<br>";
-    $n3->eliminarFavorito("serie3");
-    echo "$n3";
-    //metodo  estatico
+            $a = new Usuario(
+                "", //nombre
+                $_SESSION["email"], // email
+                "",                // pass
+                [],                // favoritos
+        
+            );
+              echo "<p>$a</p>";
 
+        }
 
-    //pelicula
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    $p = new Pelicula("peter", 10000, 2024, "el ultimo en pie", 60, ["acion", "drama"]);
-    $p2 = new Pelicula("Spielberg", 500, 1993, "Jurassic Park", 127, ["Aventura", "Ciencia Ficción"]);
+        //entrar desde sigup
+        if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "signup") {
 
 
-    $p->genero("supense");
-    echo "$p";
-    echo "<br>";
-    echo "<br>";
-    $p2->eliminarGenero('Aventura');
-    echo "$p2";
-    echo "<br>";
-    echo "<br>";
-    $p2->actualizarRecaudacion(10000);
-    echo "<br>";
-      echo "<br>";
-    echo "<br>";
-    echo "<br>";
+            $u = new Usuario(
+                $_SESSION["fullname"],
+                $_SESSION["signup-email"],
+                "",
+                [],
 
-    //Serie
-     $s = new Series(5, 62, false, "Breaking Bad", 49, ["Drama", "Crimen"]);
-     echo"$s";
+            );
+            echo
 
-     echo "<br>";
-     $s->agregarTemporada(23);
+            //lo imprimo
+          
+        }
 
-      echo "<br>";
-     $s->finalizarSerie();
 
-      echo "<br>";
-      echo "<br>";
-      echo "<br>";
-      echo "<br>";
+        if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "login") {
+            echo "<p>Te damos la bienvenida, {$_SESSION['email']}</p>";
+        }
 
-     $d = new Documentales(    "naturalesa ",    "David Attenborough",  2006,   "Planeta Tierra",90 ,["Naturaleza","Documental"]);
-     echo"$d";
-     echo "<br>";
-
-     $d->cambiarTema("Fauna");
-     echo "<br>";
-
-     $d->cambiarNarrador("Morgan Freeman");
-
-    ?>
+        ?>
     </main>
-        <!-- Incluir footer -->
+    <!-- Incluir footer -->
     <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/footer.php" ?>
 </body>
 
