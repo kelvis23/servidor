@@ -41,11 +41,11 @@ if (isset($_COOKIE["stay-connected"])) {
         if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "login") {
 
             $a = new Usuario(
-                0, //id
-                "", //nombre
-                $_SESSION["email"], // email
-                "",                // pass
-                [],                // favoritos
+                "", //id
+                $_SESSION["email"], //nombre
+                "", // email
+                [],                // pass
+                0,                // favoritos
         
             );
               echo "<p>$a</p>";
@@ -57,11 +57,11 @@ if (isset($_COOKIE["stay-connected"])) {
 
 
             $u = new Usuario(
-                 0, //id
                 $_SESSION["fullname"],
                 $_SESSION["signup-email"],
                 "",
                 [],
+                0,
 
             );
             echo"<p>$u</p>";

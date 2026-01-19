@@ -103,14 +103,19 @@ if (isset($_COOKIE["stay-connected"])) {
         <details>
              <!-- para hacer esto  es mejor con selec y option que  vaunto  generando  la id con la base de db se recomienda des pues -->
             <summary>Eliminar pelicula</summary>
-            <form id="loginForm" action="<?= $_SERVER["PHP_SELF"] ?>" method="POST">
-                <!-- id -->
-                <div class="form-group">
-                    <label for="titulo">Titulo</label>
-                    <input type="titulo" id="titulo" name="titulo" placeholder="titulo de la pelicula">
-                </div>
-                 <button type="submit">Enviar</button>
-            </form>
+        <?php
+            require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/FilmDAO.php";
+            $allFilm = FilmDAO::readAll();
+        ?>
+        <h3>Esto igual sirve para la parte de eliminar:</h3>
+        <form>
+            <select>
+                <?php foreach ($Film as $film) : ?>
+                    <option id="<?= $film->getId() ?>"><?= $film->getName() ?> de <?= $user->getRegionAsString() ?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="submit">
+
         </details>
         
         

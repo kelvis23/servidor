@@ -5,7 +5,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/FilmDAO.php";
 
 // Creamos un usuario de prueba
-/*
+
 $user = new Usuario("kelvis", "kelvis@gmail.com", "Sandia4you" );
 
 // Insertamos el usuario en la base de datos
@@ -14,7 +14,7 @@ if(UserDAO::create($user)) {
 } else {
     echo "Error al insertar el usuario.\n";
 }
-*/
+
 // Leemos todos los usuarios
 /*
 $users = UserDAO::readAll();
@@ -26,6 +26,7 @@ foreach($users as $u) {
 //pelicual de prueva 
 $film = new Pelicula("peter", 10000, 2024, "el ultimo en pie", 60, ["acion", "drama"]);
 // Insertamos la pelicula en la base de datos
+echo "<br>";
 if(FilmDAO::create($film)) {
     echo "pelicula insertado correctamente con ID: " . $film->getId() . "\n";
 } else {

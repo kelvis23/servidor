@@ -1,6 +1,6 @@
 use film;
 
-CREATE  TABLE  if not exists User(
+CREATE  TABLE  if not exists users(
 id int PRIMARY key auto_increment,
 name  varchar(255),
 email varchar(255),
@@ -14,7 +14,7 @@ pass varchar(255)
 
 
 
-CREATE  TABLE  if not exists film(
+CREATE  TABLE  if not exists films(
 id INT PRIMARY KEY AUTO_INCREMENT,
 title varchar(255),
 duration int ,

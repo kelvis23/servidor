@@ -18,15 +18,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   if (empty($pass)) {
     $errors = true;
-    $passError = "Rellena las contraseñas no coinsiden ";
+    $passError = "Este campo es obligatorio";
+
   }
 
   if (!$errors) {
-    $_SESSION["email"] = $mail;
-    $_SESSION["origin"] = "login";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
+  $usuario = UserDAO::login($mail, $pass);
+  if ($usuario === null) {
+        $passError = "Email o contraseña incorrectos";
+    } else {
+       $_SESSION["email"] = "$mail";
+     $_SESSION["origin"] = "login";
     header("Location: index.php");
     exit();
   }
+}
 }
 ?>
 
@@ -47,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/header.php" ?>
   <main>
     <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/components/login.php"; ?>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/app/models/Usuario.php" ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/Usuario.php" ?>
 
   </main>
   <!-- Incluir footer -->

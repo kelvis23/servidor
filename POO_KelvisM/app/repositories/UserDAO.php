@@ -42,5 +42,41 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
         $conn->close();
         return $users;
     }
+
+    // para provar que el usuario existe en la db 
+    public static function login(string $email, string $password): ?Usuario
+{
+    $conn = CoreDB::getConnection();
+
+    $sql = "SELECT * FROM users WHERE email = ? LIMIT 1";
+    $ps = $conn->prepare($sql);
+    $ps->bind_param("s", $email);
+    $ps->execute();
+
+    $res = $ps->get_result();
+
+    if ($res->num_rows === 0) {
+        $conn->close();
+        return null; // email no existe
+    }
+
+    $row = $res->fetch_assoc();
+
+    // comprobar contraseña
+    if (!password_verify($password, $row["pass"])) {
+        $conn->close();
+        return null; // contraseña incorrecta
+    }
+
+    $usuario = new Usuario(
+        $row["id"],
+        $row["name"],
+        $row["email"]
+    );
+
+    $conn->close();
+    return $usuario;
+}
+
 }
  
