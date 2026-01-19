@@ -112,10 +112,9 @@ if (isset($_COOKIE["stay-connected"])) {
                  <button type="submit">Enviar</button>
             </form>
         </details>
+        
+        
         <?php
-
-
-
 
         $n2 = new Usuario("kelvis", "yo@gmail.com", 12345, ["peli1", "serie3"]);
         $n3 = new Usuario("ama", "ana@gmail.com", 12345, ["peli1", "serie3"]);

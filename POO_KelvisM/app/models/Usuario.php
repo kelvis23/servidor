@@ -1,11 +1,13 @@
 <?php
 class Usuario{
+    private  int $id = -1  ;
     private string $nombre;
     private string $email;
     private string $password;
     private array $favoritos;
 
-    public function __construct(string $nombre, string $email, string $password, array $favoritos){
+    public function __construct(string $nombre, string $email, string $password, array $favoritos = [], int $id = -1 ){
+        $this->id = $id ;
         $this->nombre = $nombre;
         $this->email = $email;
         $this->password = $password;
@@ -47,7 +49,7 @@ class Usuario{
 
     public function __toString() {
         //return " Usuario: $this->nombre \n  Email: $this->email \n  Contraseña : $this->password \n  Faboritos: " . implode(", ", $this->favoritos) . "\n" ;
-        return " Usuario: $this->nombre <br>  Email: $this->email <br>  Contraseña : $this->password <br>  Faboritos: " . implode(", ", $this->favoritos) . "\n" ;
+        return "id: $this->id <br> Usuario: $this->nombre <br>  Email: $this->email <br>  Contraseña : $this->password <br>  Faboritos: " . implode(", ", $this->favoritos) . "\n" ;
         
     }
 
@@ -94,5 +96,19 @@ class Usuario{
     }
 
 
+
+     
+        public function getId(): ?int
+        {
+                return $this->id;
+        }
+
+        
+        public function setId($id)
+        {
+                $this->id = $id;
+
+                return $this;
+        }
 }
 ?>

@@ -1,11 +1,13 @@
 <?php
 abstract class Info{
+    private  int $id = -1;
     private string $titulo;
 
     private int $duracion;
     private array $genero;
 
-public function __construct(string $titulo, int $duracion, array $genero){
+public function __construct( string $titulo, int $duracion, array $genero , int $id =-1){
+    $this->id=$id;
     $this->titulo = $titulo;
     $this->duracion = $duracion;
     $this->genero = $genero;
@@ -67,5 +69,19 @@ public function __construct(string $titulo, int $duracion, array $genero){
     }
     
 	
+
+  
+    public function getId()
+    {
+        return $this->id;
+    }
+
+ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }
 ?>

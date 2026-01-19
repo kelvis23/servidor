@@ -6,8 +6,8 @@ class Pelicula extends Info {
     private int $recaudacion;
   
 
-  public function __construct(string $Director, int $recaudacion,int $year, $titulo, $duracion, $genero){
-     parent::__construct($titulo, $duracion, $genero);
+  public function __construct(string $Director, int $recaudacion,int $year,  $titulo, $duracion, $genero , $id=-1){
+     parent::__construct( $titulo, $duracion, $genero,$id);
     $this->Director = $Director;
     $this->recaudacion = $recaudacion;
    $this->year= $year;

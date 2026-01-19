@@ -41,6 +41,7 @@ if (isset($_COOKIE["stay-connected"])) {
         if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "login") {
 
             $a = new Usuario(
+                0, //id
                 "", //nombre
                 $_SESSION["email"], // email
                 "",                // pass
@@ -56,13 +57,14 @@ if (isset($_COOKIE["stay-connected"])) {
 
 
             $u = new Usuario(
+                 0, //id
                 $_SESSION["fullname"],
                 $_SESSION["signup-email"],
                 "",
                 [],
 
             );
-            echo
+            echo"<p>$u</p>";
 
             //lo imprimo
           
