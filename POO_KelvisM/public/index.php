@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_id"])) {
 
 
 
+//todo crear si estas en el index  si intestas ir a login  o a signup que te vire para al indexs
 
 //voy a verifica que ha llegado
 //1.tiene cookie

@@ -8,6 +8,13 @@ $name = $mail = $pass = "";
 $mailError = $passError = "";
 $errors = false;
 
+// 1. Redirigir si ya está logueado
+if (isset($_COOKIE["stay-connected"]) || isset($_SESSION["origin"])) {
+    $_SESSION["error"] = "Ya estás logueado, redirigiendo al inicio.";
+    header("Location: index.php");
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include $_SERVER['DOCUMENT_ROOT'] . "/utils/functions.php";
     $name = secure(($_POST["fullname"]));

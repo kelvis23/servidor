@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."/app/models/Info.php";
 class Pelicula extends Info {
-   private string $Director;
+    private string $director;
     private int $year;
     private int $recaudacion;
   
