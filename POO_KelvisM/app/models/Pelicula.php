@@ -6,14 +6,23 @@ class Pelicula extends Info {
     private int $recaudacion;
   
 
-  public function __construct(string $Director, int $recaudacion,int $year,  $titulo, $duracion, $genero , $id=-1){
-     parent::__construct( $titulo, $duracion, $genero,$id);
-    $this->Director = $Director;
-    $this->recaudacion = $recaudacion;
-   $this->year= $year;
-}
+ public function __construct(
+        string $titulo,
+        int $duracion,
+        array $genero,
+        string $director,
+        int $year,
+        int $recaudacion,
+        ?int $id = null
+    ) {
+        parent::__construct($titulo, $duracion, $genero, $id);
+
+        $this->director = $director;
+        $this->year = $year;
+        $this->recaudacion = $recaudacion;
+    }
 	public function getDirector() {
-        return $this->Director;
+        return $this->director;
     }
 
 	public function getRecaudacion() {
@@ -25,8 +34,8 @@ class Pelicula extends Info {
     }
 
 
-	public function setDirector(string $Director) {
-        $this->Director = $Director;
+	public function setDirector(string $director) {
+        $this->director = $director;
     }
 
 	public function setRecaudacion(int $recaudacion) {
@@ -36,13 +45,13 @@ class Pelicula extends Info {
 	public function setYear(int $year) {
         $this->year = $year;
     }
-	public function __toString(): string {
+public function __toString(): string {
     $info = parent::__toString();
 
     return $info .
-           "Director: $this->Director<br>" .
-           "Año: $this->year<br>" .
-           "Recaudación: $this->recaudacion millones<br>";
+           "Director: {$this->director}<br>" .
+           "Año: {$this->year}<br>" .
+           "Recaudación: {$this->recaudacion} millones<br>";
 }
     // metodos
 
