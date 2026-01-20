@@ -1,201 +1,255 @@
-/* usuario*/
-/* cabesera de bienvenidad*/
-.welcome {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.welcome h1 {
-    margin-bottom: 5px;
-}
-
-.welcome p {
+/* =====================
+   RESET GENERAL
+===================== */
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-size: 1rem;
-}
-
-/* Desplegue*/
-
-details {
-    background-color: #f1f1f1;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-details[open] {
-    background-color: #e0e0e0;
-}
-
-summary {
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-details div {
-    margin-top: 10px;
-    line-height: 1.5;
-}
-
-/* Formularios */
-form {
-    background-color: #f9f9f9; /* gris muy claro */
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-form label {
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-form input[type="text"] {
-    padding: 5px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-form button {
-    padding: 5px 10px;
-    background-color: #4CAF50; /* verde */
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
-/* lista de faboritos */
-
-.favoritos-actuales {
-    background-color: #f5f5f5;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.lista-favoritos {
-    list-style: none;
     padding: 0;
-    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.favorito-item {
-    background-color: #e0f7fa;
-    margin-bottom: 5px;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b); /* azul oscuro */
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
 }
 
-.favorito-item:hover {
-    background-color: #b2ebf2;
+/* =====================
+   HEADER
+===================== */
+header {
+    background-color: #1e293b;
+    padding: 15px 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/*pelicula*/
+header nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-.peliculas-azul {
-    background-color: #cce7ff; /* azul claro */
+header .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f8fafc;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header ul li a {
+    color: #f8fafc;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+header ul li a:hover {
+    color: #38bdf8; /* azul brillante */
+}
+
+/* =====================
+   MAIN
+===================== */
+main {
+    flex: 1;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+/* =====================
+   BIENVENIDA
+===================== */
+main p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #38bdf8;
+}
+
+/* =====================
+   FORMULARIO CREAR PELÍCULA
+===================== */
+details {
+    margin-bottom: 30px;
+    background-color: #1e293b;
     padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-.peliculas-azul details {
-    background-color: #e6f2ff;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+details summary {
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    color: #38bdf8;
+    outline: none;
+    margin-bottom: 10px;
 }
 
-.peliculas-azul details[open] {
-    background-color: #d0e7ff;
-}
-
-.peliculas-azul details div {
-    background-color: #ffffff; /* fondo blanco dentro del detalle */
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 8px;
-}
-
-
-/*Serie*/
-
-.series-container {
-    background-color: #fff3e0; /* naranja claro */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.series-container details {
-    background-color: #ffe0b2; /* naranja más suave */
-    padding: 10px 15px;
+.form-group {
     margin-bottom: 15px;
-    border-radius: 5px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    background-color: #0f172a;
+    color: #f8fafc;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56,189,248,0.2);
+}
+
+.dropdown-checkbox label {
+    display: inline-block;
+    margin-right: 12px;
+    font-size: 13px;
+    color: #f8fafc;
+}
+
+button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #38bdf8;
+    color: #0f172a;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-.series-container details[open] {
-    background-color: #ffd180;
+button[type="submit"]:hover {
+    background-color: #0ea5e9;
 }
 
-.series-container details div {
-    background-color: #ffffff; /* fondo blanco dentro del detalle */
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* =====================
+   TABLA DE PELÍCULAS
+===================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+thead {
+    background-color: #0f172a;
+}
+
+thead th {
+    padding: 12px;
+    font-weight: 600;
+    text-align: left;
+    color: #38bdf8;
+}
+
+tbody td {
     padding: 10px;
-    border-radius: 5px;
-    margin-top: 8px;
+    border-top: 1px solid #334155;
+    color: #f8fafc;
 }
 
-/* Formularios dentro de series */
-.series-container form {
-    margin-top: 10px;
+tbody tr:nth-child(even) {
+    background-color: #1e293b;
 }
 
-/*Documental */
-.documentales-container {
-    background-color: #e8f5e9; /* verde muy claro */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+tbody tr:nth-child(odd) {
+    background-color: #111827;
 }
 
-.documentales-container details {
-    background-color: #c8e6c9; /* verde suave */
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+/* Botón eliminar */
+tbody button {
+    padding: 6px 12px;
+    background-color: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
 }
 
-.documentales-container details[open] {
-    background-color: #a5d6a7; /* verde más intenso al abrir */
+tbody button:hover {
+    background-color: #b91c1c;
 }
 
-.documentales-container details div {
-    background-color: #ffffff; /* fondo blanco dentro del detalle */
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 8px;
+/* =====================
+   FOOTER
+===================== */
+footer {
+    background-color: #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
 }
 
-/* Formularios dentro de documentales */
-.documentales-container form {
-    margin-top: 10px;
+footer a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #334155;
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border: none;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #38bdf8;
+    }
 }

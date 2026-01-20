@@ -8,8 +8,9 @@ $name = $mail = $pass = "";
 $mailError = $passError = "";
 $errors = false;
 
-// 1. Redirigir si ya está logueado
+//  Redirigir si ya está logueado al index
 if (isset($_COOKIE["stay-connected"]) || isset($_SESSION["origin"])) {
+      // todo falta  que te muestre el mensage 
     $_SESSION["error"] = "Ya estás logueado, redirigiendo al inicio.";
     header("Location: index.php");
     exit();
@@ -29,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nameError = "Este campo es obligatorio";
     }
 
+    //que no esté vacío y que sea un email válido.
     if (empty($email)) {
         $errors = true;
         $emailError = "Este campo es obligatorio";
@@ -37,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailError = "Email no válido";
     }
 
-       // Verificar si el email ya existe
+       // Verificar si el email ya existe (aunque te lo sigue asectando porque email  en la db no es clave unica )
     if (!$errors) {
         $allUsers = UserDAO::readAll();
         foreach ($allUsers as $u) {
@@ -49,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // todo falta lo de repetir contraseña que salga el mensage 
     if (empty($pass)) {
         $errors = true;
         $passError = "La contraseña es obligatoria";
@@ -59,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    
     if (!$errors) {
+        // creasion de usuario 
             $usuario = new Usuario( $name, $email, $pass ); // ID null, se genera al crear
         $created = UserDAO::create($usuario);
         if($created){
@@ -67,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["origin"] = "signup";
         header("Location: index.php");
         }else{
+            //todo falta qque se muestre este eror 
                  $errors = true;
             $passError = "Error al registrar el usuario, intenta de nuevo";
         }

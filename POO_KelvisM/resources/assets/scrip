@@ -1,3 +1,4 @@
+-- Active: 1742327171702@@127.0.0.1@3306@film
 use film;
 
 CREATE  TABLE  if not exists users(
@@ -25,3 +26,23 @@ collection INT
 );
 
 
+INSERT INTO users (name, email, pass)
+VALUES ('Juan Pérez', 'juan@example.com', '1234');
+sql
+Copiar código
+INSERT INTO users (name, email, pass)
+VALUES ('María López', 'maria@example.com', 'abcd');
+sql
+Copiar código
+INSERT INTO users (name, email, pass)
+VALUES ('Carlos García', 'carlos@example.com', 'qwerty');
+sql
+Copiar código
+INSERT INTO users (name, email, pass)
+VALUES ('Laura Fernández', 'laura@example.com', 'password');
+INSERT INTO films (title, duration, gender, director, year, collection)
+VALUES ('El Padrino', 175, 'Drama', 'Francis Ford Coppola', 1972, 1);
+sql
+Copiar código
+INSERT INTO films (title, duration, gender, director, year, collection)
+VALUES ('Titanic', 195, 'Romance', 'James Cameron', 1997, 1);

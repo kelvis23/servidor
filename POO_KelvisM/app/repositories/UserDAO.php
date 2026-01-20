@@ -53,13 +53,16 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
     $ps->bind_param("s", $email);
     $ps->execute();
 
+    //obtener el resultado de la consulta 
     $res = $ps->get_result();
 
+    // email no existe
     if ($res->num_rows === 0) {
         $conn->close();
-        return null; // email no existe
+        return null; 
     }
 
+    //fetch_assoc() convierte la fila en un array asociativo:
     $row = $res->fetch_assoc();
 
     // comprobar contraseña

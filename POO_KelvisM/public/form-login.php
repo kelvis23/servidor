@@ -6,9 +6,10 @@ $mailError = $passError =  "";
 $errors = false;
 
 
-// 1. Redirigir si ya está logueado
+// 1. Redirigir si ya está logueado  al index 
 
 if (isset($_COOKIE["stay-connected"]) || isset($_SESSION["origin"])) {
+    // todo falta  que te muestre el mensage 
     $_SESSION["error"] = "Ya estás logueado, redirigiendo al inicio.";
     header("Location: index.php");
     exit();
@@ -30,10 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   }
 
+  
   if (!$errors) {
     require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
     require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
-  $usuario = UserDAO::login($mail, $pass);
+  
+    // comprobando login con la db
+    $usuario = UserDAO::login($mail, $pass); 
   if ($usuario === null) {
         $passError = "Email o contraseña incorrectos";
     } else {

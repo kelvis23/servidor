@@ -1,50 +1,67 @@
-<?php
-
-?>
-
 <!-- Formulario de Signup -->
 <div class="form-container">
     <h2>Crear Cuenta</h2>
-    <form action="<?=$_SERVER["PHP_SELF"]?>" method="post" id="signupForm">
+
+    <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post" id="signupForm">
+
         <div class="form-group">
             <label for="fullname">Nombre completo</label>
-            <input type="text" 
-            id="fullname" 
-            name="fullname" 
-            placeholder="Tu nombre completo" >
-            <!-- <div class="error-message" id="fullname-error">Por favor, introduce tu nombre completo</div> -->
+            <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                placeholder="Tu nombre completo"
+                value="<?= htmlspecialchars($name ?? '') ?>"
+            >
+
+            <?php if (!empty($nameError)): ?>
+                <div class="error-message"><?= $nameError ?></div>
+            <?php endif; ?>
         </div>
 
         <div class="form-group">
             <label for="signup-email">Email</label>
-            <input type="email"
-             id="signup-email" 
-             name="signup-email" 
-             placeholder="tu@email.com" 
+            <input
+                type="email"
+                id="signup-email"
+                name="signup-email"
+                placeholder="tu@email.com"
+                value="<?= htmlspecialchars($email ?? '') ?>"
             >
-            <!-- <div class="error-message" id="signup-email-error">Por favor, introduce un email válido</div> -->
+
+            <?php if (!empty($emailError)): ?>
+                <div class="error-message"><?= $emailError ?></div>
+            <?php endif; ?>
         </div>
 
         <div class="form-group">
             <label for="signup-password">Contraseña</label>
-            <input type="password" id="signup-password" name="signup-password" placeholder="Crea una contraseña" >
-            <!-- <div class="error-message" id="signup-password-error">La contraseña debe tener al menos 6 caracteres</div> -->
+            <input
+                type="password"
+                id="signup-password"
+                name="signup-password"
+            >
+
+            <?php if (!empty($passError)): ?>
+                <div class="error-message"><?= $passError ?></div>
+            <?php endif; ?>
         </div>
 
         <div class="form-group">
             <label for="confirm-password">Confirmar contraseña</label>
-            <input type="password"id="confirm-password" name="confirm-password" placeholder="Repite tu contraseña" >
-            <!-- <div class="error-message" id="confirm-password-error">Las contraseñas no coinciden</div> -->
+            <input
+                type="password"
+                id="confirm-password"
+                name="confirm-password"
+            >
         </div>
-        
-<!-- mostrar error
-        <= //empty($passError) ? "" : "<p class error> $passError</p>" ?>
--->
 
         <button type="submit">Crear Cuenta</button>
 
         <div class="form-footer">
-            ¿Ya tienes cuenta? <a href="/public/form-login.php" id="go-to-login">Inicia Sesión</a>
+            ¿Ya tienes cuenta?
+            <a href="/public/form-login.php">Inicia Sesión</a>
         </div>
+
     </form>
 </div>

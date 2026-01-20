@@ -6,10 +6,26 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/FilmDAO.php";
 
 $mensaje = "";
 
+// comprueba que  el usuario pueda quedarce en la pagina 
+if (isset($_COOKIE["stay-connected"])) {
+
+} else if ((isset($_SESSION["origin"]))) {
+    
+} else {
+    //todo  no se muestra este mensage 
+    $_SESSION["error"] = "te has intentado colar en el index";
+    header("Location: form-login.php");
+    exit();
+}
+
+
+
+
 // Siempre inicializamos la lista
 $allFilms = FilmDAO::readAll() ?? [];
 
-// Procesar creación de película
+//  creación de película
+// Verifica que se haya enviado desde post y que tenga el campo titulo
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
     $titulo = trim($_POST["titulo"]);
     $duracion = (int)$_POST["duracion"];
@@ -27,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
         $recaudacion
     );
 
+    //todo creo que no  sale los mensages
     if (FilmDAO::create($pelicula)) {
         $mensaje = "Película creada correctamente";
     } else {
@@ -38,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
 }
 
 // Procesar eliminación
+//todo creo que no salen los mensages 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_id"])) {
     $id = (int)$_POST["delete_id"];
     if (FilmDAO::delete($id)) {
@@ -53,21 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_id"])) {
 
 
 
-//todo crear si estas en el index  si intestas ir a login  o a signup que te vire para al indexs
-
-//voy a verifica que ha llegado
-//1.tiene cookie
-//2.form-login
-//3.form-signup
-if (isset($_COOKIE["stay-connected"])) {
-
-} else if ((isset($_SESSION["origin"]))) {
-    //mequedo
-} else {
-    $_SESSION["error"] = "te has intentadocolar en el index";
-    header("Location: form-login.php");
-    exit();
-}
 ?>
 
 
@@ -77,7 +80,9 @@ if (isset($_COOKIE["stay-connected"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>prueva</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>original</title>
 
 </head>
 
@@ -90,12 +95,15 @@ if (isset($_COOKIE["stay-connected"])) {
         include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Series.php";
         include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Documentales.php";
 
-          if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "signup") {
-            echo "<p>Te damos la bienvenida, {$_SESSION['email']}</p>";
-        }
-             if (isset($_SESSION["origin"]) and $_SESSION["origin"] == "login") {
-            echo "<p>bienvenido, {$_SESSION['email']}</p>";
-            }      
+          if (isset($_SESSION["origin"]) && isset($_SESSION["email"])) {
+            // Convierte caracteres especiales en HTML
+    $userMail = htmlspecialchars($_SESSION["email"]);
+    if ($_SESSION["origin"] === "signup") {
+        echo "<p>¡Te damos la bienvenida, $userMail!</p>";
+    } else {
+        echo "<p>Bienvenido de nuevo, $userMail!</p>";
+    }
+}
         ?>
           <!--Formulario de creación de objetos-->
         <details>
@@ -127,6 +135,7 @@ if (isset($_COOKIE["stay-connected"])) {
                         <label><input type="checkbox" name="genero[]" value="Fantasía"> Fantasía</label>
                         <label><input type="checkbox" name="genero[]" value="Terror"> Terror</label>
                         <label><input type="checkbox" name="genero[]" value="Ciencia Ficción">Ciencia Ficción </label>
+                        <label><input type="checkbox" name="genero[]" value="Romance">Romance</label>
                     </div>
 
                     <!-- Director -->

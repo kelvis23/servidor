@@ -33,6 +33,8 @@ class FilmDAO
     }
 
 
+    //devuelve todas las películas de la base de datos como objetos
+
     public static function readAll()
     {
         $conn = CoreDB::getConnection();
@@ -53,6 +55,7 @@ class FilmDAO
         return $films;
     }
 
+    //elimina una película de la base de datos
     public static function delete(int $id): bool
     {
         $conn = CoreDB::getConnection();
