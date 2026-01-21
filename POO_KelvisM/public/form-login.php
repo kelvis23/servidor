@@ -1,5 +1,21 @@
 <?php
 session_start();
+?>
+<!-- utilisa javascript  para un alert  (mientras esta el alert no se ve  el contenido)-->
+<?php if (isset($_SESSION["error"])): ?>
+<script>
+  
+    alert("<?= addslashes($_SESSION['error']) ?>");
+</script>
+<?php
+    unset($_SESSION["error"]); // importante: borrar el mensaje
+endif;
+?>
+
+<?php
+
+
+
 $mail = $pass = "";
 $mailError = $passError =  "";
 
@@ -9,8 +25,8 @@ $errors = false;
 // 1. Redirigir si ya está logueado  al index 
 
 if (isset($_COOKIE["stay-connected"]) || isset($_SESSION["origin"])) {
-    // todo falta  que te muestre el mensage 
-    $_SESSION["error"] = "Ya estás logueado, redirigiendo al inicio.";
+    
+    $_SESSION["error"] = "Ya estás logueado, redirigiendo al home.";
     header("Location: index.php");
     exit();
 }

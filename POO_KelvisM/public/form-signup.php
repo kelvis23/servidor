@@ -10,8 +10,8 @@ $errors = false;
 
 //  Redirigir si ya está logueado al index
 if (isset($_COOKIE["stay-connected"]) || isset($_SESSION["origin"])) {
-      // todo falta  que te muestre el mensage 
-    $_SESSION["error"] = "Ya estás logueado, redirigiendo al inicio.";
+       
+    $_SESSION["error"] = "Ya estás logueado, redirigiendo al  home.";
     header("Location: index.php");
     exit();
 }
@@ -39,8 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailError = "Email no válido";
     }
 
-       // Verificar si el email ya existe (aunque te lo sigue asectando porque email  en la db no es clave unica )
-    if (!$errors) {
+       //   Verificar si el email ya existe (aunque te lo sigue asectando porque email  en la db no es clave unica )
+   
+   /*    if (!$errors) {
         $allUsers = UserDAO::readAll();
         foreach ($allUsers as $u) {
             if ($u->getEmail() === $email) {
@@ -50,8 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+    */
 
-    // todo falta lo de repetir contraseña que salga el mensage 
     if (empty($pass)) {
         $errors = true;
         $passError = "La contraseña es obligatoria";

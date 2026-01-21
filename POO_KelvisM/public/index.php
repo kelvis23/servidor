@@ -4,6 +4,20 @@ session_start();
 require_once $_SERVER["DOCUMENT_ROOT"] . "/app/models/Pelicula.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/FilmDAO.php";
 
+?>
+
+<?php if (isset($_SESSION["error"])): ?>
+<script>
+    //addslashes es una función de PHP que se usa para escapar ciertos caracteres dentro de una cadena de texto.
+    alert("<?= addslashes($_SESSION['error']) ?>");
+</script>
+<?php
+    unset($_SESSION["error"]);
+endif;
+?>
+<?php
+
+
 $mensaje = "";
 
 // comprueba que  el usuario pueda quedarce en la pagina 
@@ -12,7 +26,7 @@ if (isset($_COOKIE["stay-connected"])) {
 } else if ((isset($_SESSION["origin"]))) {
     
 } else {
-    //todo  no se muestra este mensage 
+   
     $_SESSION["error"] = "te has intentado colar en el index";
     header("Location: form-login.php");
     exit();
@@ -155,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_id"])) {
                     <div class="form-group">
                         <label for="recaudacion">Recaudación </label>
                         <input type="number" id="recaudacion" name="recaudacion" placeholder="Recaudación en dólares"
-                            min="0" step="1000" required>
+                            required>
                     </div>
 
 
