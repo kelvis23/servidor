@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["origin"] = "signup";
         header("Location: index.php");
         }else{
-            //todo falta qque se muestre este eror 
+            // (es imposible que se muestre este error por el if de ariva ) 
                  $errors = true;
             $passError = "Error al registrar el usuario, intenta de nuevo";
         }

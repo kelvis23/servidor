@@ -37,6 +37,12 @@
                 <div class="error-message"><?= $passError ?></div>
             <?php endif; ?>
         </div>
+  
+        <div class="checkbox-group">
+            <input type="checkbox" id="stay-connected" name="stay-connected" required>
+            <label for="stay-connected">Quiero seguir conectado</label>
+        </div>
+
 
         <button type="submit">Iniciar Sesión</button>
 
@@ -44,6 +50,7 @@
             ¿No tienes cuenta?
             <a href="/public/form-signup.php">Regístrate</a>
         </div>
+
 
     </form>
 </div>

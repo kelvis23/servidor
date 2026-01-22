@@ -20,6 +20,7 @@ endif;
 <?php
 
 $errors = false;
+$titulo = $duracion = $director = $year = $recaudacion = "";
 $tituloError = $duracionError = $generoError  = $directorError = $yearError = $recaudacionError="";
 $mensaje = "";
 
@@ -43,10 +44,11 @@ $allFilms = FilmDAO::readAll() ?? [];
 //  creación de película
 // Verifica que se haya enviado desde post y que tenga el campo titulo
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
-    $titulo = trim($_POST["titulo"]);
+      include $_SERVER['DOCUMENT_ROOT'] . "/utils/functions.php";
+    $titulo = secure($_POST["titulo"]);
     $duracion = (int) $_POST["duracion"];
-    $genero = $_POST["genero"] ?? [];
-    $director = trim($_POST["director"]);
+    $genero =  $_POST["genero"] ?? [];
+    $director = secure($_POST["director"]);
     $year = (int) $_POST["year"];
     $recaudacion = (int) $_POST["recaudacion"];
 
@@ -74,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
     }
     if (empty($recaudacion)) {
         $errors = true;
-        $recaudacion = "Este campo es obligatorio";
+        $recaudacionError = "Este campo es obligatorio";
     }
 
     if (!$errors) {
@@ -132,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
 
 <body>
     <!-- Incluir cabecera -->
-    <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/header.php" ?>
+    <?php include $_SERVER["DOCUMENT_ROOT"] . "/resources/views/layouts/header-index.php" ?>
     <main>
         <?php
         include $_SERVER["DOCUMENT_ROOT"] . "/app/models/Usuario.php";
@@ -160,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
             <!-- Título -->
                 <div class="form-group">
                     <label for="titulo">Titulo</label>
-                    <input type="text" id="titulo" name="titulo" value =<?= $titulo?> >
+                    <input type="text" id="titulo" name="titulo" value ="<?= $titulo?>" >
                      
                     <?php if (!empty($tituloError)): ?>
                         <div class="error-message"><?= $tituloError ?></div>
@@ -171,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
                 <div class="form-group">
                     <label for="duracion">Duración (minutos)</label>
                     <input type="number" id="duracion" name="duracion" placeholder="Duración en minutos" min="1"
-                        max="500" value =<?= $duracion?> >
+                        max="500" value ="<?= $duracion?>" >
                      
                         <?php if (!empty($duracionError)): ?>
                         <div class="error-message"><?= $duracionError ?></div>
@@ -199,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
                 <!-- Director -->
                 <div class="form-group">
                     <label for="director">Director</label>
-                    <input type="text" id="director" name="director" placeholder="Nombre del director" value =<?= $director?> >
+                    <input type="text" id="director" name="director" placeholder="Nombre del director" value ="<?= $director?>" >
                   
                     <?php if (!empty($directorError)): ?>
                         <div class="error-message"><?= $directorError ?></div>
@@ -209,7 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
                 <!-- Año -->
                 <div class="form-group">
                     <label for="year">Año de estreno</label>
-                    <input type="number" id="year" name="year" placeholder="Año de estreno" min="1888" value =<?= $year?>
+                    <input type="number" id="year" name="year" placeholder="Año de estreno" min="1888" value ="<?= $year?>"
                         max="<?= date('Y') ?>" >
                    
                         <?php if (!empty($yearError)): ?>
@@ -221,7 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
                 <!-- Recaudación -->
                 <div class="form-group">
                     <label for="recaudacion">Recaudación </label>
-                    <input type="number" id="recaudacion" name="recaudacion" placeholder="Recaudación en dólares" value =<?= $recaudacion?>>
+                    <input type="number" id="recaudacion" name="recaudacion" placeholder="Recaudación en dólares" value ="<?= $recaudacion?>">
                  
                     <?php if (!empty($recaudacionError)): ?>
                         <div class="error-message"><?= $recaudacionError ?></div>

@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
+ require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
 ?>
 <!-- utilisa javascript  para un alert  (mientras esta el alert no se ve  el contenido)-->
 <?php if (isset($_SESSION["error"])): ?>
@@ -49,9 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   
   if (!$errors) {
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
-  
+    ////Hago lo de la cookie de seguir conectado
+   if (isset($_POST["stay-connected"])) {
+            setcookie("stay-connected", $mail, time() + 60 * 60, "/");
+        }
+
     // comprobando login con la db
     $usuario = UserDAO::login($mail, $pass); 
   if ($usuario === null) {
