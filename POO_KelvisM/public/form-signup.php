@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . "/app/models/Usuario.php";
- require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/app/repositories/UserDAO.php";
 
 
 session_start();
@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     */
 
+    
     if (empty($pass)) {
         $errors = true;
         $passError = "La contraseña es obligatoria";

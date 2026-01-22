@@ -89,6 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_id"])) {
 
 
 <!DOCTYPE html>
+<html lang="en"></html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
