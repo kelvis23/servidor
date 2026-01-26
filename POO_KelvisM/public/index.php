@@ -99,6 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
         // Recargar lista tras crear
         $allFilms = FilmDAO::readAll() ?? [];
     }
+}
+
 
     // Procesar eliminación
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_id"])) {
@@ -114,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["titulo"])) {
     }
 
  
-}
+
 
 ?>
 
