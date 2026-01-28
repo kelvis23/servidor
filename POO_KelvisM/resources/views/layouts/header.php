@@ -1,6 +1,6 @@
 <!-- Header -->
 <header>
-<h1>Mi aplicasion web</h1>
+<h1>Mi aplicacion web</h1>
 <nav >
     <ul class="nav-menu burger">
         <li><a href="/public/form-login.php">Login</a></li>

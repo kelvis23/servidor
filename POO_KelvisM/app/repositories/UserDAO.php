@@ -43,7 +43,13 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/app/core/CoreDB.php";
         return $users;
     }
 
-    // para provar que el usuario existe en la db 
+    // 
+    /**
+     * para provar que el usuario existe en la db Summary of login
+     * @param string $email
+     * @param string $password
+     * @return Usuario|null
+     */
     public static function login(string $email, string $password): ?Usuario
 {
     $conn = CoreDB::getConnection();
