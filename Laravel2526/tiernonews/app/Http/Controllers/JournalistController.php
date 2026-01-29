@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Journalist;
 use Illuminate\Http\Request;
 
 class JournalistController extends Controller
@@ -11,8 +12,16 @@ class JournalistController extends Controller
      */
     public function index()
     {
-        //
-    }
+        //todo
+        // return "estoy en el index del JournalistController";
+
+        //1. buscar todos los journalists de la bd
+
+        $journalists = Journalist::all();
+       // return $journalists;
+        //2. devolver  una vista que los contenga
+        return view('journalist.index',compact("journalists"));
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +48,8 @@ class JournalistController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the journalist.
+     * va a devolver un vista con un formulario rellenado con los datos del preiodista en cuestion y un boton de actualizar
      */
     public function edit(string $id)
     {
@@ -48,6 +58,7 @@ class JournalistController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * Recivir en la peticion Post (o Put ) los datos  del periodista que queremos editar y lo lleva a la dbb
      */
     public function update(Request $request, string $id)
     {
@@ -60,5 +71,9 @@ class JournalistController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function sayName($name)
+    {
+        return "hola $name";
     }
 }

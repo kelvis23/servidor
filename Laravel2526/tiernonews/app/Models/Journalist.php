@@ -8,7 +8,13 @@ class Journalist extends Model
 {
     private int $id;
     private string $name;
-    private string $usrname;
+    private string $surname;
     private string $email;
     private string $password;
+
+    //si la tabla se    llamara diferente al modelo  enplurl
+    // proteected
+
+
 }
+
