@@ -8,8 +8,9 @@
   
 </head>
 <body>
+    @include("components.header")
 <!-- esto tiene bootstrap ademas  el journalists detro del foreact peretence al index de journalist controles  -->
-    <h1>journalists</h1>
+    <h2>journalists</h2>
     <p class="bg-info">estos son las y los periodistas de mi BD</p>
     @foreach ($journalists as $j )
     <div style="background-color:lightblue;">

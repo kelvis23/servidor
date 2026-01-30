@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Journalist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use function Illuminate\Log\log;
 
 class JournalistController extends Controller
 {
@@ -28,7 +30,8 @@ class JournalistController extends Controller
      */
     public function create()
     {
-        //
+        return view('journalist.create');
+        // devuelvo una vista con un formulario de creasion
     }
 
     /**
@@ -36,7 +39,9 @@ class JournalistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // return "ahora te lo guardo";
+       Log::channel('stderr')->debug("Varible request:",[$request->name ,$request->password]);
+      // $j = new Journalist();
     }
 
     /**
@@ -44,6 +49,7 @@ class JournalistController extends Controller
      */
     public function show(string $id)
     {
+        return "no esta heco";
         //
     }
 
