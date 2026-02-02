@@ -40,8 +40,19 @@ class JournalistController extends Controller
     public function store(Request $request)
     {
        // return "ahora te lo guardo";
-       Log::channel('stderr')->debug("Varible request:",[$request->name ,$request->password]);
-      // $j = new Journalist();
+       //use iluminates /suport/facades/Log
+       //para 
+       //equibalente a $se
+       //Log::channel('stderr')->debug("Varible request:",[$request->all() ]);
+       $j = new Journalist($request->all());
+      Log::channel('stderr')->debug("Varible request:",[$j->email]);
+      //con la suiente orden se guarda en la db
+      $j->save();
+      //para crear el index tengo que buscar todos los periodistas en la db
+      $journalists= Journalist::all();
+      return view('journalist.index',compact("journalists"));
+
+
     }
 
     /**
@@ -49,8 +60,13 @@ class JournalistController extends Controller
      */
     public function show(string $id)
     {
-        return "no esta heco";
-        //
+        
+        //busco en la base de datos ese periodista
+        $journalist= Journalist::find($id);
+
+        //2 devuelbe una bista con la informasion del periodista 
+        return view('journalist.show',compact("journalist"));
+
     }
 
     /**
@@ -59,7 +75,13 @@ class JournalistController extends Controller
      */
     public function edit(string $id)
     {
-        //
+                // 1. buscar el periodista en la db :
+
+                $journalist = Journalist ::find($id);
+
+                //2. devuelvo   la vista con  el furmulario  de edicion
+                return  view('journalist.edit',compact("journalist"));
+
     }
 
     /**
@@ -68,7 +90,24 @@ class JournalistController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // voy a actulizar todo menos la contraseña 
+        //busco en la bd el journalist con ese id
+        $journalist = Journalist ::find($id);
+
+        //2. actulaiso los campos xorrespondientes 
+        $journalist->name = $request->name;
+        $journalist->surname = $request->surname;
+        $journalist->email = $request->email;
+
+        //3. hago el update
+        $journalist->update();
+
+        //4. devuelvo al show
+        //lo voy a buscar pero solo para comprar que se ha actulisar
+
+
+        return view('journalist.show',compact("journalist"));
+        
     }
 
     /**

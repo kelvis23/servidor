@@ -29,5 +29,5 @@ Route::post("/journalist",[JournalistController::class,"store"])->name('journali
 
 Route::get("/journalist/{id}",[JournalistController::class,"show"]);
 Route::get("/journalist/{id}/edit",[JournalistController::class,"edit"]);
-Route::put("/journalist/{id}",[JournalistController::class,"update"]);
+Route::put("/journalist/{id}",[JournalistController::class,"update"])->name('journalist.update');
 Route::delete("/journalist/{id}",[JournalistController::class,"destroy"]);
