@@ -20,10 +20,10 @@ class JournalistController extends Controller
         //1. buscar todos los journalists de la bd
 
         $journalists = Journalist::all();
-       // return $journalists;
+        // return $journalists;
         //2. devolver  una vista que los contenga
-        return view('journalist.index',compact("journalists"));
-        }
+        return view('journalist.index', compact("journalists"));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -39,18 +39,18 @@ class JournalistController extends Controller
      */
     public function store(Request $request)
     {
-       // return "ahora te lo guardo";
-       //use iluminates /suport/facades/Log
-       //para 
-       //equibalente a $se
-       //Log::channel('stderr')->debug("Varible request:",[$request->all() ]);
-       $j = new Journalist($request->all());
-      Log::channel('stderr')->debug("Varible request:",[$j->email]);
-      //con la suiente orden se guarda en la db
-      $j->save();
-      //para crear el index tengo que buscar todos los periodistas en la db
-      $journalists= Journalist::all();
-      return view('journalist.index',compact("journalists"));
+        // return "ahora te lo guardo";
+        //use iluminates /suport/facades/Log
+        //para 
+        //equibalente a $se
+        //Log::channel('stderr')->debug("Varible request:",[$request->all() ]);
+        $j = new Journalist($request->all());
+        Log::channel('stderr')->debug("Varible request:", [$j->email]);
+        //con la suiente orden se guarda en la db
+        $j->save();
+        //para crear el index tengo que buscar todos los periodistas en la db
+        $journalists = Journalist::all();
+        return view('journalist.index', compact("journalists"));
 
 
     }
@@ -60,12 +60,12 @@ class JournalistController extends Controller
      */
     public function show(string $id)
     {
-        
+
         //busco en la base de datos ese periodista
-        $journalist= Journalist::find($id);
+        $journalist = Journalist::find($id);
 
         //2 devuelbe una bista con la informasion del periodista 
-        return view('journalist.show',compact("journalist"));
+        return view('journalist.show', compact("journalist"));
 
     }
 
@@ -75,12 +75,12 @@ class JournalistController extends Controller
      */
     public function edit(string $id)
     {
-                // 1. buscar el periodista en la db :
+        // 1. buscar el periodista en la db :
 
-                $journalist = Journalist ::find($id);
+        $journalist = Journalist::find($id);
 
-                //2. devuelvo   la vista con  el furmulario  de edicion
-                return  view('journalist.edit',compact("journalist"));
+        //2. devuelvo   la vista con  el furmulario  de edicion
+        return view('journalist.edit', compact("journalist"));
 
     }
 
@@ -92,7 +92,7 @@ class JournalistController extends Controller
     {
         // voy a actulizar todo menos la contraseña 
         //busco en la bd el journalist con ese id
-        $journalist = Journalist ::find($id);
+        $journalist = Journalist::find($id);
 
         //2. actulaiso los campos xorrespondientes 
         $journalist->name = $request->name;
@@ -106,8 +106,8 @@ class JournalistController extends Controller
         //lo voy a buscar pero solo para comprar que se ha actulisar
 
 
-        return view('journalist.show',compact("journalist"));
-        
+        return view('journalist.show', compact("journalist"));
+
     }
 
     /**
@@ -115,7 +115,21 @@ class JournalistController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //1.  busco el journalist que voy a eliminar 
+        $j = Journalist::find($id);
+        if ($j == null) {
+            $message = " el periodista no existe ese id";
+        } else {
+
+
+            //2. eliminamos
+            Journalist::destroy($id);
+            $message = " Periodista ".$j->name ."eliminado ";
+
+        }
+        //3. devolvemos al index 
+        return redirect()->route('journalist')->with('deleted',$message);
+
     }
     public function sayName($name)
     {
