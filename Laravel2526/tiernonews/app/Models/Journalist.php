@@ -18,7 +18,13 @@ class Journalist extends Model
 // este fillable lo que hace es crear un costructor  que recibe 
     protected $fillable = ["id", "name", "surname","email" ,"password"];
     //si la tabla se    llamara diferente al modelo  enplurl
-    // proteected $table   = periodistast
+    // proteected $table   = periodistas
+
+    // un periodista tiene varios articulos (1-n)
+
+    public  function articles(){
+        return $this->hasMany(Article::class);
+    }
 
 
 }

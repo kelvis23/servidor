@@ -46,11 +46,21 @@ class JournalistController extends Controller
         //Log::channel('stderr')->debug("Varible request:",[$request->all() ]);
         $j = new Journalist($request->all());
         Log::channel('stderr')->debug("Varible request:", [$j->email]);
+     
+        //antes de guardar en la db : validacion 
+        $request->validate([
+            'name '=> 'required',
+            'password '=> 'min:4|required',
+            'email '=> 'unique:journalists,email|required'
+        ]);
+     
         //con la suiente orden se guarda en la db
         $j->save();
         //para crear el index tengo que buscar todos los periodistas en la db
-        $journalists = Journalist::all();
-        return view('journalist.index', compact("journalists"));
+        //$journalists = Journalist::all();
+        //return view('journalist.index', compact("journalists"));
+
+        return redirect()->route('journalist.create');
 
 
     }

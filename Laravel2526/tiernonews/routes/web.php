@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\JournalistController;
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,3 +33,6 @@ Route::get("/journalist/{id}",[JournalistController::class,"show"]);
 Route::get("/journalist/{id}/edit",[JournalistController::class,"edit"])->name('journalist.edit');
 Route::put("/journalist/{id}",[JournalistController::class,"update"])->name('journalist.update');
 Route::delete("/journalist/{id}",[JournalistController::class,"destroy"])->name('journalist.destroy');
+
+
+Route::resource("/article",ArticleController::class);

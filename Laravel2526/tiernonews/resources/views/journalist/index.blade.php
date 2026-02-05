@@ -25,7 +25,6 @@
                 <div class="alert alert-success" role="alert">
                     {{ session('deleted') }}
                 </div>
-            @endif
             @foreach ($journalists as $j)
                 <div class="card" style="width: 18rem">
                     <p>Nombre :{{ $j->name }}</p>
