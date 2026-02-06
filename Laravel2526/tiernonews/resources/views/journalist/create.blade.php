@@ -28,9 +28,15 @@
                             @csrf
                             <!-- Nombre -->
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input name="name" type="text" class="form-control" id="nombre">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input name="name" type="text" id="name"
+                                    class=" form-control  @error('name') is-invalid @enderror"
+                                    value="{{ old('name') }}">
+                                @error('name') <small class="text-danger">{{ $message }}</small>
+                                @enderror
+
                             </div>
+
 
                             <!-- Apellidos -->
                             <div class="mb-3">
@@ -42,18 +48,22 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico</label>
                                 <input name="email" type="email" class="form-control" id="email">
+                                  @error('email') <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <!-- Contraseña -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
                                 <input name="password" type="password" class="form-control" id="password">
+                                    @error('password') <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <!-- Repetir contraseña -->
                             <div class="mb-3">
                                 <label for="password2" class="form-label">Repetir contraseña</label>
-                                <input name="password2" type="password" class="form-control" id="password2">
+                                <input name="password_confirmation" type="password" class="form-control" id="password2">
                             </div>
 
                             <!-- Botón -->

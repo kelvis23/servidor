@@ -12,7 +12,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+         $article = Article::all();;
+        //2. devolver  una vista que los contenga
+        return view('article.index', compact("article"));
     }
 
     /**
@@ -20,7 +22,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('article.create');
     }
 
     /**
@@ -36,7 +38,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+          $article = Article::find($article);
+
+        //2 devuelbe una bista con la informasion del periodista 
+        return view('article.show', compact("article"));
     }
 
     /**

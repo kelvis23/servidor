@@ -4,8 +4,9 @@
     <ul class="navbar-nav">
         <li class="nav-item active"><a href="{{ route('journalist') }}">home</a></li>
         <li class="nav-item active"><a href="{{ route('journalist.create') }}"> Create</a></li>
-        <li class="nav-item active"><a href="#">About me</a></li>
-    </ul>
+        <li class="nav-item active"><a href="{{ route('article.index') }}">article</a></li>
+
+      </ul>
   </nav>
   
 
