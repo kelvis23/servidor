@@ -12,5 +12,9 @@
     <p>Apellidos: {{ $journalist->surname }}</p>
     <p>Email: {{ $journalist->email }}</p>
     <p>Contraseña: {{ $journalist->password }}</p>
+
+    <h3>{{ $journalist->articles  }} ha escrito {{ sizeof($journalist->articles) }}articulo </h3>
+
+    
 </body>
 </html>

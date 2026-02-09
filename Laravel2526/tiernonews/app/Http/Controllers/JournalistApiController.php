@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Journalist;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Log;
 
 class JournalistApiController extends Controller
 {
@@ -25,10 +27,19 @@ class JournalistApiController extends Controller
      */
     public function store(Request $request)
     {
+
         $j = new Journalist($request->all());
         $j->save();
         return response()->json($j);
+        $errors = false;
+        //log ::channel('sdtrr')->info ("contraseña, [$request->password]);
+        //validasion
+        if (!isset($request->name)) {
+            $errors = true;
+        } elseif (!isset(($request->password))) {
 
+
+        }
     }
 
     /**
@@ -67,17 +78,17 @@ class JournalistApiController extends Controller
             $j->email = $request->email;
             //3. hago el update
             $j->update();
-                return response()->json([
+            return response()->json([
                 "menssage" => " Journalist found",
                 "data" => $j
             ]);
-        }else{
+        } else {
             return response()->json([
                 "menssage" => "Not found",
                 "data" => $j
             ], JsonResponse::HTTP_NOT_FOUND);
         }
-        
+
     }
 
     /**
@@ -88,19 +99,56 @@ class JournalistApiController extends Controller
     public function destroy(string $id)
     {
         $j = Journalist::find($id);
-         if ($j != null) {
-            
+        if ($j != null) {
+
             $j->delete();
-                return response()->json([
+            return response()->json([
                 "menssage" => "  Deleted",
                 "data" => $j
             ]);
-        }else{
+        } else {
             return response()->json([
                 "menssage" => "Not found",
                 "data" => $j
             ], JsonResponse::HTTP_NOT_FOUND);
         }
-      
+
+    }
+
+    //para la busquedas:
+    public function search(Request $request)
+    {
+        Log::channel('stderr')->debug("variables de busqueda", [$request->name]);
+        // buscar por nobre  en la base de datos
+        //select * from journalist    where name = ?;
+    //    if (isset($request->name)) {
+    //        $journalist = Journalist::where('name', $request->name)->age();
+    //        return response()->json($journalist);
+   //     }
+        // buscar por email 
+   //     if (isset($request->email)) {
+    //        $journalist = Journalist::where('email', $request->name)->age();
+     //       return response()->json($journalist);
+
+     
+        
+        if (isset($request->minreaders)&& isset($request->maxreaders)){
+            //quiero devolber los articulos
+            //  que tengan mas de demiReades reades
+        $articles = Article::where('readers','>=',$request->minreaders)->get();
+        return response()->json($articles);
+        }else if(isset($request->minreades)){
+            $articles = Article::where(
+                'reades', '>=', $request->minreaders
+            )->get();
+            return response()->json($articles);
+        }
+
+        //buscar periodistas por nombre y por email
+        //.../search?name=XXXX&email=YYYYY
+
+        //buscar periodistas por nombre o por apeyido (->orwhere)
+        //.../search?name=XXXX&email=YYYYY
+
     }
 }

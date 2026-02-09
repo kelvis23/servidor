@@ -8,7 +8,11 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+//endpint para busquedas de prueba de journalists:
+Route::get('/search',[JournalistApiController::class,'search']);
+
 Route::get("/journalist/{id}",[JournalistApiController::class,"show"]);
 Route::post("/journalist",[JournalistApiController::class,"store"]);
 Route::put("/journalist/{id}",[JournalistApiController::class,"update"]);
 Route::delete("/journalist/{id}",[JournalistApiController::class,"destroy"]);
+

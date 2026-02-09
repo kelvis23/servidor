@@ -36,3 +36,4 @@ Route::delete("/journalist/{id}",[JournalistController::class,"destroy"])->name(
 
 
 Route::resource("/article",ArticleController::class);
+

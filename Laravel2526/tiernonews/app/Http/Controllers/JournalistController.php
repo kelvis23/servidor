@@ -145,4 +145,5 @@ class JournalistController extends Controller
     {
         return "hola $name";
     }
+    
 }
