@@ -18,11 +18,8 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
-                        @if($errors->any())
-                            @foreach($errors->all() as $c => $error)
-                                <p>{{ $c }} --- {{ $error }}</p>
-                            @endforeach
-                        @endif
+                       
+                    
                         <h4 class="card-title text-center mb-4">Crear Journolist</h4>
                         <form action="{{ route('journalist.store') }} " method="post">
                             @csrf

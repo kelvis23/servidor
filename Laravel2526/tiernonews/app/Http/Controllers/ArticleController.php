@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Journalist;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -22,7 +23,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('article.create');
+         $journalists = Journalist::all();
+        return view('article.create',compact('journalists'));
     }
 
     /**

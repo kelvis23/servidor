@@ -27,18 +27,30 @@ class JournalistApiController extends Controller
      */
     public function store(Request $request)
     {
-
-        $j = new Journalist($request->all());
-        $j->save();
-        return response()->json($j);
-        $errors = false;
-        //log ::channel('sdtrr')->info ("contraseña, [$request->password]);
-        //validasion
+          $errors = false;
+        
+              Log::channel('stderr')->info("VARIABLES DEL REQUEST: ", [
+            $request->password,
+            $request->name,
+            $request->title
+        ]);
+         
+        //validaciones:
         if (!isset($request->name)) {
             $errors = true;
-        } elseif (!isset(($request->password))) {
-
-
+        } elseif (!isset($request->password)) {
+            $errors = true;
+        }
+        if (!$errors) {
+            $j = new Journalist($request->all());
+            //todo ver si existe el email
+            $j->save();
+            return response()->json($j);
+        } else {
+            return response()->json([
+                "message" => "error",
+                "data" => null
+            ], JsonResponse::HTTP_NOT_FOUND);
         }
     }
 
@@ -115,40 +127,48 @@ class JournalistApiController extends Controller
 
     }
 
-    //para la busquedas:
-    public function search(Request $request)
-    {
-        Log::channel('stderr')->debug("variables de busqueda", [$request->name]);
-        // buscar por nobre  en la base de datos
-        //select * from journalist    where name = ?;
-    //    if (isset($request->name)) {
-    //        $journalist = Journalist::where('name', $request->name)->age();
-    //        return response()->json($journalist);
-   //     }
-        // buscar por email 
-   //     if (isset($request->email)) {
-    //        $journalist = Journalist::where('email', $request->name)->age();
-     //       return response()->json($journalist);
+     //Para las búsquedas:
+    public function search(Request $request){
+        Log::channel('stderr')->debug("VARIABLES DE BÚSQUEDA", [$request->name]);
+   
+        //Buscar por nombre en la base de datos:
+        // SELECT * FROM journalists WHERE name = ?
+      /*  if (isset($request->name)) {
+            $journalists = Journalist::where('name', $request->name)->get();
+            return response()->json($journalists);
+        }
 
-     
-        
-        if (isset($request->minreaders)&& isset($request->maxreaders)){
-            //quiero devolber los articulos
-            //  que tengan mas de demiReades reades
-        $articles = Article::where('readers','>=',$request->minreaders)->get();
-        return response()->json($articles);
-        }else if(isset($request->minreades)){
+        //buscar por email:
+        if (isset($request->email)) {
+            $journalists = Journalist::where('email', $request->email)->get();
+            //Log::channel('stderr')->debug("VARIABLES DE BÚSQUEDA", [$request->email]);
+            return response()->json($journalists);
+        }*/
+
+        if (isset($request->minreaders) && isset($request->maxreaders)) {
+            //AND con varias cláusulas del select
+            $articles = Article::where('readers', '>=', $request->minreaders)
+                ->where('readers', '<=', $request->maxreaders)
+                ->get();
+            return response()->json($articles);
+        } else if (isset($request->minreaders)) {
+            //Quiero devolver los artículos que tengan más de $request->minreaders readers
             $articles = Article::where(
-                'reades', '>=', $request->minreaders
+                'readers',
+                '>=',
+                $request->minreaders
             )->get();
             return response()->json($articles);
         }
 
-        //buscar periodistas por nombre y por email
-        //.../search?name=XXXX&email=YYYYY
+        //buscar periodistas por nombre Y por email
+        //.../search?name=XXXXX&email=YYYYYY
+        
 
-        //buscar periodistas por nombre o por apeyido (->orwhere)
-        //.../search?name=XXXX&email=YYYYY
+        //buscar periodistas por nombre O por apellido (->orWhere)
+        //.../search?name=XXXXX&surname=YYYYYY
 
     }
+
+
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <title>Journalists</title>
 </head>
 
@@ -18,6 +18,13 @@
         @if (session('deleted'))
             <div class="alert alert-success text-center">
                 {{ session('deleted') }}
+            </div>
+        @endif
+        
+        <!-- este mensaje es si llega después de crear un journalist y tiene en la sesión el campo "success" -->
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success')  }}
             </div>
         @endif
 
@@ -36,18 +43,15 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-between">
-                            <a href="{{ route('journalist.edit', $j->id) }}"
-                               class="btn btn-primary btn-sm">
+                            <a href="{{ route('journalist.edit', $j->id) }}" class="btn btn-primary btn-sm">
                                 Editar
                             </a>
 
-                            <form method="POST"
-                                  action="{{ route('journalist.destroy', $j->id) }}">
+                            <form method="POST" action="{{ route('journalist.destroy', $j->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
-                                        class="btn btn-danger btn-sm"
-                                        onclick="return confirm('¿Seguro que quieres eliminar?')">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Seguro que quieres eliminar?')">
                                     Eliminar
                                 </button>
                             </form>
@@ -59,5 +63,5 @@
 
     </div>
 </body>
-</html>
 
+</html>
