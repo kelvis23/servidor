@@ -163,12 +163,24 @@ class JournalistApiController extends Controller
 
         //buscar periodistas por nombre Y por email
         //.../search?name=XXXXX&email=YYYYYY
-        
+        if(isset($request->name)&& isset($request->email)){
+          $journalists=  Journalist::where('name',$request->name)
+            ->where ('email',$request->email)
+            ->get();
+             return response()->json($journalists);
+        }
 
         //buscar periodistas por nombre O por apellido (->orWhere)
         //.../search?name=XXXXX&surname=YYYYYY
-
+         if(isset($request->name)&& isset($request->surname)){
+            $journalists= Journalist::where('name',$request->name)
+            ->orWhere('surname',$request->surname)
+            ->get();
+         return response()->json($journalists);
+        }
     }
+
+
 
 
 }
