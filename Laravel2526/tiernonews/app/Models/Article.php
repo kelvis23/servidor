@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillable =["id","title","content","readers"];
+    protected $fillable =["id","title","content","readers","journalist_id"];
     // relacion  l-n  con journalists 
 
     public function journalist(){

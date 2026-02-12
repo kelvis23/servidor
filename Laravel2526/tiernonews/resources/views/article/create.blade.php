@@ -39,17 +39,20 @@
                         </textarea>
                     </div>
                     <div class="form-group">
-                        <label for="readers">Email</label>
+                        <label for="readers">readers</label>
                         <input name="readers" type="number" class="form-control" id="email" placeholder="Enter readers"
                             value="{{ old('readers') }}">
                     </div>
-                    <div class="form-group">
-                        <select class="custom-select">
-                            <option selected>Open this select menu</option>
-                            
+                    <div class="form-group mb-3">
+                        <label for="journalist_id">Periodista</label>
+                        <select name="journalist_id" id="journalist_id" class="form-control">
+                            @foreach($journalists as $journalist)
+                                <option value="{{ $journalist->id }}">
+                                    {{ $journalist->name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

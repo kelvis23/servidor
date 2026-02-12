@@ -13,9 +13,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-         $article = Article::all();;
+        $articles = Article::all();
+        ;
         //2. devolver  una vista que los contenga
-        return view('article.index', compact("article"));
+        return view('article.index', compact("articles"));
     }
 
     /**
@@ -23,8 +24,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-         $journalists = Journalist::all();
-        return view('article.create',compact('journalists'));
+        $journalists = Journalist::all(); // Obtener todos los periodistas
+        return view('article.create', compact('journalists'));
     }
 
     /**
@@ -32,18 +33,31 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'readers' => 'required|integer',
+            'journalist_id' => 'required|exists:journalists,id'
+        ]);
+
+        $a = new Article($request->all());
+
+        $a->save();
+        return redirect()->route('article.index')
+            ->with('success', 'Artículo guardado correctamente');
     }
+
+
+
 
     /**
      * Display the specified resource.
      */
     public function show(Article $article)
     {
-          $article = Article::find($article);
 
         //2 devuelbe una bista con la informasion del periodista 
-        return view('article.show', compact("article"));
+        return view('article.show', compact("articles"));
     }
 
     /**
@@ -51,7 +65,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        // Pasamos el artículo a la vista
+        return view('article.edit', compact('article'));
     }
 
     /**
@@ -59,7 +74,22 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        // Validamos solo los campos que se pueden actualizar
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'readers' => 'required|integer',
+        ]);
+
+        // Asignamos los campos manualmente
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->readers = $request->readers;
+
+        // Guardamos cambios
+        $article->save();
+        return redirect()->route('article.index')
+            ->with('success', 'Artículo actualisado correctamente');
     }
 
     /**
@@ -67,6 +97,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete(); // Elimina el artículo
+        return redirect()->route('article.index')
+            ->with('success', 'Artículo eliminado correctamente');
     }
 }
