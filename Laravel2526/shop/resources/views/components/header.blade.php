@@ -7,4 +7,5 @@
             <li class="nav-item active"><a href="{{ route('order.create') }}">Create order</a></li>
         </ul>
     </nav>
+    
 </header>

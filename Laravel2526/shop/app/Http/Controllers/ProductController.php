@@ -62,4 +62,27 @@ class ProductController extends Controller
     {
         //
     }
+
+
+    public function search(Request $request)
+    {
+        $query = Product::query();
+
+        // Aquí puedes agregar filtros de búsqueda si los tienes
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Ordenar según el botón presionado
+        if ($request->sort == 'min') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->sort == 'max') {
+            $query->orderBy('price', 'desc');
+        }
+
+        $products = $query->get();
+
+        return view('product.search', compact('products'));
+    }
+
 }

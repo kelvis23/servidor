@@ -37,8 +37,8 @@
             @endforeach
         </div>
     </div>
-    <h2>Clients</h2>
 
+    <h2>Clients</h2>
     <div class="container">
         <div class="row">
             @foreach ($clients as $client)
