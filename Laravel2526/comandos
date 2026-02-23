@@ -1,3 +1,106 @@
-creando proyectos laravel
-diurno@B27-F1:~/daw/servidor/Laravel2526$ composer create-project laravel/laravel tiernonews
+Comandos más importantes para crear proyectos y componentes de Laravel.
 
+composer create-project laravel/laravel [nombre-app]
+
+Para crear un nuevo proyecto.
+
+El primer paso sería configurar el .env con los datos de conexión a la base de datos, sobre todo user pass y nombreBD (que tiene que existir).
+
+php artisan serve
+
+Para desplegar la aplicación.
+
+php artisan migrate
+
+Para lanzar a la base de datos las migraciones (ficheros en database/migrations)
+
+php artisan migrate:refresh
+
+Hace un drop de todas las tablas de la BD y hace de nuevo la migración.
+
+Después, dentro del proyecto, para crear elementos:
+
+php artisan make:Model NombreModelo --migration --resource
+
+Esto crea un modelo con su migración (create_nombre_modelos_table) y con su contorlador NombreModeloController que viene rellenado con los métodos por defecto (index, create, update, edit, delete, etc).
+
+php artisan make:view nombrevista
+
+Esto crearía una vista en la carpeta resources/views. Si se quiere guardar en una subcarpeta: php artisan make:view nombrecarpeta.nombrevista
+
+php artisan route:list
+
+Después de poner nuevas rutas en routes/web.php, para ver las url creadas con esas líneas y sus nombres. Por ejemplo, si al visitar con un GET http://127.0.0.1:8000/ejemplo quiero que se ejecute el método ej() del controlador NombreModeloControlador, pondré: Route::get('/ejemplo', [NombreModeloControlador::class, 'ej'])->name('mirutaejemplo')).
+
+En las rutas Route::resource('/otra', NombreModeloControlador) en realidad se crean 7 diferentes que apuntan a los métodos index, create, store, show, update, edit y delete de NombreModeloControlador. Sería el equivalente a escribir 7 rutas:
+
+Route::get('/otra', [NombreModeloControlador::class, 'index'])->name(otra.index)
+Route::post('/otra', [NombreModeloControlador::class, 'store'])->name(otra.store)
+Route::get('/otra/create', [NombreModeloControlador::class, 'create'])->name(otra.create)
+Route::get('/otra/{id}', [NombreModeloControlador::class, 'show'])->name(otra.show)
+Route::put('/otra/{id}', [NombreModeloControlador::class, 'update'])->name(otra.update)
+Route::delete('/otra/{id}', [NombreModeloControlador::class, 'delete'])->name(otra.delete)
+Route::get('/otra/{id}/edit', [NombreModeloControlador::class, 'edit'])->name(otra.edit)
+php artisan make:seeder NombreModeloSeeder
+
+Crea un fichero seeder en database/seeder (para poblar la bd con datos de prueba).
+
+php artisan db:seed --class=NombreModeloSeeder
+
+Para lanzar el seeder y poblar la base de datos.
+
+Definición de rutas y obtención de parámetros
+Si el endpoint es está definido así:
+
+Route::get('/name/{name}', [NombreModeloController::class, 'test')
+
+En el método al que hace referencia, para obtener name, ponemos un parámetro con ese nombre en el método:
+
+public function test($name){
+   echo $name;
+}
+
+Si el endpoint está definido de manera que los datos los recoge a través de path variables en la url (por ejemplo, http://127.0.0.1:8000/name?name=XXXX&surname=YYYY) o a través de JSON en el cuerpo de la petición:
+
+Route::get('/name', [NombreModeloController::class, 'test')
+
+En el método, para obtener name y surname, lo hacemos a través del Request:
+
+public function test(Request $request){
+   echo $request->name;
+   echo $request->surname;
+} 
+
+Última modificación: viernes, 20 de febrero de 2026, 13:09
+
+cuando tirenes un archibo 
+Instala las dependencias
+composer install
+
+Configura el archivo .env
+cp .env.example .env
+
+sine sita las api 
+php artisan install:api
+
+Luego genera la clave de la aplicación:
+
+#Configuracion de la db:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE= nobre de la base de datos 
+DB_USERNAME=root
+DB_PASSWORD=Sandia4you
+
+
+otrs cosas 
+crear modelos 
+php artisan make:Model NombreModelo --migration --resource
+
+tablas de migration 
+
+php artisan make:migration nombre_de_la_migration
+
+crear controles 
+php artisan make:controller NombreDelControlador
