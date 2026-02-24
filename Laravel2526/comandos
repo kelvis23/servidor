@@ -104,3 +104,14 @@ php artisan make:migration nombre_de_la_migration
 
 crear controles 
 php artisan make:controller NombreDelControlador
+
+te crea el modelo  y con -m se crea  el migration 
+php artisan make:model Animal -m
+-r  te crea los controladores 
+rutas
+GET: consultar
+● POST: insertar o crear
+● PUT: actualizar
+● DELETE: eliminar
+● PATCH: actualización parcial
+● OPTIONS: ver qué peticiones permite el servidor
