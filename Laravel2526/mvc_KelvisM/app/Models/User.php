@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
+        'age',
     ];
 
     /**
@@ -44,5 +46,8 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+     public function events(){
+        return $this->hasMany(Events::class);
     }
 }
